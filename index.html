@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Hamburgueria Modelo - Cardápio Digital</title>
+    <title>Pastelaria Modelo - Cardápio Digital</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -11,11 +11,10 @@
             theme: {
                 extend: {
                     colors: {
-                        burguerWine: '#722F37',
-                        burguerDark: '#121212',
-                        burguerCream: '#FAF6F0',
-                        burguerAccent: '#900C3F',
-                        burguerRed: '#C70039'
+                        pastelGold: '#F59E0B',
+                        pastelDark: '#1E1610',
+                        pastelCream: '#FAF6F0',
+                        pastelAccent: '#E65C00',
                     },
                     fontFamily: {
                         sans: ['Poppins', 'sans-serif'],
@@ -60,101 +59,102 @@
 </head>
 <body class="text-gray-800 antialiased min-h-screen pb-28">
 
-    <!-- Header com Fundo Limpo e Sofisticado (Preto e Vinho) -->
-    <header class="relative bg-burguerDark text-white pt-8 pb-12 px-4 overflow-hidden rounded-b-[35px] shadow-xl border-b-2 border-burguerWine/30">
-        <div class="absolute -top-12 -right-12 w-48 h-48 rounded-full bg-burguerWine opacity-20 blur-xl"></div>
-        <div class="absolute -bottom-16 -left-16 w-64 h-64 rounded-full bg-burguerAccent opacity-10 blur-2xl"></div>
+    <!-- Header com Fundo Limpo e Simples (Sem Capa) -->
+    <header class="relative bg-pastelDark text-white pt-8 pb-12 px-4 overflow-hidden rounded-b-[35px] shadow-xl">
+        <div class="absolute -top-12 -right-12 w-48 h-48 rounded-full bg-pastelGold opacity-10 blur-xl"></div>
+        <div class="absolute -bottom-16 -left-16 w-64 h-64 rounded-full bg-pastelAccent opacity-5 blur-2xl"></div>
 
         <div class="max-w-4xl mx-auto flex flex-col items-center text-center relative z-10">
-            <!-- Logo local com fallback em vetor -->
-            <div class="mb-3 bg-gradient-to-br from-burguerWine to-burguerDark p-1 rounded-full shadow-xl border-4 border-burguerWine flex items-center justify-center transform hover:rotate-6 transition-all duration-300">
-                <img src="logo.png" alt="Logo Hamburgueria" class="h-16 w-16 md:h-20 md:w-20 object-contain rounded-full bg-white" onerror="this.style.display='none'; document.getElementById('logo-fallback').classList.remove('hidden')">
+            <!-- Logo local com detecção automática e fallback em vetor -->
+            <div class="mb-3 bg-gradient-to-br from-pastelGold to-amber-600 p-1 rounded-full shadow-xl border-4 border-pastelDark flex items-center justify-center transform hover:rotate-6 transition-all duration-300">
+                <img src="logo.png" alt="Logo Pastelaria" class="h-16 w-16 md:h-20 md:w-20 object-contain rounded-full bg-white" onerror="this.style.display='none'; document.getElementById('logo-fallback').classList.remove('hidden')">
                 
-                <div id="logo-fallback" class="hidden h-16 w-16 md:h-20 md:w-20 flex items-center justify-center bg-burguerDark rounded-full">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-rose-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <div id="logo-fallback" class="hidden h-16 w-16 md:h-20 md:w-20 flex items-center justify-center bg-pastelDark rounded-full">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-pastelGold" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m0-12.728l.707.707m12.728 12.728l.707.707M5 12a7 7 0 1014 0 7 7 0 00-14 0z" />
                     </svg>
                 </div>
             </div>
             
-            <!-- Nome da Loja com Botãozinho de Informações Discreto -->
+            <!-- Nome da Loja com Botãozinho Vermelho Discreto e Pequeno ao Lado -->
             <div class="flex items-center justify-center gap-1.5 mb-1 flex-wrap">
-                <h1 id="store-title" class="text-display text-2xl md:text-4xl font-bold tracking-wide text-rose-200">
-                    Hamburgueria Modelo
+                <h1 id="store-title" class="text-display text-2xl md:text-4xl font-bold tracking-wide text-pastelGold">
+                    Pastelaria Modelo
                 </h1>
-                <button type="button" onclick="abrirModalInfo()" class="bg-burguerWine hover:bg-burguerAccent text-white w-5 h-5 rounded-full flex items-center justify-center text-[10px] shadow transition-all transform active:scale-95" title="Informações e Horários">
+                <button type="button" onclick="abrirModalInfo()" class="bg-red-600 hover:bg-red-700 text-white w-5 h-5 rounded-full flex items-center justify-center text-[10px] shadow transition-all transform active:scale-95" title="Informações e Horários">
                     <i class="fa-solid fa-info"></i>
                 </button>
             </div>
 
             <p class="text-gray-300 text-[10px] md:text-xs font-light tracking-widest uppercase mb-3">
-                Burgers Artesanais & Sanduíches
+                Massa Crocante e Recheio Generoso
             </p>
 
-            <!-- Status do Estabelecimento e Regras -->
+            <!-- Status do Estabelecimento e Regras de Negócio -->
             <div class="flex flex-wrap justify-center items-center gap-2 text-[10px] md:text-xs">
                 <span id="store-status-badge" class="px-2.5 py-0.5 rounded-full font-semibold flex items-center gap-1.5 border">
                     <span id="store-status-dot" class="w-1.5 h-1.5 rounded-full"></span> <span id="store-status-text">Verificando...</span>
                 </span>
                 <span class="bg-white/10 text-white/90 px-2.5 py-0.5 rounded-full flex items-center gap-1">
-                    <i class="fa-regular fa-clock text-rose-300"></i> 18:00 - 00:00
+                    <i class="fa-regular fa-clock text-pastelGold"></i> 19:30 - 22:35
                 </span>
                 <span class="bg-white/10 text-white/90 px-2.5 py-0.5 rounded-full flex items-center gap-1">
-                    <i class="fa-solid fa-coins text-rose-300"></i> Mínimo: R$ 10,00
+                    <i class="fa-solid fa-coins text-pastelGold"></i> Mínimo: R$ 10,00
                 </span>
-                <span class="bg-burguerWine text-white px-2.5 py-0.5 rounded-full flex items-center gap-1 font-semibold shadow-sm animate-pulse">
+                <span class="bg-pastelAccent text-white px-2.5 py-0.5 rounded-full flex items-center gap-1 font-semibold shadow-sm animate-pulse">
                     <i class="fa-solid fa-motorcycle text-white"></i> 30 - 50 min
                 </span>
                 <span class="bg-white/10 text-white/90 px-2.5 py-0.5 rounded-full flex items-center gap-1">
-                    <i class="fa-solid fa-star text-rose-300"></i> <span id="rating-score-header">4.9</span> (<span id="rating-count-header"> 452 </span> avaliações)
+                    <i class="fa-solid fa-star text-pastelGold"></i> <span id="rating-score-header">4.9</span> (<span id="rating-count-header"> 452 </span> avaliações)
                 </span>
             </div>
         </div>
     </header>
 
-    <!-- Modal de Informações e Horários -->
+    <!-- Modal de Informações da Loja e Horários -->
     <div id="modal-info" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
-        <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl relative border border-rose-100 transform scale-95 transition-transform duration-300" id="modal-content">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl relative border border-amber-100 transform scale-95 transition-transform duration-300" id="modal-content">
+            <!-- Botão X pequeno no canto direito para fechar -->
             <button type="button" onclick="fecharModalInfo()" class="absolute top-4 right-4 bg-gray-100 hover:bg-gray-200 text-gray-600 w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold transition-all">
                 <i class="fa-solid fa-xmark"></i>
             </button>
 
-            <h3 class="text-display text-xl font-bold text-burguerDark mb-3 flex items-center gap-2 border-b border-rose-100 pb-2">
-                <i class="fa-solid fa-store text-burguerWine"></i> Hamburgueria Modelo
+            <h3 class="text-display text-xl font-bold text-pastelDark mb-3 flex items-center gap-2 border-b border-amber-100 pb-2">
+                <i class="fa-solid fa-store text-pastelGold"></i> Pastelaria Modelo
             </h3>
 
             <div class="space-y-3 text-xs text-gray-600">
-                <div class="bg-rose-50/70 p-3 rounded-xl border border-rose-100">
-                    <p class="font-bold text-burguerDark mb-1"><i class="fa-solid fa-location-dot text-burguerWine mr-1"></i> Endereço:</p>
-                    <p class="text-gray-700">Av. Dr. JJ Seabra, 198 – Centro, Xique-Xique – BA, 47400-000</p>
+                <div class="bg-amber-50/70 p-3 rounded-xl border border-amber-100">
+                    <p class="font-bold text-pastelDark mb-1"><i class="fa-solid fa-location-dot text-red-500 mr-1"></i> Endereço:</p>
+                    <p class="text-gray-700">Rua Aurora, praça dos quiosques, N°4, Xique-Xique - BAHIA</p>
                 </div>
 
                 <div class="grid grid-cols-2 gap-2">
                     <div class="bg-gray-50 p-2.5 rounded-xl border border-gray-100 text-center">
-                        <p class="font-bold text-burguerDark text-[11px] mb-0.5"><i class="fa-solid fa-motorcycle text-burguerWine mr-1"></i> Delivery</p>
+                        <p class="font-bold text-pastelDark text-[11px] mb-0.5"><i class="fa-solid fa-motorcycle text-amber-500 mr-1"></i> Delivery</p>
                         <p class="text-[11px] text-gray-500">30 - 50 minutos</p>
                     </div>
                     <div class="bg-gray-50 p-2.5 rounded-xl border border-gray-100 text-center">
-                        <p class="font-bold text-burguerDark text-[11px] mb-0.5"><i class="fa-solid fa-store text-burguerWine mr-1"></i> No Local / Retirada</p>
-                        <p class="text-[11px] text-gray-500">Mesas ao ar livre</p>
+                        <p class="font-bold text-pastelDark text-[11px] mb-0.5"><i class="fa-solid fa-store text-amber-500 mr-1"></i> Balcão</p>
+                        <p class="text-[11px] text-gray-500">20 - 40 minutos</p>
                     </div>
                 </div>
 
                 <div>
-                    <p class="font-bold text-burguerDark mb-1.5"><i class="fa-regular fa-clock text-burguerWine mr-1"></i> Horários de Funcionamento:</p>
+                    <p class="font-bold text-pastelDark mb-1.5"><i class="fa-regular fa-clock text-pastelGold mr-1"></i> Horários de Funcionamento:</p>
                     <ul class="space-y-1 bg-gray-50 p-3 rounded-xl border border-gray-100 text-[11px]">
-                        <li class="flex justify-between border-b border-gray-200/50 pb-1"><span>Domingo:</span> <span class="font-semibold text-burguerDark">18:00 - 23:59</span></li>
-                        <li class="flex justify-between border-b border-gray-200/50 pb-1"><span>Segunda:</span> <span class="font-semibold text-burguerDark">18:00 - 23:45</span></li>
-                        <li class="flex justify-between border-b border-gray-200/50 pb-1"><span>Terça:</span> <span class="font-semibold text-burguerDark">18:00 - 23:45</span></li>
-                        <li class="flex justify-between border-b border-gray-200/50 pb-1"><span>Quarta:</span> <span class="font-semibold text-burguerDark">18:00 - 23:45</span></li>
-                        <li class="flex justify-between border-b border-gray-200/50 pb-1"><span>Quinta:</span> <span class="font-semibold text-burguerDark">18:00 - 23:45</span></li>
-                        <li class="flex justify-between border-b border-gray-200/50 pb-1"><span>Sexta:</span> <span class="font-semibold text-burguerDark">18:00 - 23:59</span></li>
-                        <li class="flex justify-between pt-0.5"><span>Sábado:</span> <span class="font-semibold text-burguerDark">18:00 - 23:59</span></li>
+                        <li class="flex justify-between border-b border-gray-200/50 pb-1"><span>Domingo:</span> <span class="font-semibold text-pastelDark">19:35 - 22:35</span></li>
+                        <li class="flex justify-between border-b border-gray-200/50 pb-1"><span>Segunda:</span> <span class="font-semibold text-pastelDark">19:35 - 22:35</span></li>
+                        <li class="flex justify-between border-b border-gray-200/50 pb-1"><span>Terça:</span> <span class="font-semibold text-pastelDark">19:30 - 22:35</span></li>
+                        <li class="flex justify-between border-b border-gray-200/50 pb-1"><span>Quarta:</span> <span class="font-semibold text-pastelDark">19:35 - 22:35</span></li>
+                        <li class="flex justify-between border-b border-gray-200/50 pb-1"><span>Quinta:</span> <span class="font-semibold text-pastelDark">19:35 - 22:35</span></li>
+                        <li class="flex justify-between border-b border-gray-200/50 pb-1"><span>Sexta:</span> <span class="font-semibold text-pastelDark">19:35 - 22:35</span></li>
+                        <li class="flex justify-between pt-0.5"><span>Sábado:</span> <span class="font-semibold text-pastelDark">19:30 - 22:35</span></li>
                     </ul>
                 </div>
             </div>
 
-            <button type="button" onclick="fecharModalInfo()" class="mt-4 w-full bg-burguerDark hover:bg-black text-rose-200 font-bold py-2.5 rounded-xl text-xs transition-all">
+            <button type="button" onclick="fecharModalInfo()" class="mt-4 w-full bg-pastelDark hover:bg-black text-pastelGold font-bold py-2.5 rounded-xl text-xs transition-all">
                 Entendido
             </button>
         </div>
@@ -163,92 +163,66 @@
     <main class="max-w-4xl mx-auto px-3 md:px-6 mt-6 relative z-20">
         
         <!-- Barra de busca e Abas de navegação rápida -->
-        <div class="bg-white rounded-2xl shadow-lg p-3 md:p-4 mb-6 border border-rose-100/50 flex flex-col md:flex-row gap-3 items-center">
+        <div class="bg-white rounded-2xl shadow-lg p-3 md:p-4 mb-6 border border-amber-100/50 flex flex-col md:flex-row gap-3 items-center">
             <div class="relative w-full md:flex-1">
                 <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-gray-400">
                     <i class="fa-solid fa-magnifying-glass text-sm"></i>
                 </span>
-                <input type="text" id="searchInput" oninput="filterProducts()" placeholder="Pesquise por combo, burger ou bebida..." class="w-full bg-gray-50 border border-gray-200 pl-9 pr-3 py-2.5 rounded-xl text-base focus:outline-none focus:ring-2 focus:ring-burguerWine focus:border-transparent transition-all">
+                <input type="text" id="searchInput" oninput="filterProducts()" placeholder="Pesquise por sabor ou ingrediente..." class="w-full bg-gray-50 border border-gray-200 pl-9 pr-3 py-2.5 rounded-xl text-base focus:outline-none focus:ring-2 focus:ring-pastelGold focus:border-transparent transition-all">
             </div>
             
             <div class="w-full md:w-auto overflow-x-auto hide-scrollbar flex gap-2 py-0.5">
-                <button onclick="filterCategory('todos')" class="category-btn active px-3.5 py-2 rounded-xl font-semibold text-xs md:text-sm transition-all whitespace-nowrap bg-burguerWine text-white shadow-sm">
+                <button onclick="filterCategory('todos')" class="category-btn active px-4 py-2 rounded-xl font-semibold text-xs md:text-sm transition-all whitespace-nowrap bg-pastelGold text-pastelDark shadow-sm">
                     Todos
                 </button>
-                <button onclick="filterCategory('combo')" class="category-btn px-3.5 py-2 rounded-xl font-semibold text-xs md:text-sm transition-all whitespace-nowrap bg-gray-50 text-gray-600 hover:bg-rose-50">
-                    Combos
+                <button onclick="filterCategory('pastel')" class="category-btn px-4 py-2 rounded-xl font-semibold text-xs md:text-sm transition-all whitespace-nowrap bg-gray-50 text-gray-600 hover:bg-amber-50">
+                    Pastéis
                 </button>
-                <button onclick="filterCategory('gourmet')" class="category-btn px-3.5 py-2 rounded-xl font-semibold text-xs md:text-sm transition-all whitespace-nowrap bg-gray-50 text-gray-600 hover:bg-rose-50">
-                    Gourmet
-                </button>
-                <button onclick="filterCategory('tradicional')" class="category-btn px-3.5 py-2 rounded-xl font-semibold text-xs md:text-sm transition-all whitespace-nowrap bg-gray-50 text-gray-600 hover:bg-rose-50">
-                    Tradicionais
-                </button>
-                <button onclick="filterCategory('bebida')" class="category-btn px-3.5 py-2 rounded-xl font-semibold text-xs md:text-sm transition-all whitespace-nowrap bg-gray-50 text-gray-600 hover:bg-rose-50">
+                <button onclick="filterCategory('bebida')" class="category-btn px-4 py-2 rounded-xl font-semibold text-xs md:text-sm transition-all whitespace-nowrap bg-gray-50 text-gray-600 hover:bg-amber-50">
                     Bebidas
                 </button>
             </div>
         </div>
 
         <div class="space-y-6">
-            <!-- Seção de Combos Promocionais -->
-            <div id="combos-section">
-                <h2 class="text-display text-lg md:text-2xl font-bold text-burguerDark mb-3 flex items-center gap-2 border-b border-burguerWine/30 pb-1.5">
-                    Combos Promocionais
+            <!-- Seção de Pastéis -->
+            <div id="pasteis-section">
+                <h2 class="text-display text-lg md:text-2xl font-bold text-pastelDark mb-3 flex items-center gap-2 border-b border-pastelGold/30 pb-1.5">
+                    Pastéis
                 </h2>
-                <div id="combos-grid" class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
-                    <!-- Gerado dinamicamente -->
-                </div>
-            </div>
-
-            <!-- Seção Cardápio Gourmet -->
-            <div id="gourmet-section" class="mt-6">
-                <h2 class="text-display text-lg md:text-2xl font-bold text-burguerDark mb-3 flex items-center gap-2 border-b border-burguerWine/30 pb-1.5">
-                    Cardápio Gourmet & Porções
-                </h2>
-                <div id="gourmet-grid" class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
-                    <!-- Gerado dinamicamente -->
-                </div>
-            </div>
-
-            <!-- Seção Sanduíches Tradicionais -->
-            <div id="tradicionais-section" class="mt-6">
-                <h2 class="text-display text-lg md:text-2xl font-bold text-burguerDark mb-3 flex items-center gap-2 border-b border-burguerWine/30 pb-1.5">
-                    Sanduíches Tradicionais
-                </h2>
-                <div id="tradicionais-grid" class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
-                    <!-- Gerado dinamicamente -->
+                <div id="pasteis-grid" class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+                    <!-- Gerado dinamicamente no JS -->
                 </div>
             </div>
 
             <!-- Seção de Bebidas Geladas -->
             <div id="bebidas-section" class="mt-6">
-                <h2 class="text-display text-lg md:text-2xl font-bold text-burguerDark mb-3 flex items-center gap-2 border-b border-burguerWine/30 pb-1.5">
+                <h2 class="text-display text-lg md:text-2xl font-bold text-pastelDark mb-3 flex items-center gap-2 border-b border-pastelGold/30 pb-1.5">
                     Bebidas Geladas
                 </h2>
                 <div id="bebidas-grid" class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
-                    <!-- Gerado dinamicamente -->
+                    <!-- Gerado dinamicamente no JS -->
                 </div>
             </div>
         </div>
 
-        <!-- Módulo de Avaliação -->
-        <div id="rating-widget-area" class="bg-white rounded-2xl border border-rose-100 shadow-xl p-5 mt-8 max-w-2xl mx-auto text-center">
-            <h3 class="font-bold text-sm sm:text-base text-burguerDark mb-2">Avalie nosso atendimento:</h3>
+        <!-- Módulo de Avaliação (Trambique 5 estrelas) -->
+        <div id="rating-widget-area" class="bg-white rounded-2xl border border-amber-100 shadow-xl p-5 mt-8 max-w-2xl mx-auto text-center">
+            <h3 class="font-bold text-sm sm:text-base text-pastelDark mb-2">Avalie nosso atendimento:</h3>
             <div class="flex justify-center gap-3 mb-2">
-                <button onclick="registrarNotaTrambique(1)" class="star-btn text-3xl text-gray-300 hover:text-burguerWine active:scale-95 transition-all focus:outline-none"><i class="fa-regular fa-star"></i></button>
-                <button onclick="registrarNotaTrambique(2)" class="star-btn text-3xl text-gray-300 hover:text-burguerWine active:scale-95 transition-all focus:outline-none"><i class="fa-regular fa-star"></i></button>
-                <button onclick="registrarNotaTrambique(3)" class="star-btn text-3xl text-gray-300 hover:text-burguerWine active:scale-95 transition-all focus:outline-none"><i class="fa-regular fa-star"></i></button>
-                <button onclick="registrarNotaTrambique(4)" class="star-btn text-3xl text-gray-300 hover:text-burguerWine active:scale-95 transition-all focus:outline-none"><i class="fa-regular fa-star"></i></button>
-                <button onclick="registrarNotaTrambique(5)" class="star-btn text-3xl text-gray-300 hover:text-burguerWine active:scale-95 transition-all focus:outline-none"><i class="fa-regular fa-star"></i></button>
+                <button onclick="registrarNotaTrambique(1)" class="star-btn text-3xl text-gray-300 hover:text-pastelGold active:scale-95 transition-all focus:outline-none"><i class="fa-regular fa-star"></i></button>
+                <button onclick="registrarNotaTrambique(2)" class="star-btn text-3xl text-gray-300 hover:text-pastelGold active:scale-95 transition-all focus:outline-none"><i class="fa-regular fa-star"></i></button>
+                <button onclick="registrarNotaTrambique(3)" class="star-btn text-3xl text-gray-300 hover:text-pastelGold active:scale-95 transition-all focus:outline-none"><i class="fa-regular fa-star"></i></button>
+                <button onclick="registrarNotaTrambique(4)" class="star-btn text-3xl text-gray-300 hover:text-pastelGold active:scale-95 transition-all focus:outline-none"><i class="fa-regular fa-star"></i></button>
+                <button onclick="registrarNotaTrambique(5)" class="star-btn text-3xl text-gray-300 hover:text-pastelGold active:scale-95 transition-all focus:outline-none"><i class="fa-regular fa-star"></i></button>
             </div>
             <p id="rating-feedback-msg" class="text-xs text-gray-500 font-medium transition-all">Sua opinião ajuda a melhorar nossa entrega!</p>
         </div>
 
         <!-- Sacola de Compras e Finalização do Pedido -->
-        <div class="bg-white rounded-2xl border border-rose-100 shadow-xl p-4 sm:p-6 mt-8 max-w-2xl mx-auto" id="checkout-area">
+        <div class="bg-white rounded-2xl border border-amber-100 shadow-xl p-4 sm:p-6 mt-8 max-w-2xl mx-auto" id="checkout-area">
             <div class="flex justify-between items-center mb-4 border-b border-gray-100 pb-3">
-                <h3 class="text-display text-base sm:text-xl font-bold text-burguerDark flex items-center gap-2">
+                <h3 class="text-display text-base sm:text-xl font-bold text-pastelDark flex items-center gap-2">
                     Meu Pedido
                 </h3>
                 <button type="button" onclick="clearCart()" class="text-[10px] font-semibold text-red-500 hover:text-red-700 bg-red-50 hover:bg-red-100 px-2 py-1 rounded-lg transition-all flex items-center gap-1">
@@ -256,42 +230,47 @@
                 </button>
             </div>
             
+            <!-- Resumo das Escolhas do cliente -->
             <div class="space-y-2 mb-4" id="cart-items-list">
-                <!-- Dinâmico -->
+                <!-- Inserido de forma dinâmica -->
             </div>
 
-            <div class="border-t border-dashed border-rose-100 py-3 space-y-1.5">
+            <!-- Preços e Alertas Finais do Carrinho -->
+            <div class="border-t border-dashed border-amber-100 py-3 space-y-1.5">
                 <div class="flex justify-between text-xs sm:text-sm text-gray-600">
                     <span>Subtotal</span>
                     <span id="subtotal-val" class="font-semibold">R$ 0,00</span>
                 </div>
                 <div class="flex justify-between text-xs sm:text-sm text-gray-600" id="delivery-row">
                     <span>Taxa de Entrega</span>
-                    <span id="delivery-val" class="font-medium text-burguerWine">Preencha o bairro</span>
+                    <span id="delivery-val" class="font-medium text-amber-600">Preencha o bairro</span>
                 </div>
-                <div class="flex justify-between text-base sm:text-lg font-bold text-burguerDark pt-1.5 border-t border-gray-100">
+                <div class="flex justify-between text-base sm:text-lg font-bold text-pastelDark pt-1.5 border-t border-gray-100">
                     <span>Total do Pedido:</span>
-                    <span id="total-val" class="text-burguerAccent">R$ 0,00</span>
+                    <span id="total-val" class="text-pastelAccent">R$ 0,00</span>
                 </div>
                 
+                <!-- Alerta de valor mínimo -->
                 <div id="min-alert" class="hidden bg-red-50 border border-red-100 text-red-600 px-3 py-2 rounded-xl text-center text-[11px] font-semibold flex items-center justify-center gap-1.5 mt-2">
                     <i class="fa-solid fa-triangle-exclamation"></i> O valor mínimo para pedidos é de R$ 10,00. Adicione mais delícias!
                 </div>
                 
-                <div id="store-closed-alert" class="hidden bg-rose-50 border border-rose-200 text-burguerDark px-3 py-2.5 rounded-xl text-center text-xs font-semibold flex items-center justify-center gap-2 mt-2">
-                    <i class="fa-solid fa-store-slash text-burguerWine"></i> Estamos fechados no momento. Confira nossos horários no botão de informações acima!
+                <!-- Alerta de Fechado Fora do Horário -->
+                <div id="store-closed-alert" class="hidden bg-amber-50 border border-amber-200 text-amber-800 px-3 py-2.5 rounded-xl text-center text-xs font-semibold flex items-center justify-center gap-2 mt-2">
+                    <i class="fa-solid fa-store-slash text-amber-600"></i> Estamos fechados no momento. Confira nossos horários no botão de informações acima!
                 </div>
             </div>
 
             <form id="order-form" onsubmit="enviarPedido(event)" class="mt-4 space-y-3.5">
+                <!-- Dados Pessoais com Celular -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
                     <div>
                         <label class="block text-[10px] font-semibold text-gray-500 uppercase tracking-wider mb-1" for="nome">Seu Nome:</label>
-                        <input type="text" id="nome" required placeholder="Ex: João Silva" class="w-full bg-gray-50 border border-gray-200 px-3 py-2.5 rounded-xl text-base focus:outline-none focus:ring-2 focus:ring-burguerWine focus:bg-white transition-all">
+                        <input type="text" id="nome" required placeholder="Ex: João Silva" class="w-full bg-gray-50 border border-gray-200 px-3 py-2.5 rounded-xl text-base focus:outline-none focus:ring-2 focus:ring-pastelGold focus:bg-white transition-all">
                     </div>
                     <div>
                         <label class="block text-[10px] font-semibold text-gray-500 uppercase tracking-wider mb-1" for="celular">Seu Celular / WhatsApp:</label>
-                        <input type="tel" id="celular" required placeholder="Ex: (74) 99999-9999" oninput="formatarTelefone(this)" class="w-full bg-gray-50 border border-gray-200 px-3 py-2.5 rounded-xl text-base focus:outline-none focus:ring-2 focus:ring-burguerWine focus:bg-white transition-all">
+                        <input type="tel" id="celular" required placeholder="Ex: (74) 99999-9999" oninput="formatarTelefone(this)" class="w-full bg-gray-50 border border-gray-200 px-3 py-2.5 rounded-xl text-base focus:outline-none focus:ring-2 focus:ring-pastelGold focus:bg-white transition-all">
                     </div>
                 </div>
 
@@ -299,27 +278,27 @@
                     <div>
                         <label class="block text-[10px] font-semibold text-gray-500 uppercase tracking-wider mb-1">Como deseja receber?</label>
                         <div class="grid grid-cols-2 gap-2">
-                            <button type="button" onclick="setDeliveryMethod('entrega')" id="methodDelivery" class="py-2.5 text-center font-bold rounded-xl text-xs transition-all bg-burguerWine text-white border border-transparent shadow-sm">
+                            <button type="button" onclick="setDeliveryMethod('entrega')" id="methodDelivery" class="py-2.5 text-center font-bold rounded-xl text-xs transition-all bg-pastelGold text-pastelDark border border-transparent shadow-sm">
                                 <i class="fa-solid fa-motorcycle mr-1"></i> Entrega
                             </button>
                             <button type="button" onclick="setDeliveryMethod('retirada')" id="methodPickup" class="py-2.5 text-center font-semibold rounded-xl text-xs transition-all bg-gray-50 text-gray-600 border border-gray-100">
-                                <i class="fa-solid fa-store mr-1"></i> Retirar / Local
+                                <i class="fa-solid fa-store mr-1"></i> Retirar
                             </button>
                         </div>
                     </div>
                 </div>
 
-                <!-- Seção de Endereço com Bairros de Xique-Xique -->
+                <!-- Seção de Endereço Completo com Bairros de Xique-Xique -->
                 <div id="addressSection" class="transition-all duration-300 space-y-3">
                     <div>
                         <label class="block text-[10px] font-semibold text-gray-500 uppercase tracking-wider mb-1" for="endereco_rua">Rua e Número:</label>
-                        <input type="text" id="endereco_rua" placeholder="Ex: Rua das Flores, 123" class="w-full bg-gray-50 border border-gray-200 px-3 py-2.5 rounded-xl text-base focus:outline-none focus:ring-2 focus:ring-burguerWine focus:bg-white transition-all">
+                        <input type="text" id="endereco_rua" placeholder="Ex: Rua das Flores, 123" class="w-full bg-gray-50 border border-gray-200 px-3 py-2.5 rounded-xl text-base focus:outline-none focus:ring-2 focus:ring-pastelGold focus:bg-white transition-all">
                     </div>
                     
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
                         <div>
                             <label class="block text-[10px] font-semibold text-gray-500 uppercase tracking-wider mb-1" for="bairro">Bairro (Xique-Xique - BA):</label>
-                            <select id="bairro" onchange="updateCart()" class="w-full bg-gray-50 border border-gray-200 px-3 py-2.5 rounded-xl text-base focus:outline-none focus:ring-2 focus:ring-burguerWine focus:bg-white transition-all">
+                            <select id="bairro" onchange="updateCart()" class="w-full bg-gray-50 border border-gray-200 px-3 py-2.5 rounded-xl text-base focus:outline-none focus:ring-2 focus:ring-pastelGold focus:bg-white transition-all">
                                 <option value="">Selecione o bairro</option>
                                 <option value="Centro">Centro (R$ 3,00)</option>
                                 <option value="Polivalente">Polivalente (R$ 5,00)</option>
@@ -338,56 +317,61 @@
                         </div>
                         <div>
                             <label class="block text-[10px] font-semibold text-gray-500 uppercase tracking-wider mb-1" for="ref_ponto">Ponto de Referência (Opcional):</label>
-                            <input type="text" id="ref_ponto" placeholder="Ex: Próximo ao mercado azul" class="w-full bg-gray-50 border border-gray-200 px-3 py-2.5 rounded-xl text-base focus:outline-none focus:ring-2 focus:ring-burguerWine focus:bg-white transition-all">
+                            <input type="text" id="ref_ponto" placeholder="Ex: Próximo ao mercado azul" class="w-full bg-gray-50 border border-gray-200 px-3 py-2.5 rounded-xl text-base focus:outline-none focus:ring-2 focus:ring-pastelGold focus:bg-white transition-all">
                         </div>
                     </div>
                 </div>
 
-                <div id="locationActionArea" class="bg-rose-50/60 border border-rose-100 rounded-xl p-3 space-y-2">
-                    <!-- Dinâmico -->
+                <!-- Botão de Geolocalização (GPS do Cliente para Entrega / Mapa da Loja para Retirada) -->
+                <div id="locationActionArea" class="bg-amber-50/60 border border-amber-100 rounded-xl p-3 space-y-2">
+                    <!-- Conteúdo dinâmico via JS -->
                 </div>
 
+                <!-- Seção de Pagamento -->
                 <div class="space-y-3">
                     <div>
                         <label class="block text-[10px] font-semibold text-gray-500 uppercase tracking-wider mb-1" for="pagamento">Forma de Pagamento:</label>
-                        <select id="pagamento" onchange="toggleTrocoAndPix(); toggleCartaoGroup();" required class="w-full bg-gray-50 border border-gray-200 px-3 py-2.5 rounded-xl text-base focus:outline-none focus:ring-2 focus:ring-burguerWine focus:bg-white transition-all">
+                        <select id="pagamento" onchange="toggleTrocoAndPix(); toggleCartaoGroup();" required class="w-full bg-gray-50 border border-gray-200 px-3 py-2.5 rounded-xl text-base focus:outline-none focus:ring-2 focus:ring-pastelGold focus:bg-white transition-all">
                             <option value="Pix">Pix</option>
-                            <option value="Cartão">Cartão (maquininha na entrega/mesa)</option>
+                            <option value="Cartão">Cartão (maquininha na entrega)</option>
                             <option value="Dinheiro">Dinheiro</option>
                         </select>
                     </div>
 
-                    <div id="pix-area" class="bg-rose-50/60 border border-rose-100 p-3.5 rounded-xl space-y-2.5">
+                    <!-- Box Informativo de Pix -->
+                    <div id="pix-area" class="bg-amber-50/60 border border-amber-100 p-3.5 rounded-xl space-y-2.5">
                         <div class="flex items-center gap-1.5">
-                            <i class="fa-solid fa-money-bill-transfer text-burguerWine text-sm"></i>
-                            <span class="text-[10px] font-bold text-burguerDark uppercase tracking-wide">Chave Pix para Pagamento:</span>
+                            <i class="fa-solid fa-money-bill-transfer text-amber-600 text-sm"></i>
+                            <span class="text-[10px] font-bold text-amber-800 uppercase tracking-wide">Chave Pix para Pagamento:</span>
                         </div>
-                        <div class="flex items-center justify-between bg-white border border-rose-100/50 p-2.5 rounded-lg gap-2">
-                            <code class="text-xs sm:text-sm font-semibold text-burguerDark select-all break-all" id="chave-pix-texto">pix@hamburgueriamodelo.com.br</code>
-                            <button type="button" onclick="copiarPix()" class="bg-burguerWine hover:bg-burguerAccent text-white px-2.5 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1 shrink-0">
+                        <div class="flex items-center justify-between bg-white border border-amber-100/50 p-2.5 rounded-lg gap-2">
+                            <code class="text-xs sm:text-sm font-semibold text-pastelDark select-all break-all" id="chave-pix-texto">pix@pastelariamodelo.com.br</code>
+                            <button type="button" onclick="copiarPix()" class="bg-pastelGold hover:bg-amber-500 text-pastelDark px-2.5 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1 shrink-0">
                                 <i class="fa-regular fa-copy"></i> Copiar
                             </button>
                         </div>
-                        <p class="text-[10px] text-gray-600 font-medium bg-rose-100/40 p-2.5 rounded-lg border border-rose-200/20 flex items-start gap-2">
-                            <i class="fa-solid fa-circle-info text-burguerWine text-sm mt-0.5 shrink-0"></i>
-                            <span>Envie o comprovante junto com a mensagem do WhatsApp para agilizar! 😊</span>
+                        <p class="text-[10px] text-amber-700 font-medium bg-amber-100/40 p-2.5 rounded-lg border border-amber-200/20 flex items-start gap-2">
+                            <i class="fa-solid fa-circle-info text-amber-500 text-sm mt-0.5 shrink-0"></i>
+                            <span>Dica: Se puder, envie o comprovante de pagamento junto com a mensagem do WhatsApp para podermos agilizar a entrega! 😊</span>
                         </p>
                     </div>
 
+                    <!-- Bloco de Troco Inteligente (Dinheiro) -->
                     <div id="troco-group" class="hidden bg-gray-50 border border-gray-200 rounded-xl p-3 space-y-2">
                         <label class="block text-[10px] font-semibold text-gray-500 uppercase tracking-wider mb-1" for="troco">Troco para quanto?</label>
-                        <input type="number" id="troco" step="0.01" placeholder="Ex: 50,00" class="w-full bg-white border border-gray-200 px-3 py-2.5 rounded-xl text-base focus:outline-none focus:ring-2 focus:ring-burguerWine transition-all">
+                        <input type="number" id="troco" step="0.01" placeholder="Ex: 50,00" class="w-full bg-white border border-gray-200 px-3 py-2.5 rounded-xl text-base focus:outline-none focus:ring-2 focus:ring-pastelGold transition-all">
                         <label class="flex items-center gap-2 text-xs font-semibold text-gray-600 pt-1">
-                            <input type="checkbox" id="sem-troco" onchange="toggleTrocoSemNota()" class="w-4 h-4 accent-burguerWine"> Não preciso de troco (valor exato)
+                            <input type="checkbox" id="sem-troco" onchange="toggleTrocoSemNota()" class="w-4 h-4 accent-amber-500"> Não preciso de troco (valor exato)
                         </label>
                         <p id="troco-info" class="text-[11px] font-semibold"></p>
                     </div>
 
+                    <!-- Bloco de Seleção de Bandeira e Modalidade (Cartão) -->
                     <div id="cartao-group" class="hidden bg-gray-50 border border-gray-200 rounded-xl p-3 space-y-2.5">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
                             <div>
                                 <label class="block text-[10px] font-semibold text-gray-500 uppercase tracking-wider mb-1" for="bandeira">Bandeira do Cartão:</label>
-                                <select id="bandeira" class="w-full bg-white border border-gray-200 px-3 py-2.5 rounded-xl text-base focus:outline-none focus:ring-2 focus:ring-burguerWine transition-all">
+                                <select id="bandeira" class="w-full bg-white border border-gray-200 px-3 py-2.5 rounded-xl text-base focus:outline-none focus:ring-2 focus:ring-pastelGold transition-all">
                                     <option value="">Selecione a bandeira</option>
                                     <option value="Visa">Visa</option>
                                     <option value="Mastercard">Mastercard</option>
@@ -399,20 +383,20 @@
                             </div>
                             <div>
                                 <label class="block text-[10px] font-semibold text-gray-500 uppercase tracking-wider mb-1" for="modalidade">Modalidade:</label>
-                                <select id="modalidade" class="w-full bg-white border border-gray-200 px-3 py-2.5 rounded-xl text-base focus:outline-none focus:ring-2 focus:ring-burguerWine transition-all">
+                                <select id="modalidade" class="w-full bg-white border border-gray-200 px-3 py-2.5 rounded-xl text-base focus:outline-none focus:ring-2 focus:ring-pastelGold transition-all">
                                     <option value="">Selecione</option>
                                     <option value="Crédito">Crédito</option>
                                     <option value="Débito">Débito</option>
                                 </select>
                             </div>
                         </div>
-                        <p class="text-[10px] text-gray-500 font-medium"><i class="fa-regular fa-credit-card text-burguerWine"></i> Maquininha levada até você.</p>
+                        <p class="text-[10px] text-gray-500 font-medium"><i class="fa-regular fa-credit-card text-pastelGold"></i> Maquininha levada até você na entrega.</p>
                     </div>
                 </div>
 
                 <div>
                     <label class="block text-[10px] font-semibold text-gray-500 uppercase tracking-wider mb-1" for="observacao">Observações (Opcional):</label>
-                    <textarea id="observacao" rows="2" placeholder="Ex: Ponto da carne, sem cebola..." class="w-full bg-gray-50 border border-gray-200 px-3 py-2.5 rounded-xl text-base focus:outline-none focus:ring-2 focus:ring-burguerWine focus:bg-white transition-all"></textarea>
+                    <textarea id="observacao" rows="2" placeholder="Ex: Sem cebola, ketchup e maionese..." class="w-full bg-gray-50 border border-gray-200 px-3 py-2.5 rounded-xl text-base focus:outline-none focus:ring-2 focus:ring-pastelGold focus:bg-white transition-all"></textarea>
                 </div>
 
                 <button type="submit" id="btn-finalizar" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 rounded-xl shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 text-base mt-2">
@@ -422,105 +406,41 @@
         </div>
     </main>
 
-    <!-- Mini-carrinho flutuante -->
-    <div id="sticky-mini-cart" class="fixed bottom-3 left-3 right-3 bg-gradient-to-r from-burguerWine to-burguerAccent text-white px-3 py-2 rounded-xl shadow-lg z-40 flex items-center justify-between transform translate-y-32 opacity-0 transition-all duration-300 pointer-events-none md:max-w-xs md:mx-auto">
+    <!-- Mini-carrinho flutuante super compacto -->
+    <div id="sticky-mini-cart" class="fixed bottom-3 left-3 right-3 bg-gradient-to-r from-pastelAccent to-amber-500 text-white px-3 py-2 rounded-xl shadow-lg z-40 flex items-center justify-between transform translate-y-32 opacity-0 transition-all duration-300 pointer-events-none md:max-w-xs md:mx-auto">
         <div class="flex items-center gap-2">
             <div class="bg-white/20 p-1.5 rounded-lg flex items-center justify-center">
                 <i class="fa-solid fa-basket-shopping text-xs"></i>
             </div>
             <div>
                 <span id="mini-cart-qty" class="block font-bold text-[11px]">0 itens</span>
-                <span id="mini-cart-subtotal" class="block text-[9px] text-rose-100 font-medium">Subtotal: R$ 0,00</span>
+                <span id="mini-cart-subtotal" class="block text-[9px] text-amber-100 font-medium">Subtotal: R$ 0,00</span>
             </div>
         </div>
-        <a href="#checkout-area" class="bg-white text-burguerWine font-extrabold text-[9px] px-2.5 py-1.5 rounded-lg uppercase tracking-wider shadow hover:bg-rose-50 transition-colors pointer-events-auto flex items-center gap-1">
+        <a href="#checkout-area" class="bg-white text-pastelAccent font-extrabold text-[9px] px-2.5 py-1.5 rounded-lg uppercase tracking-wider shadow hover:bg-amber-50 transition-colors pointer-events-auto flex items-center gap-1">
             Ver Sacola <i class="fa-solid fa-chevron-right text-[7px]"></i>
         </a>
     </div>
 
-    <!-- Toast de feedback -->
-    <div id="toast" class="fixed bottom-20 left-1/2 -translate-x-1/2 bg-burguerDark text-white px-5 py-3 rounded-full shadow-lg z-50 flex items-center gap-2 border border-burguerWine/20 transform translate-y-24 opacity-0 transition-all duration-300 max-w-[90vw]">
-        <i id="toast-icon" class="fa-solid fa-circle-check text-rose-300 text-base shrink-0"></i>
+    <!-- Toast flutuante de feedback de ações -->
+    <div id="toast" class="fixed bottom-20 left-1/2 -translate-x-1/2 bg-pastelDark text-white px-5 py-3 rounded-full shadow-lg z-50 flex items-center gap-2 border border-amber-500/20 transform translate-y-24 opacity-0 transition-all duration-300 max-w-[90vw]">
+        <i id="toast-icon" class="fa-solid fa-circle-check text-pastelGold text-base shrink-0"></i>
         <span id="toastMsg" class="font-medium text-xs sm:text-sm truncate">Carrinho atualizado!</span>
     </div>
 
     <script>
-        // Banco de Dados Completo da Hamburgueria Modelo
+        // Banco de dados dos produtos da Pastelaria Modelo (Com "Pastel Só Queijo")
         const produtos = [
-            // 1. Combos Promocionais
-            { id: 101, category: 'combo', name: 'Combo Burg Tradicional', price: 32.00, desc: 'Burg Tradicional + batata frita + refrigerante em lata.', image: 'combo.png', status: 'disponivel' },
-            { id: 102, category: 'combo', name: 'Combo Burg Cupim', price: 36.00, desc: 'Burg Cupim + batata frita + refrigerante em lata.', image: 'combo.png', status: 'disponivel' },
-            { id: 103, category: 'combo', name: 'Combo Burg Carneiro', price: 32.00, desc: 'Burg Carneiro + batata frita + refrigerante em lata.', image: 'combo.png', status: 'disponivel' },
-            { id: 104, category: 'combo', name: 'Combo Burg Frango Catupiry', price: 34.00, desc: 'Burg Frango Catupiry + batata frita + refrigerante em lata.', image: 'combo.png', status: 'em_falta' },
-            { id: 105, category: 'combo', name: 'Combo Burg Nordestino', price: 36.00, desc: 'Burg Nordestino + batata frita + refrigerante em lata.', image: 'combo.png', status: 'em_falta' },
-            { id: 106, category: 'combo', name: 'Combo Burg Port Cheddar', price: 36.00, desc: 'Burg Port Cheddar + batata frita + refrigerante em lata.', image: 'combo.png', status: 'disponivel' },
-            { id: 107, category: 'combo', name: 'Combo Burg Costelinha', price: 34.00, desc: 'Burg Costelinha + batata frita + refrigerante em lata.', image: 'combo.png', status: 'disponivel' },
-            { id: 108, category: 'combo', name: 'Combo Burg Picanha', price: 36.00, desc: 'Burg Picanha + batata frita + refrigerante em lata.', image: 'combo.png', status: 'disponivel' },
-            { id: 109, category: 'combo', name: 'Combo Burg Big', price: 45.00, desc: 'Burg Big + batata frita + refrigerante em lata.', image: 'combo.png', status: 'disponivel' },
-
-            // 2. Cardápio Gourmet & Porções
-            { id: 201, category: 'gourmet', name: 'Meia Porção de Fritas', price: 10.00, desc: 'Porção menor de batatas fritas crocantes.', image: 'porcao.png', status: 'disponivel' },
-            { id: 202, category: 'gourmet', name: 'Burg Tradicional', price: 24.00, desc: 'Pão especial com gergelim, hambúrguer artesanal bovino 120g, queijo mussarela, alface americana, tomate, cebola caramelizada e molho especial.', image: 'burg.png', status: 'disponivel' },
-            { id: 203, category: 'gourmet', name: 'Burg Picanha', price: 26.00, desc: 'Pão com gergelim, burger artesanal sabor picanha 120g, queijo prato, alface americana, tomate, cebola caramelizada e molho especial.', image: 'burg.png', status: 'disponivel' },
-            { id: 204, category: 'gourmet', name: 'Burg Cupim', price: 26.00, desc: 'Pão com gergelim, burger artesanal sabor cupim 120g, queijo prato, alface americana, tomate, cebola caramelizada e molho especial.', image: 'burg.png', status: 'disponivel' },
-            { id: 205, category: 'gourmet', name: 'Burg Carneiro', price: 24.00, desc: 'Pão com gergelim, burger artesanal de carne de carneiro 120g, queijo mussarela, alface, tomate, cebola caramelizada e molho especial.', image: 'burg.png', status: 'disponivel' },
-            { id: 206, category: 'gourmet', name: 'Burg Frango Catupiry', price: 26.00, desc: 'Pão com gergelim, burger de peito de frango com catupiry 120g, queijo prato, alface, tomate, cebola caramelizada e molho especial.', image: 'burg.png', status: 'em_falta' },
-            { id: 207, category: 'gourmet', name: 'Burg Nordestino', price: 26.00, desc: 'Pão com gergelim, burger artesanal de carne de sol 120g, queijo coalho, banana-da-terra, alface, tomate, cebola caramelizada e melaço de cana.', image: 'burg.png', status: 'em_falta' },
-            { id: 208, category: 'gourmet', name: 'Burg Port Cheddar', price: 26.00, desc: 'Pão com gergelim, burger artesanal de carne bovina 120g, molho cheddar, alface, tomate, cebola caramelizada e molho especial.', image: 'burg.png', status: 'em_falta' },
-            { id: 209, category: 'gourmet', name: 'Burg Costelinha', price: 24.00, desc: 'Pão com gergelim, burger artesanal de costela bovina 120g, queijo prato, alface, tomate, cebola caramelizada e molho especial.', image: 'burg.png', status: 'disponivel' },
-            { id: 210, category: 'gourmet', name: 'Burg Big', price: 35.00, desc: 'Pão com gergelim, dois burgers artesanais bovinos 120g, bacon em fatias, queijo prato, alface, tomate, cebola caramelizada e molho especial.', image: 'burg.png', status: 'disponivel' },
-            { id: 211, category: 'gourmet', name: 'Porção Batata Frita (Grande)', price: 18.00, desc: 'Porção grande de batatas fritas bem crocantes.', image: 'porcao.png', status: 'disponivel' },
-
-            // 3. Sanduíches Tradicionais
-            { id: 301, category: 'tradicional', name: 'Misto', price: 8.00, desc: 'Queijo e presunto.', image: 'sanduiche.png', status: 'disponivel' },
-            { id: 302, category: 'tradicional', name: 'Cachorro-Quente Simples', price: 10.00, desc: 'Pão de hot dog, salsicha, batata palha, tomate e milho.', image: 'sanduiche.png', status: 'disponivel' },
-            { id: 303, category: 'tradicional', name: 'Cachorro-Quente Especial', price: 12.00, desc: 'Pão de hot dog, salsicha, batata palha, queijo, presunto, tomate e milho.', image: 'sanduiche.png', status: 'disponivel' },
-            { id: 304, category: 'tradicional', name: 'Cachorro-Quente Burguer', price: 15.00, desc: 'Pão de hambúrguer, salsicha, molho, carne de hambúrguer, queijo, presunto, batata palha e milho.', image: 'sanduiche.png', status: 'disponivel' },
-            { id: 305, category: 'tradicional', name: 'Cachorro-Quente Bacon', price: 15.00, desc: 'Pão de hambúrguer, salsicha, molho, bacon, queijo, presunto, batata palha e milho.', image: 'sanduiche.png', status: 'disponivel' },
-            { id: 306, category: 'tradicional', name: 'Cachorro-Quente Frango', price: 15.00, desc: 'Pão de hambúrguer, salsicha, molho, frango, queijo, presunto, batata palha e milho.', image: 'sanduiche.png', status: 'disponivel' },
-            { id: 307, category: 'tradicional', name: 'Cachorro-Quente Mix', price: 18.00, desc: 'Pão de hambúrguer ou hot dog, salsicha, bacon, frango, calabresa, queijo, presunto, batata palha, tomate e milho.', image: 'sanduiche.png', status: 'disponivel' },
-            { id: 308, category: 'tradicional', name: 'Hambúrguer', price: 10.00, desc: 'Carne de hambúrguer, alface, tomate e milho.', image: 'sanduiche.png', status: 'disponivel' },
-            { id: 309, category: 'tradicional', name: 'Americano', price: 10.00, desc: 'Ovo, queijo, presunto, alface, tomate e milho.', image: 'sanduiche.png', status: 'disponivel' },
-            { id: 310, category: 'tradicional', name: 'Bauru', price: 10.00, desc: 'Queijo, presunto, alface, tomate e milho.', image: 'sanduiche.png', status: 'disponivel' },
-            { id: 311, category: 'tradicional', name: 'X-Salada', price: 15.00, desc: 'Carne de hambúrguer, dois queijos, alface, tomate e milho.', image: 'sanduiche.png', status: 'disponivel' },
-            { id: 312, category: 'tradicional', name: 'X-Burguer', price: 14.00, desc: 'Carne de hambúrguer, queijo, presunto, alface, tomate e milho.', image: 'sanduiche.png', status: 'disponivel' },
-            { id: 313, category: 'tradicional', name: 'X-Egg Burguer', price: 17.00, desc: 'Ovo, carne de hambúrguer, queijo, presunto, alface, tomate e milho.', image: 'sanduiche.png', status: 'disponivel' },
-            { id: 314, category: 'tradicional', name: 'X-Egg Dog', price: 19.00, desc: 'Salsicha, ovo, carne de hambúrguer, queijo, presunto, alface, tomate e milho.', image: 'sanduiche.png', status: 'disponivel' },
-            { id: 315, category: 'tradicional', name: 'X-Egg Bacon', price: 20.00, desc: 'Bacon, ovo, carne de hambúrguer, queijo, presunto, alface, tomate e milho.', image: 'sanduiche.png', status: 'disponivel' },
-            { id: 316, category: 'tradicional', name: 'X-Frango', price: 18.00, desc: 'Filé de frango, queijo, presunto, alface, tomate e milho.', image: 'sanduiche.png', status: 'disponivel' },
-            { id: 317, category: 'tradicional', name: 'X-Frango Catupiry', price: 19.00, desc: 'Filé de frango, catupiry, queijo, presunto, alface, tomate e milho.', image: 'sanduiche.png', status: 'em_falta' },
-            { id: 318, category: 'tradicional', name: 'Bacon Frango', price: 19.00, desc: 'Bacon, filé de frango, queijo, presunto, alface, tomate e milho.', image: 'sanduiche.png', status: 'disponivel' },
-            { id: 319, category: 'tradicional', name: 'Framburguer', price: 20.00, desc: 'Filé de frango, carne de hambúrguer, queijo, presunto, alface, tomate e milho.', image: 'sanduiche.png', status: 'disponivel' },
-            { id: 320, category: 'tradicional', name: 'Egg Framburguer', price: 22.00, desc: 'Ovo, filé de frango, carne de hambúrguer, queijo, presunto, alface, tomate e milho.', image: 'sanduiche.png', status: 'disponivel' },
-            { id: 321, category: 'tradicional', name: 'Egg Calaburguer', price: 22.00, desc: 'Ovo, calabresa, carne de hambúrguer, queijo, presunto, alface, tomate e milho.', image: 'sanduiche.png', status: 'disponivel' },
-            { id: 322, category: 'tradicional', name: 'Calafrango', price: 18.00, desc: 'Calabresa, filé de frango, queijo, presunto, alface, tomate e milho.', image: 'sanduiche.png', status: 'disponivel' },
-            { id: 323, category: 'tradicional', name: 'X-Calabresa', price: 18.00, desc: 'Calabresa, queijo, presunto, alface, tomate e milho.', image: 'sanduiche.png', status: 'disponivel' },
-            { id: 324, category: 'tradicional', name: 'X-Bacon', price: 20.00, desc: 'Bacon, carne de hambúrguer, queijo, presunto, alface, tomate e milho.', image: 'sanduiche.png', status: 'disponivel' },
-            { id: 325, category: 'tradicional', name: 'X-Filé', price: 22.00, desc: 'Filé mignon, queijo, presunto, alface, tomate e milho.', image: 'sanduiche.png', status: 'em_falta' },
-            { id: 326, category: 'tradicional', name: 'X-Filé Acebolado', price: 22.00, desc: 'Filé mignon, queijo, presunto, cebola, alface e tomate.', image: 'sanduiche.png', status: 'em_falta' },
-            { id: 327, category: 'tradicional', name: 'X-Egg Filé', price: 24.00, desc: 'Filé mignon, ovo, queijo, presunto, alface, tomate e milho.', image: 'sanduiche.png', status: 'em_falta' },
-            { id: 328, category: 'tradicional', name: 'Franfilé', price: 24.00, desc: 'Filé mignon, filé de frango, queijo, presunto, alface e tomate.', image: 'sanduiche.png', status: 'em_falta' },
-            { id: 329, category: 'tradicional', name: 'Filé com Bacon', price: 24.00, desc: 'Filé mignon, bacon, queijo, presunto, alface e tomate.', image: 'sanduiche.png', status: 'em_falta' },
-            { id: 330, category: 'tradicional', name: 'Calabacon', price: 18.00, desc: 'Calabresa, bacon, queijo, presunto, alface e tomate.', image: 'sanduiche.png', status: 'disponivel' },
-            { id: 331, category: 'tradicional', name: 'Doble Burguer', price: 18.00, desc: 'Duas carnes de hambúrguer, duas fatias de queijo, alface e tomate.', image: 'sanduiche.png', status: 'disponivel' },
-            { id: 332, category: 'tradicional', name: 'Especial', price: 22.00, desc: 'Carne de hambúrguer, ovo, bacon, calabresa, queijo, presunto, alface e tomate.', image: 'sanduiche.png', status: 'disponivel' },
-            { id: 333, category: 'tradicional', name: 'X-Tudo', price: 25.00, desc: 'Carne de hambúrguer, ovo, bacon, calabresa, filé de frango, salsicha, queijo, presunto, batata palha, alface e tomate.', image: 'sanduiche.png', status: 'disponivel' },
-
-            // 4. Bebidas
-            { id: 401, category: 'bebida', name: 'Suco de Polpa', price: 8.00, desc: 'Suco natural de polpa de fruta.', image: 'suco.png', status: 'em_falta' },
-            { id: 402, category: 'bebida', name: 'Pepsi 1 Litro', price: 8.00, desc: 'Refrigerante 1 Litro gelado.', image: 'pepsi.png', status: 'disponivel' },
-            { id: 403, category: 'bebida', name: 'Maromba Bomba Bahiana', price: 10.00, desc: 'Bebida energética especial da casa.', image: 'bebida.png', status: 'em_falta' },
-            { id: 404, category: 'bebida', name: 'Água Mineral', price: 3.00, desc: 'Água mineral 500ml sem gás.', image: 'agua.png', status: 'disponivel' },
-            { id: 405, category: 'bebida', name: 'Água Mineral com Gás', price: 3.00, desc: 'Água mineral 500ml com gás.', image: 'agua.png', status: 'disponivel' },
-            { id: 406, category: 'bebida', name: 'Coca-Cola em Lata', price: 5.00, desc: 'Refrigerante lata 350ml.', image: 'coca.png', status: 'disponivel' },
-            { id: 407, category: 'bebida', name: 'Coca-Cola 1 Litro', price: 8.00, desc: 'Refrigerante Coca-Cola 1 Litro.', image: 'coca.png', status: 'disponivel' },
-            { id: 408, category: 'bebida', name: 'Guaraná em Lata', price: 5.00, desc: 'Guaraná Antártica lata 350ml.', image: 'guarana.png', status: 'disponivel' },
-            { id: 409, category: 'bebida', name: 'Pepsi em Lata 350ml', price: 5.00, desc: 'Pepsi lata 350ml gelada.', image: 'pepsi.png', status: 'disponivel' },
-            { id: 410, category: 'bebida', name: 'Sprite em Lata 350ml', price: 4.00, desc: 'Sprite lata 350ml.', image: 'sprite.png', status: 'disponivel' },
-            { id: 411, category: 'bebida', name: 'Fanta Laranja em Lata', price: 5.00, desc: 'Fanta Laranja lata 350ml.', image: 'fanta.png', status: 'disponivel' },
-            { id: 412, category: 'bebida', name: 'Fanta Uva em Lata', price: 5.00, desc: 'Fanta Uva lata 350ml.', image: 'fanta.png', status: 'disponivel' },
-            { id: 413, category: 'bebida', name: 'Guaraná 1 Litro', price: 8.00, desc: 'Guaraná 1 Litro bem gelado.', image: 'guarana.png', status: 'disponivel' },
-            { id: 414, category: 'bebida', name: 'Pepsi 1 Litro (Adicional)', price: 7.00, desc: 'Pepsi 1 Litro.', image: 'pepsi.png', status: 'disponivel' }
+            { id: 1, category: 'pastel', name: 'Frango com Catupiry', price: 8.00, desc: 'Frango desfiado e Catupiry cremoso.', image: 'pastelcatupiry.png' },
+            { id: 2, category: 'pastel', name: 'Pastel Nordestino', price: 9.00, desc: 'Carne seca desfiada e queijo.', image: 'carnecomcalabresa.png' },
+            { id: 3, category: 'pastel', name: 'Queijo e Presunto', price: 7.00, desc: 'Mussarela, presunto e orégano.', image: 'queijoepresunto.png' },
+            { id: 4, category: 'pastel', name: 'Pastel de Carne', price: 7.00, desc: 'Carne moída temperada.', image: 'carnecomcalabresa.png' },
+            { id: 5, category: 'pastel', name: 'Pastel de Pizza', price: 7.00, desc: 'Cubinhos de calabresa, queijo e orégano.', image: 'pizza.png' },
+            { id: 6, category: 'pastel', name: 'Pastel Especial', price: 8.00, desc: 'Recheio especial da casa.', image: 'especial.png' },
+            { id: 7, category: 'pastel', name: 'Pastel Só Queijo', price: 7.00, desc: 'Queijo mussarela derretido.', image: 'queijo.png' },
+            { id: 8, category: 'pastel', name: 'Pastel de Frango', price: 7.00, desc: 'Frango desfiado.', image: 'pastelfrango.png' },
+            { id: 9, category: 'bebida', name: 'Guaraná 1L', price: 7.00, desc: 'Refrigerante 1 Litro bem gelado.', image: 'guarana.png' },
+            { id: 10, category: 'bebida', name: 'Pepsi 1L', price: 7.00, desc: 'Refrigerante 1 Litro bem gelado.', image: 'pepsi.png' }
         ];
 
         let cart = {};
@@ -543,6 +463,7 @@
             setInterval(verificarHorarioFuncionamento, 60000);
         });
 
+        // Funções para Abrir e Fechar o Modal de Informações
         function abrirModalInfo() {
             const modal = document.getElementById('modal-info');
             const content = document.getElementById('modal-content');
@@ -565,6 +486,7 @@
             }, 300);
         }
 
+        // Verificação de Horário Detalhada por Dia da Semana
         function verificarLojaAberta() {
             const agora = new Date();
             const diaSemana = agora.getDay(); // 0 = Domingo, 1 = Segunda, ..., 6 = Sábado
@@ -572,8 +494,8 @@
             const minuto = agora.getMinutes();
             const minutosAtuais = hora * 60 + minuto;
 
-            let abertura = 18 * 60; // 18:00 todos os dias
-            let fechamento = (diaSemana === 0 || diaSemana === 5 || diaSemana === 6) ? (23 * 60 + 59) : (23 * 60 + 45);
+            let abertura = (diaSemana === 2 || diaSemana === 6) ? (19 * 60 + 30) : (19 * 60 + 35);
+            let fechamento = 22 * 60 + 35;
 
             return minutosAtuais >= abertura && minutosAtuais <= fechamento;
         }
@@ -600,73 +522,68 @@
 
         function loadCartFromStorage() {
             try {
-                const saved = localStorage.getItem('hamburgueria_cart');
+                const saved = localStorage.getItem('pastelaria_cart');
                 if (saved) cart = JSON.parse(saved);
             } catch (e) { cart = {}; }
         }
 
         function saveCartToStorage() {
             try {
-                localStorage.setItem('hamburgueria_cart', JSON.stringify(cart));
+                localStorage.setItem('pastelaria_cart', JSON.stringify(cart));
             } catch (e) {}
         }
 
         function renderMenu(productsList) {
-            const combosGrid = document.getElementById('combos-grid');
-            const gourmetGrid = document.getElementById('gourmet-grid');
-            const tradicionaisGrid = document.getElementById('tradicionais-grid');
+            const pasteisGrid = document.getElementById('pasteis-grid');
             const bebidasGrid = document.getElementById('bebidas-grid');
 
-            combosGrid.innerHTML = '';
-            gourmetGrid.innerHTML = '';
-            tradicionaisGrid.innerHTML = '';
+            pasteisGrid.innerHTML = '';
             bebidasGrid.innerHTML = '';
 
-            const combos = productsList.filter(p => p.category === 'combo');
-            const gourmet = productsList.filter(p => p.category === 'gourmet');
-            const tradicionais = productsList.filter(p => p.category === 'tradicional');
+            const pasteis = productsList.filter(p => p.category === 'pastel');
             const bebidas = productsList.filter(p => p.category === 'bebida');
 
-            combos.forEach(p => { combosGrid.innerHTML += createProductCard(p); });
-            gourmet.forEach(p => { gourmetGrid.innerHTML += createProductCard(p); });
-            tradicionais.forEach(p => { tradicionaisGrid.innerHTML += createProductCard(p); });
-            bebidas.forEach(p => { bebidasGrid.innerHTML += createProductCard(p); });
+            if (pasteis.length === 0) {
+                pasteisGrid.innerHTML = `<div class="col-span-full py-4 text-center text-gray-500 bg-white/50 rounded-xl text-xs">Nenhum pastel correspondente encontrado.</div>`;
+            } else {
+                pasteis.forEach(p => { pasteisGrid.innerHTML += createProductCard(p); });
+            }
+
+            if (bebidas.length === 0) {
+                bebidasGrid.innerHTML = `<div class="col-span-full py-4 text-center text-gray-500 bg-white/50 rounded-xl text-xs">Nenhuma bebida correspondente encontrada.</div>`;
+            } else {
+                bebidas.forEach(p => { bebidasGrid.innerHTML += createProductCard(p); });
+            }
         }
 
         function createProductCard(p) {
             const qty = cart[p.id] || 0;
-            const emFalta = p.status === 'em_falta';
-            const fallbackImgSvg = 'data:image/svg+xml;utf8,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96"><rect width="96" height="96" fill="#FAF6F0"/><text x="48" y="62" font-size="40" text-anchor="middle">🍔</text></svg>');
+            const fallbackImgSvg = 'data:image/svg+xml;utf8,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96"><rect width="96" height="96" fill="#FAF6F0"/><text x="48" y="62" font-size="40" text-anchor="middle">🥟</text></svg>');
             
             return `
-                <div class="bg-white rounded-2xl p-2.5 sm:p-3 border border-rose-100/40 shadow-sm flex items-center gap-3 relative group ${emFalta ? 'opacity-70 grayscale-[30%]' : ''}">
-                    <div class="w-20 h-20 sm:w-24 sm:h-24 flex-shrink-0 rounded-xl overflow-hidden bg-rose-50/40 border border-rose-100/50 flex items-center justify-center relative">
+                <div class="bg-white rounded-2xl p-2.5 sm:p-3 border border-amber-100/40 shadow-sm flex items-center gap-3 relative group">
+                    <div class="w-20 h-20 sm:w-24 sm:h-24 flex-shrink-0 rounded-xl overflow-hidden bg-amber-50/40 border border-amber-100/50 flex items-center justify-center">
                         <img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='${fallbackImgSvg}'">
-                        ${emFalta ? '<span class="absolute inset-0 bg-black/60 flex items-center justify-center text-white text-[10px] font-bold uppercase tracking-wider text-center px-1">Em falta</span>' : ''}
                     </div>
                     
                     <div class="flex-1 min-w-0 flex flex-col justify-between h-20 sm:h-24">
                         <div>
-                            <div class="flex items-center justify-between">
-                                <h3 class="font-bold text-xs sm:text-sm text-burguerDark truncate">${p.name}</h3>
-                                ${emFalta ? '<span class="text-[9px] bg-red-100 text-red-600 font-bold px-1.5 py-0.5 rounded ml-1 shrink-0">Indisponível</span>' : ''}
-                            </div>
+                            <h3 class="font-bold text-xs sm:text-sm text-pastelDark truncate">${p.name}</h3>
                             <p class="text-[10px] sm:text-xs text-gray-400 leading-tight mt-0.5 line-clamp-2">${p.desc}</p>
                         </div>
                         
                         <div class="flex items-center justify-between gap-1.5 mt-1">
-                            <span class="font-extrabold text-sm sm:text-base text-burguerWine shrink-0">R$ ${p.price.toFixed(2).replace('.', ',')}</span>
+                            <span class="font-extrabold text-sm sm:text-base text-pastelAccent shrink-0">R$ ${p.price.toFixed(2).replace('.', ',')}</span>
                             
-                            ${!emFalta ? `
                             <div class="flex items-center bg-gray-50 rounded-full py-1 px-1.5 shadow-inner border border-gray-100/60 shrink-0">
-                                <button type="button" onclick="changeQty(${p.id}, -1)" class="w-7 h-7 flex items-center justify-center text-burguerWine hover:bg-white active:scale-95 rounded-full font-black text-xs transition-transform focus:outline-none">
+                                <button type="button" onclick="changeQty(${p.id}, -1)" class="w-7 h-7 flex items-center justify-center text-pastelAccent hover:bg-white active:scale-95 rounded-full font-black text-xs transition-transform focus:outline-none">
                                     <i class="fa-solid fa-minus"></i>
                                 </button>
                                 <span id="qty-${p.id}" class="w-6 text-center font-bold text-xs text-gray-800">${qty}</span>
-                                <button type="button" onclick="changeQty(${p.id}, 1)" class="w-7 h-7 flex items-center justify-center text-burguerWine hover:bg-white active:scale-95 rounded-full font-black text-xs transition-transform focus:outline-none">
+                                <button type="button" onclick="changeQty(${p.id}, 1)" class="w-7 h-7 flex items-center justify-center text-pastelAccent hover:bg-white active:scale-95 rounded-full font-black text-xs transition-transform focus:outline-none">
                                     <i class="fa-solid fa-plus"></i>
                                 </button>
-                            </div>` : '<span class="text-[10px] text-red-500 font-semibold italic">Produto esgotado</span>'}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -682,42 +599,26 @@
         function filterCategory(cat) {
             const buttons = document.querySelectorAll('.category-btn');
             buttons.forEach(btn => {
-                btn.classList.remove('bg-burguerWine', 'text-white', 'shadow-sm', 'active');
+                btn.classList.remove('bg-pastelGold', 'text-pastelDark', 'shadow-sm', 'active');
                 btn.classList.add('bg-gray-50', 'text-gray-600');
             });
 
             const activeBtn = event.currentTarget;
             activeBtn.classList.remove('bg-gray-50', 'text-gray-600');
-            activeBtn.classList.add('bg-burguerWine', 'text-white', 'shadow-sm', 'active');
-
-            const combosSec = document.getElementById('combos-section');
-            const gourmetSec = document.getElementById('gourmet-section');
-            const tradicionaisSec = document.getElementById('tradicionais-section');
-            const bebidasSec = document.getElementById('bebidas-section');
-
-            combosSec.classList.add('hidden');
-            gourmetSec.classList.add('hidden');
-            tradicionaisSec.classList.add('hidden');
-            bebidasSec.classList.add('hidden');
+            activeBtn.classList.add('bg-pastelGold', 'text-pastelDark', 'shadow-sm', 'active');
 
             if (cat === 'todos') {
                 renderMenu(produtos);
-                combosSec.classList.remove('hidden');
-                gourmetSec.classList.remove('hidden');
-                tradicionaisSec.classList.remove('hidden');
-                bebidasSec.classList.remove('hidden');
-            } else if (cat === 'combo') {
-                renderMenu(produtos);
-                combosSec.classList.remove('hidden');
-            } else if (cat === 'gourmet') {
-                renderMenu(produtos);
-                gourmetSec.classList.remove('hidden');
-            } else if (cat === 'tradicional') {
-                renderMenu(produtos);
-                tradicionaisSec.classList.remove('hidden');
-            } else if (cat === 'bebida') {
-                renderMenu(produtos);
-                bebidasSec.classList.remove('hidden');
+                document.getElementById('pasteis-section').classList.remove('hidden');
+                document.getElementById('bebidas-section').classList.remove('hidden');
+            } else if (cat === 'pastel') {
+                renderMenu(produtos.filter(p => p.category === 'pastel'));
+                document.getElementById('pasteis-section').classList.remove('hidden');
+                document.getElementById('bebidas-section').classList.add('hidden');
+            } else {
+                renderMenu(produtos.filter(p => p.category === 'bebida'));
+                document.getElementById('pasteis-section').classList.add('hidden');
+                document.getElementById('bebidas-section').classList.remove('hidden');
             }
         }
 
@@ -727,7 +628,7 @@
             atualizarExibicaoEstatistica();
 
             document.querySelectorAll('.star-btn i').forEach((estrela) => {
-                estrela.className = "fa-solid fa-star text-burguerWine animate-pop";
+                estrela.className = "fa-solid fa-star text-pastelGold animate-pop";
             });
 
             document.getElementById('rating-feedback-msg').innerHTML = `<span class="text-emerald-600 font-bold">Obrigado pela sua nota de 5 estrelas! ⭐⭐⭐⭐⭐</span>`;
@@ -741,9 +642,6 @@
         }
 
         function changeQty(id, change) {
-            const produto = produtos.find(p => p.id == id);
-            if(produto && produto.status === 'em_falta') return;
-
             if (!cart[id]) cart[id] = 0;
             cart[id] += change;
 
@@ -779,10 +677,10 @@
                     totalItemsCount += cart[id];
 
                     itemsHtml += `
-                        <div class="flex items-center justify-between bg-gray-50/80 hover:bg-rose-50/20 p-2.5 rounded-xl border border-gray-100 transition-colors">
+                        <div class="flex items-center justify-between bg-gray-50/80 hover:bg-amber-50/20 p-2.5 rounded-xl border border-gray-100 transition-colors">
                             <div class="flex-1 min-w-0 pr-2">
                                 <div class="flex items-center gap-1.5">
-                                    <span class="font-bold text-xs text-burguerDark bg-rose-100 px-1.5 py-0.5 rounded">${cart[id]}x</span>
+                                    <span class="font-bold text-xs text-pastelDark bg-amber-100 px-1.5 py-0.5 rounded">${cart[id]}x</span>
                                     <span class="font-semibold text-xs text-gray-700 truncate">${produto.name}</span>
                                 </div>
                             </div>
@@ -800,9 +698,9 @@
             if (keys.length === 0) {
                 listContainer.innerHTML = `
                     <div class="text-center py-6 text-gray-400">
-                        <i class="fa-solid fa-basket-shopping text-2xl mb-1.5 text-rose-200"></i>
+                        <i class="fa-solid fa-basket-shopping text-2xl mb-1.5 text-amber-200"></i>
                         <p class="text-xs font-semibold">Sua sacola está vazia.</p>
-                        <p class="text-[9px] mt-0.5 text-gray-400/80">Escolha combos ou burgers deliciosos acima!</p>
+                        <p class="text-[9px] mt-0.5 text-gray-400/80">Escolha sabores deliciosos acima!</p>
                     </div>
                 `;
                 subtotal = 0;
@@ -818,17 +716,17 @@
                 
                 if (bairroInput === '') {
                     finalDeliveryFee = 5.00;
-                    document.getElementById('delivery-val').innerHTML = `<span class="text-burguerWine font-semibold text-xs"><i class="fa-solid fa-spinner animate-spin text-[10px]"></i> Aguardando bairro...</span>`;
+                    document.getElementById('delivery-val').innerHTML = `<span class="text-amber-600 font-semibold text-xs"><i class="fa-solid fa-spinner animate-spin text-[10px]"></i> Aguardando bairro...</span>`;
                 } else if (bairroInput.includes('centro')) {
                     finalDeliveryFee = 3.00;
                     document.getElementById('delivery-val').innerHTML = `<span class="text-emerald-600 font-bold text-xs">R$ 3,00 (Centro)</span>`;
                 } else {
                     finalDeliveryFee = 5.00;
-                    document.getElementById('delivery-val').innerHTML = `<span class="text-burguerWine font-bold text-xs">R$ 5,00 (Bairro)</span>`;
+                    document.getElementById('delivery-val').innerHTML = `<span class="text-pastelAccent font-bold text-xs">R$ 5,00 (Bairro)</span>`;
                 }
             } else {
                 finalDeliveryFee = 0;
-                document.getElementById('delivery-val').innerHTML = `<span class="text-emerald-600 font-semibold text-xs">Grátis (Retirada/Local)</span>`;
+                document.getElementById('delivery-val').innerHTML = `<span class="text-emerald-600 font-semibold text-xs">Grátis (Retirada)</span>`;
             }
 
             const total = subtotal + finalDeliveryFee;
@@ -902,7 +800,7 @@
             const locationActionArea = document.getElementById('locationActionArea');
 
             if (method === 'entrega') {
-                btnDelivery.className = "py-2.5 text-center font-bold rounded-xl text-xs transition-all bg-burguerWine text-white border border-transparent shadow-sm";
+                btnDelivery.className = "py-2.5 text-center font-bold rounded-xl text-xs transition-all bg-pastelGold text-pastelDark border border-transparent shadow-sm";
                 btnPickup.className = "py-2.5 text-center font-semibold rounded-xl text-xs transition-all bg-gray-50 text-gray-600 border border-gray-100";
                 
                 addressSection.classList.remove('hidden');
@@ -911,14 +809,14 @@
                 deliveryRow.classList.remove('hidden');
 
                 locationActionArea.innerHTML = `
-                    <button type="button" onclick="capturarGps()" class="w-full bg-burguerDark text-white font-bold py-2.5 rounded-xl text-xs flex items-center justify-center gap-2 active:scale-95 transition-all">
-                        <i class="fa-solid fa-location-crosshairs text-rose-300"></i> Usar minha localização atual (GPS)
+                    <button type="button" onclick="capturarGps()" class="w-full bg-pastelDark text-white font-bold py-2.5 rounded-xl text-xs flex items-center justify-center gap-2 active:scale-95 transition-all">
+                        <i class="fa-solid fa-location-crosshairs text-pastelGold"></i> Usar minha localização atual (GPS)
                     </button>
                     <p id="gps-status" class="text-[10px] text-gray-500 font-medium text-center">Opcional: facilita muito para o entregador te achar.</p>
-                    <a id="gps-link" href="#" target="_blank" rel="noopener" class="hidden text-[11px] font-bold text-burguerWine underline break-all text-center block"></a>
+                    <a id="gps-link" href="#" target="_blank" rel="noopener" class="hidden text-[11px] font-bold text-emerald-700 underline break-all text-center block"></a>
                 `;
             } else {
-                btnPickup.className = "py-2.5 text-center font-bold rounded-xl text-xs transition-all bg-burguerWine text-white border border-transparent shadow-sm";
+                btnPickup.className = "py-2.5 text-center font-bold rounded-xl text-xs transition-all bg-pastelGold text-pastelDark border border-transparent shadow-sm";
                 btnDelivery.className = "py-2.5 text-center font-semibold rounded-xl text-xs transition-all bg-gray-50 text-gray-600 border border-gray-100";
                 
                 addressSection.classList.add('hidden');
@@ -930,11 +828,11 @@
                 const linkLoja = "https://maps.app.goo.gl/2Knj8Yp5ohhZUi4h8";
                 locationActionArea.innerHTML = `
                     <div class="text-center space-y-1.5">
-                        <p class="text-[10px] font-bold text-burguerDark uppercase tracking-wider">Local / Retirada do Pedido:</p>
-                        <a href="${linkLoja}" target="_blank" rel="noopener" class="w-full bg-burguerWine hover:bg-burguerAccent text-white font-bold py-2.5 rounded-xl text-xs flex items-center justify-center gap-2 shadow-sm transition-all">
-                            <i class="fa-solid fa-map-location-dot"></i> Ver Localização da Hamburgueria no Mapa
+                        <p class="text-[10px] font-bold text-pastelDark uppercase tracking-wider">Local de Retirada do Pedido:</p>
+                        <a href="${linkLoja}" target="_blank" rel="noopener" class="w-full bg-amber-500 hover:bg-amber-600 text-white font-bold py-2.5 rounded-xl text-xs flex items-center justify-center gap-2 shadow-sm transition-all">
+                            <i class="fa-solid fa-map-location-dot"></i> Ver Localização da Pastelaria no Mapa
                         </a>
-                        <p class="text-[10px] text-gray-500 font-medium">Av. Dr. JJ Seabra, 198 – Centro, Xique-Xique – BA</p>
+                        <p class="text-[10px] text-gray-500 font-medium">Clique para abrir o trajeto exato até a loja.</p>
                     </div>
                 `;
             }
@@ -1091,7 +989,7 @@
         function showToast(mensagem, icone, cor) {
             const toast = document.getElementById('toast');
             document.getElementById('toastMsg').innerText = mensagem;
-            document.getElementById('toast-icon').className = `fa-solid ${icone} ${cor || 'text-rose-300'} text-base shrink-0`;
+            document.getElementById('toast-icon').className = `fa-solid ${icone} ${cor || 'text-pastelGold'} text-base shrink-0`;
             
             toast.classList.remove('translate-y-24', 'opacity-0', 'pointer-events-none');
             toast.classList.add('translate-y-0', 'opacity-100');
@@ -1106,7 +1004,7 @@
             event.preventDefault();
 
             if (!verificarLojaAberta()) {
-                showToast("A hamburgueria está fechada no momento!", "fa-triangle-exclamation", "text-red-500");
+                showToast("A pastelaria está fechada no momento!", "fa-triangle-exclamation", "text-red-500");
                 return;
             }
 
@@ -1155,7 +1053,7 @@
                     finalDeliveryFee = 5.00;
                 }
             } else {
-                bairroTxt = 'Retirada / Consumo no Local';
+                bairroTxt = 'Retirada na Loja';
             }
 
             const valorTotalFinal = subtotal + finalDeliveryFee;
@@ -1187,17 +1085,17 @@
                 pagamentoTexto += ` na maquininha - ${bandeira} (${modalidade})`;
             }
 
-            let mensagem = `🍔 *HAMBURGUERIA MODELO*
+            let mensagem = `🔥 *PASTELARIA MODELO*
 ------------------
 👤 *${nome}* - *${celular}*
-📍 *${deliveryMethod === 'entrega' ? 'Delivery' : 'Local / Retirada'}* - *${bairroTxt}*`;
+📍 *${deliveryMethod === 'entrega' ? 'Delivery' : 'Retirada'}* - *${bairroTxt}*`;
 
             if (deliveryMethod === 'entrega') {
                 mensagem += `\n🏠 *${enderecoTxt}*`;
                 if (pontoRefTxt) mensagem += `\n💬 *Ref:* ${pontoRefTxt}`;
                 if (gpsUrl) mensagem += `\n🧭 *GPS:* ${gpsUrl}`;
             } else {
-                mensagem += `\n🏪 *Atendimento no Local / Retirada*`;
+                mensagem += `\n🏪 *Retirada no Estabelecimento*`;
             }
 
             mensagem += `
@@ -1205,7 +1103,7 @@
 🛒 *PEDIDO:*
 ${itensTexto}------------------
 💰 *Subtotal:* R$ ${subtotal.toFixed(2).replace('.', ',')}
-🛵 *Taxa:* R$ ${finalDeliveryFee.toFixed(2).replace('.', ',')}
+🛵 *Entrega:* R$ ${finalDeliveryFee.toFixed(2).replace('.', ',')}
 💵 *TOTAL:* R$ ${valorTotalFinal.toFixed(2).replace('.', ',')}
 ------------------
 💳 *Pagamento:* ${pagamentoTexto}`;
@@ -1218,9 +1116,9 @@ ${itensTexto}------------------
                 mensagem += `\n------------------\n📌 *Nota:* O comprovante do Pix será enviado em seguida!`;
             }
 
-            localStorage.removeItem('hamburgueria_cart');
+            localStorage.removeItem('pastelaria_cart');
 
-            const seuNumeroWhatsApp = "5574999822095"; 
+            const seuNumeroWhatsApp = "5574999658202"; 
             const whatsappUrl = `https://api.whatsapp.com/send?phone=${seuNumeroWhatsApp}&text=${encodeURIComponent(mensagem)}`;
             
             window.open(whatsappUrl, '_blank');
