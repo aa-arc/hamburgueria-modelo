@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Hamburgueria Modelo - Cardápio Digital</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        burguerYellow: '#EAB308',
+                        burguerDark: '#18181B',
+                        burguerLight: '#F7F4EB',
+                        burguerAccent: '#CA8A04',
+                        burguerCardBg: '#FFFFFF',
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'Poppins', 'sans-serif'],
+                        display: ['Oswald', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        html, body {
+            overflow-x: hidden;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #F7F4EB;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .text-display {
+            font-family: 'Oswald', sans-serif;
+            letter-spacing: 0.5px;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
+        }
+        @keyframes pop {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+            100% { transform: scale(1); }
+        }
+        .animate-pop {
+            animation: pop 0.2s ease-in-out;
+        }
+    </style>
+</head>
+<body class="text-gray-800 antialiased min-h-screen pb-28">
+
+    <!-- Header com Estética Rústica / Moderna inspirada na Loja -->
+    <header class="relative bg-burguerDark text-white pt-6 pb-10 px-3 overflow-hidden rounded-b-[30px] shadow-xl border-b-4 border-burguerYellow">
+        <div class="absolute -top-12 -right-12 w-48 h-48 rounded-full bg-burguerYellow opacity-10 blur-xl"></div>
+        <div class="absolute -bottom-16 -left-16 w-64 h-64 rounded-full bg-burguerAccent opacity-10 blur-2xl"></div>
+
+        <div class="max-w-4xl mx-auto flex flex-col items-center text-center relative z-10">
+            <!-- Logo local com fallback em vetor -->
+            <div class="mb-2 bg-burguerYellow p-1 rounded-full shadow-xl border-2 border-burguerDark flex items-center justify-center transform hover:rotate-6 transition-all duration-300">
+                <img src="logo.png" alt="Logo Hamburgueria" class="h-14 w-14 object-contain rounded-full bg-white" onerror="this.style.display='none'; document.getElementById('logo-fallback').classList.remove('hidden')">
+                
+                <div id="logo-fallback" class="hidden h-14 w-14 flex items-center justify-center bg-burguerDark rounded-full">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-burguerYellow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m0-12.728l.707.707m12.728 12.728l.707.707M5 12a7 7 0 1014 0 7 7 0 00-14 0z" />
+                    </svg>
+                </div>
+            </div>
+            
+            <!-- Nome da Loja com Botão de Informações Discreto -->
+            <div class="flex items-center justify-center gap-2 mb-1 flex-wrap">
+                <h1 id="store-title" class="text-display text-2xl md:text-4xl font-bold tracking-wider text-burguerYellow uppercase">
+                    Hamburgueria Modelo
+                </h1>
+                <button type="button" onclick="abrirModalInfo()" class="bg-burguerYellow hover:bg-burguerAccent text-burguerDark w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold shadow transition-all transform active:scale-95" title="Informações e Horários">
+                    <i class="fa-solid fa-info"></i>
+                </button>
+            </div>
+
+            <p class="text-gray-300 text-[11px] md:text-xs font-medium tracking-widest uppercase mb-2.5">
+                Burgers Artesanais & Sanduíches
+            </p>
+
+            <!-- Status do Estabelecimento e Regras -->
+            <div class="flex flex-wrap justify-center items-center gap-1.5 text-[10px]">
+                <span id="store-status-badge" class="px-2.5 py-0.5 rounded-full font-semibold flex items-center gap-1 border">
+                    <span id="store-status-dot" class="w-1.5 h-1.5 rounded-full"></span> <span id="store-status-text">Verificando...</span>
+                </span>
+                <span class="bg-white/10 text-white/90 px-2.5 py-0.5 rounded-full flex items-center gap-1">
+                    <i class="fa-regular fa-clock text-burguerYellow"></i> 18h às 00h
+                </span>
+                <span class="bg-white/10 text-white/90 px-2.5 py-0.5 rounded-full flex items-center gap-1">
+                    <i class="fa-solid fa-coins text-burguerYellow"></i> Mín: R$ 10,00
+                </span>
+                <span class="bg-burguerYellow text-burguerDark px-2.5 py-0.5 rounded-full flex items-center gap-1 font-bold shadow-sm animate-pulse">
+                    <i class="fa-solid fa-motorcycle"></i> 30-50 min
+                </span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Modal de Informações e Horários -->
+    <div id="modal-info" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl relative border-2 border-burguerYellow transform scale-95 transition-transform duration-300" id="modal-content">
+            <button type="button" onclick="fecharModalInfo()" class="absolute top-4 right-4 bg-gray-100 hover:bg-gray-200 text-gray-600 w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold transition-all">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <h3 class="text-display text-2xl font-bold text-burguerDark mb-3 flex items-center gap-2 border-b-2 border-burguerYellow pb-2 uppercase tracking-wide">
+                <i class="fa-solid fa-store text-burguerAccent"></i> Hamburgueria Modelo
+            </h3>
+
+            <div class="space-y-3 text-xs text-gray-600">
+                <div class="bg-amber-50/70 p-3 rounded-xl border border-amber-200">
+                    <p class="font-bold text-burguerDark mb-1"><i class="fa-solid fa-location-dot text-red-500 mr-1"></i> Endereço:</p>
+                    <p class="text-gray-700">Av. Dr. JJ Seabra, 198 – Centro, Xique-Xique – BA, 47400-000</p>
+                </div>
+
+                <div class="grid grid-cols-2 gap-2">
+                    <div class="bg-gray-50 p-2.5 rounded-xl border border-gray-200 text-center">
+                        <p class="font-bold text-burguerDark text-[11px] mb-0.5"><i class="fa-solid fa-motorcycle text-amber-500 mr-1"></i> Delivery</p>
+                        <p class="text-[11px] text-gray-500">30 - 50 minutos</p>
+                    </div>
+                    <div class="bg-gray-50 p-2.5 rounded-xl border border-gray-200 text-center">
+                        <p class="font-bold text-burguerDark text-[11px] mb-0.5"><i class="fa-solid fa-store text-amber-500 mr-1"></i> No Local</p>
+                        <p class="text-[11px] text-gray-500">Mesas ao ar livre</p>
+                    </div>
+                </div>
+
+                <div>
+                    <p class="font-bold text-burguerDark mb-1.5"><i class="fa-regular fa-clock text-burguerYellow mr-1"></i> Horários de Funcionamento:</p>
+                    <ul class="space-y-1 bg-gray-50 p-3 rounded-xl border border-gray-200 text-[11px]">
+                        <li class="flex justify-between border-b border-gray-200 pb-1"><span>Domingo:</span> <span class="font-semibold text-burguerDark">18:00 - 23:59</span></li>
+                        <li class="flex justify-between border-b border-gray-200 pb-1"><span>Segunda a Quinta:</span> <span class="font-semibold text-burguerDark">18:00 - 23:45</span></li>
+                        <li class="flex justify-between pt-0.5"><span>Sexta e Sábado:</span> <span class="font-semibold text-burguerDark">18:00 - 23:59</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <button type="button" onclick="fecharModalInfo()" class="mt-4 w-full bg-burguerDark hover:bg-black text-burguerYellow font-bold py-2.5 rounded-xl text-xs transition-all uppercase tracking-wider">
+                Entendido
+            </button>
+        </div>
+    </div>
+
+    <main class="max-w-4xl mx-auto px-2 md:px-6 mt-4 relative z-20">
+        
+        <!-- Barra de busca e Abas de navegação rápida -->
+        <div class="bg-white rounded-2xl shadow-lg p-3 mb-5 border border-amber-200/60 flex flex-col md:flex-row gap-2.5 items-center">
+            <div class="relative w-full md:flex-1">
+                <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400">
+                    <i class="fa-solid fa-magnifying-glass text-sm"></i>
+                </span>
+                <input type="text" id="searchInput" oninput="filterProducts()" placeholder="Pesquise o que deseja comer..." class="w-full bg-gray-50 border border-gray-200 pl-9 pr-3 py-2 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-burguerYellow focus:bg-white transition-all">
+            </div>
+            
+            <div class="w-full md:w-auto overflow-x-auto hide-scrollbar flex gap-1.5 py-0.5">
+                <button onclick="filterCategory('todos')" class="category-btn active px-3 py-1.5 rounded-xl font-bold text-xs transition-all whitespace-nowrap bg-burguerYellow text-burguerDark shadow-sm uppercase tracking-wider">
+                    Todos
+                </button>
+                <button onclick="filterCategory('combo')" class="category-btn px-3 py-1.5 rounded-xl font-bold text-xs transition-all whitespace-nowrap bg-gray-100 text-gray-600 hover:bg-amber-50 uppercase tracking-wider">
+                    Combos
+                </button>
+                <button onclick="filterCategory('gourmet')" class="category-btn px-3 py-1.5 rounded-xl font-bold text-xs transition-all whitespace-nowrap bg-gray-100 text-gray-600 hover:bg-amber-50 uppercase tracking-wider">
+                    Gourmet
+                </button>
+                <button onclick="filterCategory('tradicional')" class="category-btn px-3 py-1.5 rounded-xl font-bold text-xs transition-all whitespace-nowrap bg-gray-100 text-gray-600 hover:bg-amber-50 uppercase tracking-wider">
+                    Tradicionais
+                </button>
+                <button onclick="filterCategory('bebida')" class="category-btn px-3 py-1.5 rounded-xl font-bold text-xs transition-all whitespace-nowrap bg-gray-100 text-gray-600 hover:bg-amber-50 uppercase tracking-wider">
+                    Bebidas
+                </button>
+            </div>
+        </div>
+
+        <div class="space-y-5">
+            <!-- Seção de Combos Promocionais -->
+            <div id="combos-section">
+                <h2 class="text-display text-lg md:text-xl font-bold text-burguerDark mb-2.5 flex items-center gap-2 border-b-2 border-burguerYellow pb-1 uppercase tracking-wide">
+                    Combos Promocionais
+                </h2>
+                <div id="combos-grid" class="grid grid-cols-2 gap-2.5">
+                    <!-- Dinâmico (Lado a lado no celular) -->
+                </div>
+            </div>
+
+            <!-- Seção Cardápio Gourmet -->
+            <div id="gourmet-section" class="mt-4">
+                <h2 class="text-display text-lg md:text-xl font-bold text-burguerDark mb-2.5 flex items-center gap-2 border-b-2 border-burguerYellow pb-1 uppercase tracking-wide">
+                    Cardápio Gourmet & Porções
+                </h2>
+                <div id="gourmet-grid" class="grid grid-cols-2 gap-2.5">
+                    <!-- Dinâmico -->
+                </div>
+            </div>
+
+            <!-- Seção Sanduíches Tradicionais -->
+            <div id="tradicionais-section" class="mt-4">
+                <h2 class="text-display text-lg md:text-xl font-bold text-burguerDark mb-2.5 flex items-center gap-2 border-b-2 border-burguerYellow pb-1 uppercase tracking-wide">
+                    Sanduíches Tradicionais
+                </h2>
+                <div id="tradicionais-grid" class="grid grid-cols-2 gap-2.5">
+                    <!-- Dinâmico -->
+                </div>
+            </div>
+
+            <!-- Seção de Bebidas Geladas -->
+            <div id="bebidas-section" class="mt-4">
+                <h2 class="text-display text-lg md:text-xl font-bold text-burguerDark mb-2.5 flex items-center gap-2 border-b-2 border-burguerYellow pb-1 uppercase tracking-wide">
+                    Bebidas Geladas
+                </h2>
+                <div id="bebidas-grid" class="grid grid-cols-2 gap-2.5">
+                    <!-- Dinâmico -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Módulo de Avaliação -->
+        <div id="rating-widget-area" class="bg-white rounded-2xl border border-amber-200 shadow-xl p-4 mt-6 max-w-2xl mx-auto text-center">
+            <h3 class="font-bold text-xs sm:text-sm text-burguerDark mb-1.5 uppercase tracking-wide">Avalie nosso atendimento:</h3>
+            <div class="flex justify-center gap-2 mb-1.5">
+                <button onclick="registrarNotaTrambique(1)" class="star-btn text-2xl text-gray-300 hover:text-burguerYellow active:scale-95 transition-all focus:outline-none"><i class="fa-regular fa-star"></i></button>
+                <button onclick="registrarNotaTrambique(2)" class="star-btn text-2xl text-gray-300 hover:text-burguerYellow active:scale-95 transition-all focus:outline-none"><i class="fa-regular fa-star"></i></button>
+                <button onclick="registrarNotaTrambique(3)" class="star-btn text-2xl text-gray-300 hover:text-burguerYellow active:scale-95 transition-all focus:outline-none"><i class="fa-regular fa-star"></i></button>
+                <button onclick="registrarNotaTrambique(4)" class="star-btn text-2xl text-gray-300 hover:text-burguerYellow active:scale-95 transition-all focus:outline-none"><i class="fa-regular fa-star"></i></button>
+                <button onclick="registrarNotaTrambique(5)" class="star-btn text-2xl text-gray-300 hover:text-burguerYellow active:scale-95 transition-all focus:outline-none"><i class="fa-regular fa-star"></i></button>
+            </div>
+            <p id="rating-feedback-msg" class="text-[11px] text-gray-500 font-medium transition-all">Sua opinião ajuda a melhorar nossa entrega!</p>
+        </div>
+
+        <!-- Sacola de Compras e Finalização do Pedido -->
+        <div class="bg-white rounded-2xl border border-amber-200 shadow-xl p-4 sm:p-6 mt-6 max-w-2xl mx-auto" id="checkout-area">
+            <div class="flex justify-between items-center mb-3 border-b border-gray-100 pb-2.5">
+                <h3 class="text-display text-base sm:text-xl font-bold text-burguerDark flex items-center gap-2 uppercase tracking-wide">
+                    Meu Pedido
+                </h3>
+                <button type="button" onclick="clearCart()" class="text-[10px] font-semibold text-red-500 hover:text-red-700 bg-red-50 hover:bg-red-100 px-2 py-1 rounded-lg transition-all flex items-center gap-1 uppercase tracking-wider">
+                    <i class="fa-solid fa-trash-can"></i> Limpar Tudo
+                </button>
+            </div>
+            
+            <div class="space-y-2 mb-3" id="cart-items-list">
+                <!-- Dinâmico -->
+            </div>
+
+            <div class="border-t border-dashed border-amber-200 py-2.5 space-y-1">
+                <div class="flex justify-between text-xs text-gray-600">
+                    <span>Subtotal</span>
+                    <span id="subtotal-val" class="font-semibold">R$ 0,00</span>
+                </div>
+                <div class="flex justify-between text-xs text-gray-600" id="delivery-row">
+                    <span>Taxa de Entrega</span>
+                    <span id="delivery-val" class="font-medium text-amber-600">Preencha o bairro</span>
+                </div>
+                <div class="flex justify-between text-sm sm:text-base font-bold text-burguerDark pt-1 border-t border-gray-100">
+                    <span>Total do Pedido:</span>
+                    <span id="total-val" class="text-burguerAccent">R$ 0,00</span>
+                </div>
+                
+                <div id="min-alert" class="hidden bg-red-50 border border-red-100 text-red-600 px-3 py-2 rounded-xl text-center text-[11px] font-semibold flex items-center justify-center gap-1.5 mt-2">
+                    <i class="fa-solid fa-triangle-exclamation"></i> O valor mínimo para pedidos é de R$ 10,00. Adicione mais delícias!
+                </div>
+                
+                <div id="store-closed-alert" class="hidden bg-amber-50 border border-amber-200 text-amber-900 px-3 py-2 rounded-xl text-center text-xs font-semibold flex items-center justify-center gap-2 mt-2">
+                    <i class="fa-solid fa-store-slash text-amber-700"></i> Estamos fechados no momento. Confira nossos horários no botão de informações acima!
+                </div>
+            </div>
+
+            <form id="order-form" onsubmit="enviarPedido(event)" class="mt-3 space-y-3">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-2.5">
+                    <div>
+                        <label class="block text-[10px] font-semibold text-gray-500 uppercase tracking-wider mb-1" for="nome">Seu Nome:</label>
+                        <input type="text" id="nome" required placeholder="Ex: João Silva" class="w-full bg-gray-50 border border-gray-200 px-3 py-2 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-burguerYellow focus:bg-white transition-all">
+                    </div>
+                    <div>
+                        <label class="block text-[10px] font-semibold text-gray-500 uppercase tracking-wider mb-1" for="celular">Seu Celular / WhatsApp:</label>
+                        <input type="tel" id="celular" required placeholder="Ex: (74) 99999-9999" oninput="formatarTelefone(this)" class="w-full bg-gray-50 border border-gray-200 px-3 py-2 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-burguerYellow focus:bg-white transition-all">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-[10px] font-semibold text-gray-500 uppercase tracking-wider mb-1">Como deseja receber?</label>
+                    <div class="grid grid-cols-2 gap-2">
+                        <button type="button" onclick="setDeliveryMethod('entrega')" id="methodDelivery" class="py-2 text-center font-bold rounded-lg text-xs transition-all bg-burguerYellow text-burguerDark border border-transparent shadow-sm uppercase tracking-wider">
+                            <i class="fa-solid fa-motorcycle mr-1"></i> Entrega
+                        </button>
+                        <button type="button" onclick="setDeliveryMethod('retirada')" id="methodPickup" class="py-2 text-center font-bold rounded-lg text-xs transition-all bg-gray-100 text-gray-600 border border-gray-200 uppercase tracking-wider">
+                            <i class="fa-solid fa-store mr-1"></i> Retirar / Local
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Seção de Endereço com Bairros de Xique-Xique -->
+                <div id="addressSection" class="transition-all duration-300 space-y-2.5">
+                    <div>
+                        <label class="block text-[10px] font-semibold text-gray-500 uppercase tracking-wider mb-1" for="endereco_rua">Rua e Número:</label>
+                        <input type="text" id="endereco_rua" placeholder="Ex: Rua das Flores, 123" class="w-full bg-gray-50 border border-gray-200 px-3 py-2 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-burguerYellow focus:bg-white transition-all">
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-2.5">
+                        <div>
+                            <label class="block text-[10px] font-semibold text-gray-500 uppercase tracking-wider mb-1" for="bairro">Bairro (Xique-Xique - BA):</label>
+                            <select id="bairro" onchange="updateCart()" class="w-full bg-gray-50 border border-gray-200 px-3 py-2 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-burguerYellow focus:bg-white transition-all">
+                                <option value="">Selecione o bairro</option>
+                                <option value="Centro">Centro (R$ 3,00)</option>
+                                <option value="Polivalente">Polivalente (R$ 5,00)</option>
+                                <option value="Senhor do Bonfim">Senhor do Bonfim (R$ 5,00)</option>
+                                <option value="Conjunto Habitacional Raul Teixeira Braga">Conjunto Habitacional Raul Teixeira Braga (R$ 5,00)</option>
+                                <option value="Zona Comercial">Zona Comercial (R$ 5,00)</option>
+                                <option value="Bairro da Paz">Bairro da Paz (R$ 5,00)</option>
+                                <option value="Zona Hospital Julieta Viana">Zona Hospital Julieta Viana (R$ 5,00)</option>
+                                <option value="Paramelos">Paramelos (R$ 5,00)</option>
+                                <option value="Ponta da Ilha">Ponta da Ilha (R$ 5,00)</option>
+                                <option value="São Francisco">São Francisco (R$ 5,00)</option>
+                                <option value="Santa Maria">Santa Maria (R$ 5,00)</option>
+                                <option value="Pedrinhas">Pedrinhas (R$ 5,00)</option>
+                                <option value="Guaxinim">Guaxinim (R$ 5,00)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-semibold text-gray-500 uppercase tracking-wider mb-1" for="ref_ponto">Ponto de Referência (Opcional):</label>
+                            <input type="text" id="ref_ponto" placeholder="Ex: Próximo ao mercado" class="w-full bg-gray-50 border border-gray-200 px-3 py-2 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-burguerYellow focus:bg-white transition-all">
+                        </div>
+                    </div>
+                </div>
+
+                <div id="locationActionArea" class="bg-amber-50/60 border border-amber-200 rounded-xl p-2.5 space-y-1.5">
+                    <!-- Dinâmico -->
+                </div>
+
+                <div class="space-y-2.5">
+                    <div>
+                        <label class="block text-[10px] font-semibold text-gray-500 uppercase tracking-wider mb-1" for="pagamento">Forma de Pagamento:</label>
+                        <select id="pagamento" onchange="toggleTrocoAndPix(); toggleCartaoGroup();" required class="w-full bg-gray-50 border border-gray-200 px-3 py-2 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-burguerYellow focus:bg-white transition-all">
+                            <option value="Pix">Pix</option>
+                            <option value="Cartão">Cartão (maquininha na entrega/mesa)</option>
+                            <option value="Dinheiro">Dinheiro</option>
+                        </select>
+                    </div>
+
+                    <div id="pix-area" class="bg-amber-50/60 border border-amber-200 p-3 rounded-xl space-y-2">
+                        <div class="flex items-center gap-1.5">
+                            <i class="fa-solid fa-money-bill-transfer text-amber-700 text-xs"></i>
+                            <span class="text-[10px] font-bold text-burguerDark uppercase tracking-wide">Chave Pix para Pagamento:</span>
+                        </div>
+                        <div class="flex items-center justify-between bg-white border border-amber-200 p-2 rounded-lg gap-2">
+                            <code class="text-xs font-semibold text-burguerDark select-all break-all" id="chave-pix-texto">pix@hamburgueriamodelo.com.br</code>
+                            <button type="button" onclick="copiarPix()" class="bg-burguerYellow hover:bg-burguerAccent text-burguerDark px-2.5 py-1 rounded-md text-[11px] font-bold transition-all flex items-center gap-1 shrink-0 uppercase tracking-wider">
+                                <i class="fa-regular fa-copy"></i> Copiar
+                            </button>
+                        </div>
+                        <p class="text-[10px] text-amber-900 font-medium bg-amber-100/60 p-2 rounded-lg border border-amber-200/50 flex items-start gap-1.5">
+                            <i class="fa-solid fa-circle-info text-amber-700 mt-0.5 shrink-0"></i>
+                            <span>Envie o comprovante junto com a mensagem do WhatsApp para agilizar! 😊</span>
+                        </p>
+                    </div>
+
+                    <div id="troco-group" class="hidden bg-gray-50 border border-gray-200 rounded-xl p-2.5 space-y-1.5">
+                        <label class="block text-[10px] font-semibold text-gray-500 uppercase tracking-wider mb-1" for="troco">Troco para quanto?</label>
+                        <input type="number" id="troco" step="0.01" placeholder="Ex: 50,00" class="w-full bg-white border border-gray-200 px-3 py-2 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-burguerYellow transition-all">
+                        <label class="flex items-center gap-2 text-xs font-semibold text-gray-600 pt-0.5">
+                            <input type="checkbox" id="sem-troco" onchange="toggleTrocoSemNota()" class="w-4 h-4 accent-burguerYellow"> Não preciso de troco (valor exato)
+                        </label>
+                        <p id="troco-info" class="text-[11px] font-semibold"></p>
+                    </div>
+
+                    <div id="cartao-group" class="hidden bg-gray-50 border border-gray-200 rounded-xl p-2.5 space-y-2">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-2.5">
+                            <div>
+                                <label class="block text-[10px] font-semibold text-gray-500 uppercase tracking-wider mb-1" for="bandeira">Bandeira do Cartão:</label>
+                                <select id="bandeira" class="w-full bg-white border border-gray-200 px-3 py-2 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-burguerYellow transition-all">
+                                    <option value="">Selecione a bandeira</option>
+                                    <option value="Visa">Visa</option>
+                                    <option value="Mastercard">Mastercard</option>
+                                    <option value="Elo">Elo</option>
+                                    <option value="Hipercard">Hipercard</option>
+                                    <option value="American Express">American Express</option>
+                                    <option value="Outra">Outra</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-semibold text-gray-500 uppercase tracking-wider mb-1" for="modalidade">Modalidade:</label>
+                                <select id="modalidade" class="w-full bg-white border border-gray-200 px-3 py-2 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-burguerYellow transition-all">
+                                    <option value="">Selecione</option>
+                                    <option value="Crédito">Crédito</option>
+                                    <option value="Débito">Débito</option>
+                                </select>
+                            </div>
+                        </div>
+                        <p class="text-[10px] text-gray-500 font-medium"><i class="fa-regular fa-credit-card text-amber-600"></i> Maquininha levada até você.</p>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-[10px] font-semibold text-gray-500 uppercase tracking-wider mb-1" for="observacao">Observações (Opcional):</label>
+                    <textarea id="observacao" rows="2" placeholder="Ex: Ponto da carne, sem cebola..." class="w-full bg-gray-50 border border-gray-200 px-3 py-2 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-burguerYellow focus:bg-white transition-all"></textarea>
+                </div>
+
+                <button type="submit" id="btn-finalizar" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-xl shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 text-sm mt-2 uppercase tracking-wider">
+                    <i class="fa-brands fa-whatsapp text-base"></i> Enviar Pedido no WhatsApp
+                </button>
+            </form>
+        </div>
+    </main>
+
+    <!-- Mini-carrinho flutuante -->
+    <div id="sticky-mini-cart" class="fixed bottom-3 left-3 right-3 bg-gradient-to-r from-burguerDark to-burguerAccent text-white px-4 py-2.5 rounded-xl shadow-lg z-40 flex items-center justify-between transform translate-y-32 opacity-0 transition-all duration-300 pointer-events-none md:max-w-xs md:mx-auto border border-burguerYellow/40">
+        <div class="flex items-center gap-2.5">
+            <div class="bg-burguerYellow/20 p-1.5 rounded-lg flex items-center justify-center text-burguerYellow">
+                <i class="fa-solid fa-basket-shopping text-xs"></i>
+            </div>
+            <div>
+                <span id="mini-cart-qty" class="block font-bold text-[11px]">0 itens</span>
+                <span id="mini-cart-subtotal" class="block text-[9px] text-amber-200 font-medium">Subtotal: R$ 0,00</span>
+            </div>
+        </div>
+        <a href="#checkout-area" class="bg-burguerYellow text-burguerDark font-extrabold text-[10px] px-3 py-1.5 rounded-lg uppercase tracking-wider shadow hover:bg-amber-400 transition-colors pointer-events-auto flex items-center gap-1">
+            Ver Sacola <i class="fa-solid fa-chevron-right text-[8px]"></i>
+        </a>
+    </div>
+
+    <!-- Toast de feedback -->
+    <div id="toast" class="fixed bottom-20 left-1/2 -translate-x-1/2 bg-burguerDark text-white px-5 py-2.5 rounded-full shadow-lg z-50 flex items-center gap-2 border border-burguerYellow/30 transform translate-y-24 opacity-0 transition-all duration-300 max-w-[90vw]">
+        <i id="toast-icon" class="fa-solid fa-circle-check text-burguerYellow text-sm shrink-0"></i>
+        <span id="toastMsg" class="font-medium text-xs truncate">Carrinho atualizado!</span>
+    </div>
+
+    <script>
+        // Banco de Dados Completo da Hamburgueria Modelo (Todos disponíveis)
+        const produtos = [
+            // 1. Combos Promocionais
+            { id: 101, category: 'combo', name: 'Combo Burg Tradicional', price: 32.00, desc: 'Burg Tradicional + batata frita + refrigerante em lata.', image: 'combo.png' },
+            { id: 102, category: 'combo', name: 'Combo Burg Cupim', price: 36.00, desc: 'Burg Cupim + batata frita + refrigerante em lata.', image: 'combo.png' },
+            { id: 103, category: 'combo', name: 'Combo Burg Carneiro', price: 32.00, desc: 'Burg Carneiro + batata frita + refrigerante em lata.', image: 'combo.png' },
+            { id: 104, category: 'combo', name: 'Combo Burg Frango Catupiry', price: 34.00, desc: 'Burg Frango Catupiry + batata frita + refrigerante em lata.', image: 'combo.png' },
+            { id: 105, category: 'combo', name: 'Combo Burg Nordestino', price: 36.00, desc: 'Burg Nordestino + batata frita + refrigerante em lata.', image: 'combo.png' },
+            { id: 106, category: 'combo', name: 'Combo Burg Port Cheddar', price: 36.00, desc: 'Burg Port Cheddar + batata frita + refrigerante em lata.', image: 'combo.png' },
+            { id: 107, category: 'combo', name: 'Combo Burg Costelinha', price: 34.00, desc: 'Burg Costelinha + batata frita + refrigerante em lata.', image: 'combo.png' },
+            { id: 108, category: 'combo', name: 'Combo Burg Picanha', price: 36.00, desc: 'Burg Picanha + batata frita + refrigerante em lata.', image: 'combo.png' },
+            { id: 109, category: 'combo', name: 'Combo Burg Big', price: 45.00, desc: 'Burg Big + batata frita + refrigerante em lata.', image: 'combo.png' },
+
+            // 2. Cardápio Gourmet & Porções
+            { id: 201, category: 'gourmet', name: 'Meia Porção de Fritas', price: 10.00, desc: 'Porção menor de batatas fritas crocantes.', image: 'porcao.png' },
+            { id: 202, category: 'gourmet', name: 'Burg Tradicional', price: 24.00, desc: 'Pão especial, burger bovino 120g, queijo mussarela, alface, tomate, cebola caramelizada e molho.', image: 'burg.png' },
+            { id: 203, category: 'gourmet', name: 'Burg Picanha', price: 26.00, desc: 'Pão, burger picanha 120g, queijo prato, alface, tomate, cebola caramelizada e molho.', image: 'burg.png' },
+            { id: 204, category: 'gourmet', name: 'Burg Cupim', price: 26.00, desc: 'Pão, burger cupim 120g, queijo prato, alface, tomate, cebola caramelizada e molho.', image: 'burg.png' },
+            { id: 205, category: 'gourmet', name: 'Burg Carneiro', price: 24.00, desc: 'Pão, burger carneiro 120g, queijo mussarela, alface, tomate, cebola caramelizada e molho.', image: 'burg.png' },
+            { id: 206, category: 'gourmet', name: 'Burg Frango Catupiry', price: 26.00, desc: 'Pão, burger frango com catupiry 120g, queijo prato, alface, tomate e molho.', image: 'burg.png' },
+            { id: 207, category: 'gourmet', name: 'Burg Nordestino', price: 26.00, desc: 'Pão, burger carne de sol 120g, queijo coalho, banana-da-terra e melaço de cana.', image: 'burg.png' },
+            { id: 208, category: 'gourmet', name: 'Burg Port Cheddar', price: 26.00, desc: 'Pão, burger bovino 120g, molho cheddar, alface, tomate e cebola caramelizada.', image: 'burg.png' },
+            { id: 209, category: 'gourmet', name: 'Burg Costelinha', price: 24.00, desc: 'Pão, burger costela 120g, queijo prato, alface, tomate e cebola caramelizada.', image: 'burg.png' },
+            { id: 210, category: 'gourmet', name: 'Burg Big', price: 35.00, desc: 'Pão, dois burgers 120g, bacon, queijo prato, alface, tomate e cebola caramelizada.', image: 'burg.png' },
+            { id: 211, category: 'gourmet', name: 'Porção Fritas (Grande)', price: 18.00, desc: 'Porção grande de batatas fritas bem crocantes.', image: 'porcao.png' },
+
+            // 3. Sanduíches Tradicionais
+            { id: 301, category: 'tradicional', name: 'Misto', price: 8.00, desc: 'Queijo e presunto.', image: 'sanduiche.png' },
+            { id: 302, category: 'tradicional', name: 'Hot Dog Simples', price: 10.00, desc: 'Pão, salsicha, batata palha, tomate e milho.', image: 'sanduiche.png' },
+            { id: 303, category: 'tradicional', name: 'Hot Dog Especial', price: 12.00, desc: 'Pão, salsicha, queijo, presunto, batata palha, tomate e milho.', image: 'sanduiche.png' },
+            { id: 304, category: 'tradicional', name: 'Hot Dog Burguer', price: 15.00, desc: 'Pão, salsicha, carne de hambúrguer, queijo, presunto, batata palha e milho.', image: 'sanduiche.png' },
+            { id: 305, category: 'tradicional', name: 'Hot Dog Bacon', price: 15.00, desc: 'Pão, salsicha, bacon, queijo, presunto, batata palha e milho.', image: 'sanduiche.png' },
+            { id: 306, category: 'tradicional', name: 'Hot Dog Frango', price: 15.00, desc: 'Pão, salsicha, frango, queijo, presunto, batata palha e milho.', image: 'sanduiche.png' },
+            { id: 307, category: 'tradicional', name: 'Hot Dog Mix', price: 18.00, desc: 'Pão, salsicha, bacon, frango, calabresa, queijo, presunto e batata palha.', image: 'sanduiche.png' },
+            { id: 308, category: 'tradicional', name: 'Hambúrguer', price: 10.00, desc: 'Carne de hambúrguer, alface, tomate e milho.', image: 'sanduiche.png' },
+            { id: 309, category: 'tradicional', name: 'Americano', price: 10.00, desc: 'Ovo, queijo, presunto, alface, tomate e milho.', image: 'sanduiche.png' },
+            { id: 310, category: 'tradicional', name: 'Bauru', price: 10.00, desc: 'Queijo, presunto, alface, tomate e milho.', image: 'sanduiche.png' },
+            { id: 311, category: 'tradicional', name: 'X-Salada', price: 15.00, desc: 'Carne, dois queijos, alface, tomate e milho.', image: 'sanduiche.png' },
+            { id: 312, category: 'tradicional', name: 'X-Burguer', price: 14.00, desc: 'Carne, queijo, presunto, alface, tomate e milho.', image: 'sanduiche.png' },
+            { id: 313, category: 'tradicional', name: 'X-Egg Burguer', price: 17.00, desc: 'Ovo, carne, queijo, presunto, alface, tomate e milho.', image: 'sanduiche.png' },
+            { id: 314, category: 'tradicional', name: 'X-Egg Dog', price: 19.00, desc: 'Salsicha, ovo, carne, queijo, presunto, alface, tomate e milho.', image: 'sanduiche.png' },
+            { id: 315, category: 'tradicional', name: 'X-Egg Bacon', price: 20.00, desc: 'Bacon, ovo, carne, queijo, presunto, alface, tomate e milho.', image: 'sanduiche.png' },
+            { id: 316, category: 'tradicional', name: 'X-Frango', price: 18.00, desc: 'Filé de frango, queijo, presunto, alface, tomate e milho.', image: 'sanduiche.png' },
+            { id: 317, category: 'tradicional', name: 'X-Frango Catupiry', price: 19.00, desc: 'Filé de frango, catupiry, queijo, presunto, alface e tomate.', image: 'sanduiche.png' },
+            { id: 318, category: 'tradicional', name: 'Bacon Frango', price: 19.00, desc: 'Bacon, filé de frango, queijo, presunto, alface, tomate e milho.', image: 'sanduiche.png' },
+            { id: 319, category: 'tradicional', name: 'Framburguer', price: 20.00, desc: 'Filé de frango, carne, queijo, presunto, alface, tomate e milho.', image: 'sanduiche.png' },
+            { id: 320, category: 'tradicional', name: 'Egg Framburguer', price: 22.00, desc: 'Ovo, filé de frango, carne, queijo, presunto, alface, tomate e milho.', image: 'sanduiche.png' },
+            { id: 321, category: 'tradicional', name: 'Egg Calaburguer', price: 22.00, desc: 'Ovo, calabresa, carne, queijo, presunto, alface e tomate.', image: 'sanduiche.png' },
+            { id: 322, category: 'tradicional', name: 'Calafrango', price: 18.00, desc: 'Calabresa, filé de frango, queijo, presunto, alface e tomate.', image: 'sanduiche.png' },
+            { id: 323, category: 'tradicional', name: 'X-Calabresa', price: 18.00, desc: 'Calabresa, queijo, presunto, alface, tomate e milho.', image: 'sanduiche.png' },
+            { id: 324, category: 'tradicional', name: 'X-Bacon', price: 20.00, desc: 'Bacon, carne, queijo, presunto, alface, tomate e milho.', image: 'sanduiche.png' },
+            { id: 325, category: 'tradicional', name: 'X-Filé', price: 22.00, desc: 'Filé mignon, queijo, presunto, alface, tomate e milho.', image: 'sanduiche.png' },
+            { id: 326, category: 'tradicional', name: 'X-Filé Acebolado', price: 22.00, desc: 'Filé mignon, queijo, presunto, cebola, alface e tomate.', image: 'sanduiche.png' },
+            { id: 327, category: 'tradicional', name: 'X-Egg Filé', price: 24.00, desc: 'Filé mignon, ovo, queijo, presunto, alface, tomate e milho.', image: 'sanduiche.png' },
+            { id: 328, category: 'tradicional', name: 'Franfilé', price: 24.00, desc: 'Filé mignon, filé de frango, queijo, presunto, alface e tomate.', image: 'sanduiche.png' },
+            { id: 329, category: 'tradicional', name: 'Filé com Bacon', price: 24.00, desc: 'Filé mignon, bacon, queijo, presunto, alface e tomate.', image: 'sanduiche.png' },
+            { id: 330, category: 'tradicional', name: 'Calabacon', price: 18.00, desc: 'Calabresa, bacon, queijo, presunto, alface e tomate.', image: 'sanduiche.png' },
+            { id: 331, category: 'tradicional', name: 'Doble Burguer', price: 18.00, desc: 'Duas carnes, duas fatias de queijo, alface e tomate.', image: 'sanduiche.png' },
+            { id: 332, category: 'tradicional', name: 'Especial', price: 22.00, desc: 'Carne, ovo, bacon, calabresa, queijo, presunto, alface e tomate.', image: 'sanduiche.png' },
+            { id: 333, category: 'tradicional', name: 'X-Tudo', price: 25.00, desc: 'Carne, ovo, bacon, calabresa, frango, salsicha, queijo, presunto, batata e salada.', image: 'sanduiche.png' },
+
+            // 4. Bebidas
+            { id: 401, category: 'bebida', name: 'Suco de Polpa', price: 8.00, desc: 'Suco natural de polpa de fruta.', image: 'suco.png' },
+            { id: 402, category: 'bebida', name: 'Pepsi 1 Litro', price: 8.00, desc: 'Refrigerante 1 Litro gelado.', image: 'pepsi.png' },
+            { id: 403, category: 'bebida', name: 'Maromba Bomba Bahiana', price: 10.00, desc: 'Bebida energética especial da casa.', image: 'bebida.png' },
+            { id: 404, category: 'bebida', name: 'Água Mineral', price: 3.00, desc: 'Água mineral 500ml sem gás.', image: 'agua.png' },
+            { id: 405, category: 'bebida', name: 'Água com Gás', price: 3.00, desc: 'Água mineral 500ml com gás.', image: 'agua.png' },
+            { id: 406, category: 'bebida', name: 'Coca-Cola Lata', price: 5.00, desc: 'Refrigerante lata 350ml.', image: 'coca.png' },
+            { id: 407, category: 'bebida', name: 'Coca-Cola 1 Litro', price: 8.00, desc: 'Refrigerante Coca-Cola 1 Litro.', image: 'coca.png' },
+            { id: 408, category: 'bebida', name: 'Guaraná Lata', price: 5.00, desc: 'Guaraná Antártica lata 350ml.', image: 'guarana.png' },
+            { id: 409, category: 'bebida', name: 'Pepsi Lata 350ml', price: 5.00, desc: 'Pepsi lata 350ml gelada.', image: 'pepsi.png' },
+            { id: 410, category: 'bebida', name: 'Sprite Lata 350ml', price: 4.00, desc: 'Sprite lata 350ml.', image: 'sprite.png' },
+            { id: 411, category: 'bebida', name: 'Fanta Laranja', price: 5.00, desc: 'Fanta Laranja lata 350ml.', image: 'fanta.png' },
+            { id: 412, category: 'bebida', name: 'Fanta Uva', price: 5.00, desc: 'Fanta Uva lata 350ml.', image: 'fanta.png' },
+            { id: 413, category: 'bebida', name: 'Guaraná 1 Litro', price: 8.00, desc: 'Guaraná 1 Litro bem gelado.', image: 'guarana.png' },
+            { id: 414, category: 'bebida', name: 'Pepsi 1L (Adicional)', price: 7.00, desc: 'Pepsi 1 Litro.', image: 'pepsi.png' }
+        ];
+
+        let cart = {};
+        let deliveryMethod = 'entrega';
+        const minOrderAmount = 10.00;
+        let gpsUrl = '';
+
+        let totalRatingSum = 4.9 * 452;
+        let totalRatingCount = 452;
+
+        window.addEventListener('DOMContentLoaded', () => {
+            loadCartFromStorage();
+            renderMenu(produtos);
+            updateCart();
+            setDeliveryMethod('entrega');
+            toggleTrocoAndPix();
+            toggleCartaoGroup();
+            atualizarExibicaoEstatistica();
+            verificarHorarioFuncionamento();
+            setInterval(verificarHorarioFuncionamento, 60000);
+        });
+
+        function abrirModalInfo() {
+            const modal = document.getElementById('modal-info');
+            const content = document.getElementById('modal-content');
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                content.classList.remove('scale-95');
+                content.classList.add('scale-100');
+            }, 10);
+        }
+
+        function fecharModalInfo() {
+            const modal = document.getElementById('modal-info');
+            const content = document.getElementById('modal-content');
+            modal.classList.add('opacity-0');
+            content.classList.remove('scale-100');
+            content.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        function verificarLojaAberta() {
+            const agora = new Date();
+            const diaSemana = agora.getDay();
+            const hora = agora.getHours();
+            const minuto = agora.getMinutes();
+            const minutosAtuais = hora * 60 + minuto;
+
+            let abertura = 18 * 60; // 18:00
+            let fechamento = (diaSemana === 0 || diaSemana === 5 || diaSemana === 6) ? (23 * 60 + 59) : (23 * 60 + 45);
+
+            return minutosAtuais >= abertura && minutosAtuais <= fechamento;
+        }
+
+        function verificarHorarioFuncionamento() {
+            const aberto = verificarLojaAberta();
+            const badge = document.getElementById('store-status-badge');
+            const dot = document.getElementById('store-status-dot');
+            const text = document.getElementById('store-status-text');
+            const alertClosed = document.getElementById('store-closed-alert');
+
+            if (aberto) {
+                badge.className = "px-2.5 py-0.5 rounded-full font-semibold flex items-center gap-1 border bg-emerald-500/20 text-emerald-400 border-emerald-500/30";
+                dot.className = "w-1.5 h-1.5 bg-emerald-400 rounded-full animate-ping";
+                text.innerText = "Aberto Agora";
+                if(alertClosed) alertClosed.classList.add('hidden');
+            } else {
+                badge.className = "px-2.5 py-0.5 rounded-full font-semibold flex items-center gap-1 border bg-red-500/20 text-red-400 border-red-500/30";
+                dot.className = "w-1.5 h-1.5 bg-red-400 rounded-full";
+                text.innerText = "Fechado";
+                if(alertClosed) alertClosed.classList.remove('hidden');
+            }
+        }
+
+        function loadCartFromStorage() {
+            try {
+                const saved = localStorage.getItem('hamburgueria_cart');
+                if (saved) cart = JSON.parse(saved);
+            } catch (e) { cart = {}; }
+        }
+
+        function saveCartToStorage() {
+            try {
+                localStorage.setItem('hamburgueria_cart', JSON.stringify(cart));
+            } catch (e) {}
+        }
+
+        function renderMenu(productsList) {
+            const combosGrid = document.getElementById('combos-grid');
+            const gourmetGrid = document.getElementById('gourmet-grid');
+            const tradicionaisGrid = document.getElementById('tradicionais-grid');
+            const bebidasGrid = document.getElementById('bebidas-grid');
+
+            combosGrid.innerHTML = '';
+            gourmetGrid.innerHTML = '';
+            tradicionaisGrid.innerHTML = '';
+            bebidasGrid.innerHTML = '';
+
+            const combos = productsList.filter(p => p.category === 'combo');
+            const gourmet = productsList.filter(p => p.category === 'gourmet');
+            const tradicionais = productsList.filter(p => p.category === 'tradicional');
+            const bebidas = productsList.filter(p => p.category === 'bebida');
+
+            combos.forEach(p => { combosGrid.innerHTML += createProductCard(p); });
+            gourmet.forEach(p => { gourmetGrid.innerHTML += createProductCard(p); });
+            tradicionais.forEach(p => { tradicionaisGrid.innerHTML += createProductCard(p); });
+            bebidas.forEach(p => { bebidasGrid.innerHTML += createProductCard(p); });
+        }
+
+        function createProductCard(p) {
+            const qty = cart[p.id] || 0;
+            const fallbackImgSvg = 'data:image/svg+xml;utf8,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96"><rect width="96" height="96" fill="#F7F4EB"/><text x="48" y="62" font-size="36" text-anchor="middle">🍔</text></svg>');
+            
+            return `
+                <div class="bg-white rounded-2xl p-2.5 border border-amber-200/60 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="w-full h-24 rounded-xl overflow-hidden bg-amber-50/40 border border-amber-100 mb-2 flex items-center justify-center">
+                            <img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='${fallbackImgSvg}'">
+                        </div>
+                        <h3 class="font-bold text-xs text-burguerDark line-clamp-1">${p.name}</h3>
+                        <p class="text-[10px] text-gray-400 leading-tight mt-0.5 line-clamp-2">${p.desc}</p>
+                    </div>
+                    
+                    <div class="flex items-center justify-between gap-1 mt-2 pt-2 border-t border-gray-100">
+                        <span class="font-extrabold text-xs sm:text-sm text-burguerAccent">R$ ${p.price.toFixed(2).replace('.', ',')}</span>
+                        
+                        <div class="flex items-center bg-gray-50 rounded-full py-0.5 px-1 shadow-inner border border-gray-200">
+                            <button type="button" onclick="changeQty(${p.id}, -1)" class="w-6 h-6 flex items-center justify-center text-burguerDark hover:bg-white active:scale-95 rounded-full font-black text-xs transition-transform focus:outline-none">
+                                <i class="fa-solid fa-minus text-[10px]"></i>
+                            </button>
+                            <span id="qty-${p.id}" class="w-5 text-center font-bold text-xs text-gray-800">${qty}</span>
+                            <button type="button" onclick="changeQty(${p.id}, 1)" class="w-6 h-6 flex items-center justify-center text-burguerDark hover:bg-white active:scale-95 rounded-full font-black text-xs transition-transform focus:outline-none">
+                                <i class="fa-solid fa-plus text-[10px]"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function filterProducts() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const filtered = produtos.filter(p => p.name.toLowerCase().includes(query) || p.desc.toLowerCase().includes(query));
+            renderMenu(filtered);
+        }
+
+        function filterCategory(cat) {
+            const buttons = document.querySelectorAll('.category-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-burguerYellow', 'text-burguerDark', 'shadow-sm', 'active');
+                btn.classList.add('bg-gray-100', 'text-gray-600');
+            });
+
+            const activeBtn = event.currentTarget;
+            activeBtn.classList.remove('bg-gray-100', 'text-gray-600');
+            activeBtn.classList.add('bg-burguerYellow', 'text-burguerDark', 'shadow-sm', 'active');
+
+            const combosSec = document.getElementById('combos-section');
+            const gourmetSec = document.getElementById('gourmet-section');
+            const tradicionaisSec = document.getElementById('tradicionais-section');
+            const bebidasSec = document.getElementById('bebidas-section');
+
+            combosSec.classList.add('hidden');
+            gourmetSec.classList.add('hidden');
+            tradicionaisSec.classList.add('hidden');
+            bebidasSec.classList.add('hidden');
+
+            if (cat === 'todos') {
+                renderMenu(produtos);
+                combosSec.classList.remove('hidden');
+                gourmetSec.classList.remove('hidden');
+                tradicionaisSec.classList.remove('hidden');
+                bebidasSec.classList.remove('hidden');
+            } else if (cat === 'combo') {
+                renderMenu(produtos);
+                combosSec.classList.remove('hidden');
+            } else if (cat === 'gourmet') {
+                renderMenu(produtos);
+                gourmetSec.classList.remove('hidden');
+            } else if (cat === 'tradicional') {
+                renderMenu(produtos);
+                tradicionaisSec.classList.remove('hidden');
+            } else if (cat === 'bebida') {
+                renderMenu(produtos);
+                bebidasSec.classList.remove('hidden');
+            }
+        }
+
+        function registrarNotaTrambique(notaClicada) {
+            totalRatingCount++;
+            totalRatingSum += 5;
+            atualizarExibicaoEstatistica();
+
+            document.querySelectorAll('.star-btn i').forEach((estrela) => {
+                estrela.className = "fa-solid fa-star text-burguerYellow animate-pop";
+            });
+
+            document.getElementById('rating-feedback-msg').innerHTML = `<span class="text-emerald-600 font-bold">Obrigado pela sua nota de 5 estrelas! ⭐⭐⭐⭐⭐</span>`;
+            showToast("Avaliação registrada! Obrigado! 😊", "fa-circle-check", "text-emerald-500");
+        }
+
+        function atualizarExibicaoEstatistica() {
+            const mediaFinal = (totalRatingSum / totalRatingCount).toFixed(1);
+            if (document.getElementById('rating-score-header')) document.getElementById('rating-score-header').innerText = mediaFinal;
+            if (document.getElementById('rating-count-header')) document.getElementById('rating-count-header').innerText = totalRatingCount;
+        }
+
+        function changeQty(id, change) {
+            if (!cart[id]) cart[id] = 0;
+            cart[id] += change;
+
+            const elementSpan = document.getElementById(`qty-${id}`);
+            if (cart[id] <= 0) {
+                delete cart[id];
+                if (elementSpan) elementSpan.innerText = '0';
+            } else {
+                if (elementSpan) elementSpan.innerText = cart[id];
+            }
+            
+            saveCartToStorage();
+            updateCart();
+            
+            if (elementSpan) {
+                elementSpan.classList.add('animate-pop');
+                setTimeout(() => elementSpan.classList.remove('animate-pop'), 200);
+            }
+        }
+
+        function updateCart() {
+            const listContainer = document.getElementById('cart-items-list');
+            let subtotal = 0;
+            let totalItemsCount = 0;
+            let itemsHtml = '';
+
+            const keys = Object.keys(cart);
+            keys.forEach(id => {
+                const produto = produtos.find(p => p.id == id);
+                if (produto) {
+                    const subTotalItem = produto.price * cart[id];
+                    subtotal += subTotalItem;
+                    totalItemsCount += cart[id];
+
+                    itemsHtml += `
+                        <div class="flex items-center justify-between bg-gray-50/80 hover:bg-amber-50/20 p-2 rounded-xl border border-gray-200 transition-colors">
+                            <div class="flex-1 min-w-0 pr-2">
+                                <div class="flex items-center gap-1.5">
+                                    <span class="font-bold text-xs text-burguerDark bg-amber-100 px-1.5 py-0.5 rounded">${cart[id]}x</span>
+                                    <span class="font-semibold text-xs text-gray-700 truncate">${produto.name}</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-2 shrink-0">
+                                <span class="font-bold text-xs text-gray-800">R$ ${subTotalItem.toFixed(2).replace('.', ',')}</span>
+                                <button type="button" onclick="removeItem(${produto.id})" class="text-red-500 hover:text-red-700 p-1 hover:bg-red-50 rounded-lg transition-colors" title="Remover item">
+                                    <i class="fa-regular fa-trash-can text-xs"></i>
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                }
+            });
+
+            if (keys.length === 0) {
+                listContainer.innerHTML = `
+                    <div class="text-center py-5 text-gray-400">
+                        <i class="fa-solid fa-basket-shopping text-xl mb-1 text-amber-300"></i>
+                        <p class="text-xs font-semibold">Sua sacola está vazia.</p>
+                        <p class="text-[9px] mt-0.5 text-gray-400/80">Escolha combos ou burgers deliciosos acima!</p>
+                    </div>
+                `;
+                subtotal = 0;
+            } else {
+                listContainer.innerHTML = itemsHtml;
+            }
+
+            document.getElementById('subtotal-val').innerText = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
+
+            let finalDeliveryFee = 0;
+            if (deliveryMethod === 'entrega' && keys.length > 0) {
+                const bairroInput = document.getElementById('bairro').value.trim().toLowerCase();
+                
+                if (bairroInput === '') {
+                    finalDeliveryFee = 5.00;
+                    document.getElementById('delivery-val').innerHTML = `<span class="text-amber-600 font-semibold text-xs"><i class="fa-solid fa-spinner animate-spin text-[10px]"></i> Aguardando bairro...</span>`;
+                } else if (bairroInput.includes('centro')) {
+                    finalDeliveryFee = 3.00;
+                    document.getElementById('delivery-val').innerHTML = `<span class="text-emerald-600 font-bold text-xs">R$ 3,00 (Centro)</span>`;
+                } else {
+                    finalDeliveryFee = 5.00;
+                    document.getElementById('delivery-val').innerHTML = `<span class="text-amber-600 font-bold text-xs">R$ 5,00 (Bairro)</span>`;
+                }
+            } else {
+                finalDeliveryFee = 0;
+                document.getElementById('delivery-val').innerHTML = `<span class="text-emerald-600 font-semibold text-xs">Grátis (Retirada/Local)</span>`;
+            }
+
+            const total = subtotal + finalDeliveryFee;
+            document.getElementById('total-val').innerText = `R$ ${total.toFixed(2).replace('.', ',')}`;
+
+            const stickyMiniCart = document.getElementById('sticky-mini-cart');
+            const miniCartQty = document.getElementById('mini-cart-qty');
+            const miniCartSubtotal = document.getElementById('mini-cart-subtotal');
+
+            if (totalItemsCount > 0) {
+                miniCartQty.innerText = `${totalItemsCount} ${totalItemsCount === 1 ? 'item' : 'itens'}`;
+                miniCartSubtotal.innerText = `Subtotal: R$ ${subtotal.toFixed(2).replace('.', ',')}`;
+                stickyMiniCart.classList.remove('translate-y-32', 'opacity-0', 'pointer-events-none');
+                stickyMiniCart.classList.add('translate-y-0', 'opacity-100', 'pointer-events-auto');
+            } else {
+                stickyMiniCart.classList.remove('translate-y-0', 'opacity-100', 'pointer-events-auto');
+                stickyMiniCart.classList.add('translate-y-32', 'opacity-0', 'pointer-events-none');
+            }
+
+            const minAlert = document.getElementById('min-alert');
+            const btnFinalizar = document.getElementById('btn-finalizar');
+            const lojaAberta = verificarLojaAberta();
+
+            if (subtotal > 0 && subtotal < minOrderAmount) {
+                minAlert.classList.remove('hidden');
+                btnFinalizar.classList.add('opacity-50', 'cursor-not-allowed');
+                btnFinalizar.disabled = true;
+            } else if (!lojaAberta) {
+                minAlert.classList.add('hidden');
+                btnFinalizar.classList.add('opacity-50', 'cursor-not-allowed');
+                btnFinalizar.disabled = true;
+            } else {
+                minAlert.classList.add('hidden');
+                btnFinalizar.classList.remove('opacity-50', 'cursor-not-allowed');
+                btnFinalizar.disabled = false;
+            }
+
+            atualizarTrocoInteligente();
+        }
+
+        function clearCart() {
+            cart = {};
+            saveCartToStorage();
+            produtos.forEach(p => {
+                const el = document.getElementById(`qty-${p.id}`);
+                if (el) el.innerText = '0';
+            });
+            updateCart();
+            showToast("Carrinho limpo com sucesso!", "fa-circle-xmark", "text-red-400");
+        }
+
+        function removeItem(id) {
+            if (cart[id]) {
+                delete cart[id];
+                saveCartToStorage();
+                const elementSpan = document.getElementById(`qty-${id}`);
+                if (elementSpan) elementSpan.innerText = '0';
+                showToast("Item removido da sacola!", "fa-circle-xmark", "text-red-400");
+                updateCart();
+            }
+        }
+
+        function setDeliveryMethod(method) {
+            deliveryMethod = method;
+            const btnDelivery = document.getElementById('methodDelivery');
+            const btnPickup = document.getElementById('methodPickup');
+            const addressSection = document.getElementById('addressSection');
+            const ruaInput = document.getElementById('endereco_rua');
+            const bairroInput = document.getElementById('bairro');
+            const deliveryRow = document.getElementById('delivery-row');
+            const locationActionArea = document.getElementById('locationActionArea');
+
+            if (method === 'entrega') {
+                btnDelivery.className = "py-2 text-center font-bold rounded-lg text-xs transition-all bg-burguerYellow text-burguerDark border border-transparent shadow-sm uppercase tracking-wider";
+                btnPickup.className = "py-2 text-center font-bold rounded-lg text-xs transition-all bg-gray-100 text-gray-600 border border-gray-200 uppercase tracking-wider";
+                
+                addressSection.classList.remove('hidden');
+                ruaInput.setAttribute('required', 'true');
+                bairroInput.setAttribute('required', 'true');
+                deliveryRow.classList.remove('hidden');
+
+                locationActionArea.innerHTML = `
+                    <button type="button" onclick="capturarGps()" class="w-full bg-burguerDark text-white font-bold py-2 rounded-xl text-xs flex items-center justify-center gap-2 active:scale-95 transition-all uppercase tracking-wider">
+                        <i class="fa-solid fa-location-crosshairs text-burguerYellow"></i> Usar minha localização atual (GPS)
+                    </button>
+                    <p id="gps-status" class="text-[10px] text-gray-500 font-medium text-center">Opcional: facilita muito para o entregador te achar.</p>
+                    <a id="gps-link" href="#" target="_blank" rel="noopener" class="hidden text-[11px] font-bold text-amber-700 underline break-all text-center block"></a>
+                `;
+            } else {
+                btnPickup.className = "py-2 text-center font-bold rounded-lg text-xs transition-all bg-burguerYellow text-burguerDark border border-transparent shadow-sm uppercase tracking-wider";
+                btnDelivery.className = "py-2 text-center font-bold rounded-lg text-xs transition-all bg-gray-100 text-gray-600 border border-gray-200 uppercase tracking-wider";
+                
+                addressSection.classList.add('hidden');
+                ruaInput.removeAttribute('required');
+                bairroInput.removeAttribute('required');
+                deliveryRow.classList.add('hidden');
+                gpsUrl = '';
+
+                const linkLoja = "https://maps.app.goo.gl/2Knj8Yp5ohhZUi4h8";
+                locationActionArea.innerHTML = `
+                    <div class="text-center space-y-1">
+                        <p class="text-[10px] font-bold text-burguerDark uppercase tracking-wider">Local / Retirada do Pedido:</p>
+                        <a href="${linkLoja}" target="_blank" rel="noopener" class="w-full bg-amber-500 hover:bg-amber-600 text-white font-bold py-2 rounded-xl text-xs flex items-center justify-center gap-2 shadow-sm transition-all uppercase tracking-wider">
+                            <i class="fa-solid fa-map-location-dot"></i> Ver Localização da Hamburgueria no Mapa
+                        </a>
+                        <p class="text-[10px] text-gray-500 font-medium">Av. Dr. JJ Seabra, 198 – Centro, Xique-Xique – BA</p>
+                    </div>
+                `;
+            }
+
+            updateCart();
+        }
+
+        function toggleTrocoAndPix() {
+            const pagamento = document.getElementById('pagamento').value;
+            const pixArea = document.getElementById('pix-area');
+            if (pagamento === 'Pix') {
+                pixArea.classList.remove('hidden');
+            } else {
+                pixArea.classList.add('hidden');
+            }
+        }
+
+        function toggleCartaoGroup() {
+            const pagamento = document.getElementById('pagamento').value;
+            const trocoGroup = document.getElementById('troco-group');
+            const cartaoGroup = document.getElementById('cartao-group');
+            const trocoInput = document.getElementById('troco');
+            const bandeiraInput = document.getElementById('bandeira');
+            const modalidadeInput = document.getElementById('modalidade');
+
+            if (pagamento === 'Dinheiro') {
+                trocoGroup.classList.remove('hidden');
+                cartaoGroup.classList.add('hidden');
+                bandeiraInput.removeAttribute('required');
+                modalidadeInput.removeAttribute('required');
+            } else if (pagamento === 'Cartão') {
+                cartaoGroup.classList.remove('hidden');
+                trocoGroup.classList.add('hidden');
+                trocoInput.value = '';
+                document.getElementById('sem-troco').checked = false;
+                document.getElementById('troco-info').innerText = '';
+                bandeiraInput.setAttribute('required', 'true');
+                modalidadeInput.setAttribute('required', 'true');
+            } else {
+                trocoGroup.classList.add('hidden');
+                cartaoGroup.classList.add('hidden');
+                trocoInput.value = '';
+                bandeiraInput.removeAttribute('required');
+                modalidadeInput.removeAttribute('required');
+            }
+        }
+
+        function toggleTrocoSemNota() {
+            const semTroco = document.getElementById('sem-troco').checked;
+            const trocoInput = document.getElementById('troco');
+            trocoInput.disabled = semTroco;
+            if (semTroco) trocoInput.value = '';
+            atualizarTrocoInteligente();
+        }
+
+        document.getElementById('troco').addEventListener('input', atualizarTrocoInteligente);
+
+        function atualizarTrocoInteligente() {
+            const pagamento = document.getElementById('pagamento').value;
+            if (pagamento !== 'Dinheiro') return;
+
+            const semTroco = document.getElementById('sem-troco').checked;
+            const trocoInfo = document.getElementById('troco-info');
+            const trocoInput = document.getElementById('troco');
+
+            let subtotal = 0;
+            Object.keys(cart).forEach(id => {
+                const p = produtos.find(prod => prod.id == id);
+                if (p) subtotal += p.price * cart[id];
+            });
+
+            let taxa = 5.00;
+            const bairroInput = document.getElementById('bairro').value.trim().toLowerCase();
+            if (bairroInput.includes('centro')) taxa = 3.00;
+            const totalGeral = subtotal + taxa;
+
+            if (semTroco) {
+                trocoInfo.className = "text-[11px] font-semibold text-emerald-600";
+                trocoInfo.innerText = "Sem troco: você pagará o valor exato.";
+                return;
+            }
+
+            const valorInformado = parseFloat(trocoInput.value);
+            if (isNaN(valorInformado)) {
+                trocoInfo.innerText = "";
+                return;
+            }
+
+            const diferenca = valorInformado - totalGeral;
+            if (diferenca < 0) {
+                trocoInfo.className = "text-[11px] font-semibold text-red-600";
+                trocoInfo.innerText = `Valor insuficiente! Faltam R$ ${Math.abs(diferenca).toFixed(2).replace('.', ',')} para cobrir o total.`;
+            } else if (diferenca === 0) {
+                trocoInfo.className = "text-[11px] font-semibold text-emerald-600";
+                trocoInfo.innerText = "Valor exato, não é preciso troco.";
+            } else {
+                trocoInfo.className = "text-[11px] font-semibold text-emerald-600";
+                trocoInfo.innerText = `O entregador levará de troco: R$ ${diferenca.toFixed(2).replace('.', ',')}`;
+            }
+        }
+
+        function capturarGps() {
+            const statusEl = document.getElementById('gps-status');
+            const linkEl = document.getElementById('gps-link');
+
+            if (!navigator.geolocation) {
+                statusEl.innerText = "Seu navegador não suporta GPS.";
+                return;
+            }
+
+            statusEl.innerText = "Obtendo sua localização via GPS...";
+            navigator.geolocation.getCurrentPosition(position => {
+                const lat = position.coords.latitude;
+                const lon = position.coords.longitude;
+                gpsUrl = `https://www.google.com/maps?q=${lat.toFixed(6)},${lon.toFixed(6)}`;
+                
+                statusEl.innerText = "Localização capturada com sucesso!";
+                linkEl.href = gpsUrl;
+                linkEl.innerText = "Ver no Google Maps";
+                linkEl.classList.remove('hidden');
+                showToast("GPS capturado com sucesso!", "fa-location-dot", "text-emerald-500");
+            }, error => {
+                statusEl.innerText = "Não foi possível obter a localização. Preencha o endereço manualmente.";
+                showToast("Erro ao capturar GPS", "fa-triangle-exclamation", "text-red-500");
+            }, { enableHighAccuracy: true, timeout: 10000 });
+        }
+
+        function copiarPix() {
+            const textToCopy = document.getElementById('chave-pix-texto').innerText;
+            const tempInput = document.createElement('textarea');
+            tempInput.value = textToCopy;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            showToast("Chave Pix copiada! 📋", "fa-circle-check", "text-emerald-500");
+        }
+
+        function formatarTelefone(input) {
+            let value = input.value.replace(/\D/g, "");
+            if (value.length > 11) value = value.slice(0, 11);
+            
+            if (value.length > 10) {
+                input.value = `(${value.slice(0, 2)}) ${value.slice(2, 7)}-${value.slice(7)}`;
+            } else if (value.length > 6) {
+                input.value = `(${value.slice(0, 2)}) ${value.slice(2, 6)}-${value.slice(6)}`;
+            } else if (value.length > 2) {
+                input.value = `(${value.slice(0, 2)}) ${value.slice(2)}`;
+            } else if (value.length > 0) {
+                input.value = `(${value}`;
+            }
+        }
+
+        function showToast(mensagem, icone, cor) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastMsg').innerText = mensagem;
+            document.getElementById('toast-icon').className = `fa-solid ${icone} ${cor || 'text-burguerYellow'} text-sm shrink-0`;
+            
+            toast.classList.remove('translate-y-24', 'opacity-0', 'pointer-events-none');
+            toast.classList.add('translate-y-0', 'opacity-100');
+            
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-24', 'opacity-0', 'pointer-events-none');
+            }, 3000);
+        }
+
+        function enviarPedido(event) {
+            event.preventDefault();
+
+            if (!verificarLojaAberta()) {
+                showToast("A hamburgueria está fechada no momento!", "fa-triangle-exclamation", "text-red-500");
+                return;
+            }
+
+            const cartKeys = Object.keys(cart);
+            if (cartKeys.length === 0) {
+                showToast("Selecione ao menos 1 item!", "fa-triangle-exclamation", "text-amber-500");
+                return;
+            }
+
+            let subtotal = 0;
+            let itensTexto = '';
+
+            cartKeys.forEach(id => {
+                const produto = produtos.find(p => p.id == id);
+                if (produto) {
+                    const valorItemTotal = produto.price * cart[id];
+                    subtotal += valorItemTotal;
+                    itensTexto += `- ${cart[id]}x ${produto.name} (R$ ${valorItemTotal.toFixed(2).replace('.', ',')})\n`;
+                }
+            });
+
+            if (subtotal < minOrderAmount) {
+                showToast("Pedido abaixo do valor mínimo de R$ 10,00!", "fa-triangle-exclamation", "text-red-500");
+                return;
+            }
+
+            const nome = document.getElementById('nome').value.trim();
+            const celular = document.getElementById('celular').value.trim();
+            const pagamento = document.getElementById('pagamento').value;
+            const observacao = document.getElementById('observacao').value.trim();
+            
+            let finalDeliveryFee = 0;
+            let bairroTxt = '';
+            let enderecoTxt = '';
+            let pontoRefTxt = '';
+
+            if (deliveryMethod === 'entrega') {
+                const rua = document.getElementById('endereco_rua').value.trim();
+                bairroTxt = document.getElementById('bairro').value;
+                pontoRefTxt = document.getElementById('ref_ponto').value.trim();
+                
+                enderecoTxt = rua;
+                if (bairroTxt.toLowerCase().includes('centro')) {
+                    finalDeliveryFee = 3.00;
+                } else {
+                    finalDeliveryFee = 5.00;
+                }
+            } else {
+                bairroTxt = 'Retirada / Consumo no Local';
+            }
+
+            const valorTotalFinal = subtotal + finalDeliveryFee;
+
+            let pagamentoTexto = pagamento;
+            if (pagamento === 'Dinheiro') {
+                const semTroco = document.getElementById('sem-troco').checked;
+                if (semTroco) {
+                    pagamentoTexto += " (Não precisa de troco)";
+                } else {
+                    const trocoVal = document.getElementById('troco').value;
+                    if (trocoVal) {
+                        const valorDinheiro = parseFloat(trocoVal);
+                        const trocoCalculado = valorDinheiro - valorTotalFinal;
+                        pagamentoTexto += ` (Troco para R$ ${valorDinheiro.toFixed(2).replace('.', ',')}`;
+                        if (trocoCalculado > 0) {
+                            pagamentoTexto += ` | Levar troco de R$ ${trocoCalculado.toFixed(2).replace('.', ',')}`;
+                        }
+                        pagamentoTexto += `)`;
+                    }
+                }
+            } else if (pagamento === 'Cartão') {
+                const bandeira = document.getElementById('bandeira').value;
+                const modalidade = document.getElementById('modalidade').value;
+                if (!bandeira || !modalidade) {
+                    showToast("Selecione a bandeira e a modalidade do cartão!", "fa-triangle-exclamation", "text-red-500");
+                    return;
+                }
+                pagamentoTexto += ` na maquininha - ${bandeira} (${modalidade})`;
+            }
+
+            let mensagem = `🔥 *HAMBURGUERIA MODELO*
+------------------
+👤 *${nome}* - *${celular}*
+📍 *${deliveryMethod === 'entrega' ? 'Delivery' : 'Local / Retirada'}* - *${bairroTxt}*`;
+
+            if (deliveryMethod === 'entrega') {
+                mensagem += `\n🏠 *${enderecoTxt}*`;
+                if (pontoRefTxt) mensagem += `\n💬 *Ref:* ${pontoRefTxt}`;
+                if (gpsUrl) mensagem += `\n🧭 *GPS:* ${gpsUrl}`;
+            } else {
+                mensagem += `\n🏪 *Atendimento no Local / Retirada*`;
+            }
+
+            mensagem += `
+------------------
+🛒 *PEDIDO:*
+${itensTexto}------------------
+💰 *Subtotal:* R$ ${subtotal.toFixed(2).replace('.', ',')}
+🛵 *Entrega:* R$ ${finalDeliveryFee.toFixed(2).replace('.', ',')}
+💵 *TOTAL:* R$ ${valorTotalFinal.toFixed(2).replace('.', ',')}
+------------------
+💳 *Pagamento:* ${pagamentoTexto}`;
+
+            if (observacao) {
+                mensagem += `\n📝 *Obs:* ${observacao}`;
+            }
+
+            if (pagamento === 'Pix') {
+                mensagem += `\n------------------\n📌 *Nota:* O comprovante do Pix será enviado em seguida!`;
+            }
+
+            localStorage.removeItem('hamburgueria_cart');
+
+            const seuNumeroWhatsApp = "5574999822095"; 
+            const whatsappUrl = `https://api.whatsapp.com/send?phone=${seuNumeroWhatsApp}&text=${encodeURIComponent(mensagem)}`;
+            
+            window.open(whatsappUrl, '_blank');
+        }
+    </script>
+</body>
+</html>
