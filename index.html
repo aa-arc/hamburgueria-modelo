@@ -62,15 +62,14 @@
 </head>
 <body class="text-gray-800 antialiased min-h-screen pb-28">
 
-    <!-- Header com Estética Rústica / Moderna inspirada na Loja -->
+    <!-- Header -->
     <header class="relative bg-burguerDark text-white pt-6 pb-10 px-3 overflow-hidden rounded-b-[30px] shadow-xl border-b-4 border-burguerYellow">
         <div class="absolute -top-12 -right-12 w-48 h-48 rounded-full bg-burguerYellow opacity-10 blur-xl"></div>
         <div class="absolute -bottom-16 -left-16 w-64 h-64 rounded-full bg-burguerAccent opacity-10 blur-2xl"></div>
 
         <div class="max-w-4xl mx-auto flex flex-col items-center text-center relative z-10">
-            <!-- Logo local com fallback em vetor -->
             <div class="mb-2 bg-burguerYellow p-1 rounded-full shadow-xl border-2 border-burguerDark flex items-center justify-center transform hover:rotate-6 transition-all duration-300">
-                <img src="logo.png" alt="Logo Hamburgueria" class="h-14 w-14 object-contain rounded-full bg-white" onerror="this.style.display='none'; document.getElementById('logo-fallback').classList.remove('hidden')">
+                <img src="combo.png" alt="Logo Hamburgueria" class="h-14 w-14 object-contain rounded-full bg-white" onerror="this.style.display='none'; document.getElementById('logo-fallback').classList.remove('hidden')">
                 
                 <div id="logo-fallback" class="hidden h-14 w-14 flex items-center justify-center bg-burguerDark rounded-full">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-burguerYellow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -79,7 +78,6 @@
                 </div>
             </div>
             
-            <!-- Nome da Loja com Botão de Informações Discreto -->
             <div class="flex items-center justify-center gap-2 mb-1 flex-wrap">
                 <h1 id="store-title" class="text-display text-2xl md:text-4xl font-bold tracking-wider text-burguerYellow uppercase">
                     Hamburgueria Modelo
@@ -93,7 +91,6 @@
                 Burgers Artesanais & Sanduíches
             </p>
 
-            <!-- Status do Estabelecimento e Regras -->
             <div class="flex flex-wrap justify-center items-center gap-1.5 text-[10px]">
                 <span id="store-status-badge" class="px-2.5 py-0.5 rounded-full font-semibold flex items-center gap-1 border">
                     <span id="store-status-dot" class="w-1.5 h-1.5 rounded-full"></span> <span id="store-status-text">Verificando...</span>
@@ -111,7 +108,7 @@
         </div>
     </header>
 
-    <!-- Modal de Informações e Horários -->
+    <!-- Modal de Informações -->
     <div id="modal-info" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
         <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl relative border-2 border-burguerYellow transform scale-95 transition-transform duration-300" id="modal-content">
             <button type="button" onclick="fecharModalInfo()" class="absolute top-4 right-4 bg-gray-100 hover:bg-gray-200 text-gray-600 w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold transition-all">
@@ -157,7 +154,7 @@
 
     <main class="max-w-4xl mx-auto px-2 md:px-6 mt-4 relative z-20">
         
-        <!-- Barra de busca e Abas de navegação rápida -->
+        <!-- Busca e Filtros -->
         <div class="bg-white rounded-2xl shadow-lg p-3 mb-5 border border-amber-200/60 flex flex-col md:flex-row gap-2.5 items-center">
             <div class="relative w-full md:flex-1">
                 <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400">
@@ -186,48 +183,36 @@
         </div>
 
         <div class="space-y-5">
-            <!-- Seção de Combos Promocionais -->
             <div id="combos-section">
                 <h2 class="text-display text-lg md:text-xl font-bold text-burguerDark mb-2.5 flex items-center gap-2 border-b-2 border-burguerYellow pb-1 uppercase tracking-wide">
                     Combos Promocionais
                 </h2>
-                <div id="combos-grid" class="grid grid-cols-2 gap-2.5">
-                    <!-- Dinâmico (Lado a lado no celular) -->
-                </div>
+                <div id="combos-grid" class="grid grid-cols-2 gap-2.5"></div>
             </div>
 
-            <!-- Seção Cardápio Gourmet -->
             <div id="gourmet-section" class="mt-4">
                 <h2 class="text-display text-lg md:text-xl font-bold text-burguerDark mb-2.5 flex items-center gap-2 border-b-2 border-burguerYellow pb-1 uppercase tracking-wide">
                     Cardápio Gourmet & Porções
                 </h2>
-                <div id="gourmet-grid" class="grid grid-cols-2 gap-2.5">
-                    <!-- Dinâmico -->
-                </div>
+                <div id="gourmet-grid" class="grid grid-cols-2 gap-2.5"></div>
             </div>
 
-            <!-- Seção Sanduíches Tradicionais -->
             <div id="tradicionais-section" class="mt-4">
                 <h2 class="text-display text-lg md:text-xl font-bold text-burguerDark mb-2.5 flex items-center gap-2 border-b-2 border-burguerYellow pb-1 uppercase tracking-wide">
                     Sanduíches Tradicionais
                 </h2>
-                <div id="tradicionais-grid" class="grid grid-cols-2 gap-2.5">
-                    <!-- Dinâmico -->
-                </div>
+                <div id="tradicionais-grid" class="grid grid-cols-2 gap-2.5"></div>
             </div>
 
-            <!-- Seção de Bebidas Geladas -->
             <div id="bebidas-section" class="mt-4">
                 <h2 class="text-display text-lg md:text-xl font-bold text-burguerDark mb-2.5 flex items-center gap-2 border-b-2 border-burguerYellow pb-1 uppercase tracking-wide">
                     Bebidas Geladas
                 </h2>
-                <div id="bebidas-grid" class="grid grid-cols-2 gap-2.5">
-                    <!-- Dinâmico -->
-                </div>
+                <div id="bebidas-grid" class="grid grid-cols-2 gap-2.5"></div>
             </div>
         </div>
 
-        <!-- Módulo de Avaliação -->
+        <!-- Avaliação -->
         <div id="rating-widget-area" class="bg-white rounded-2xl border border-amber-200 shadow-xl p-4 mt-6 max-w-2xl mx-auto text-center">
             <h3 class="font-bold text-xs sm:text-sm text-burguerDark mb-1.5 uppercase tracking-wide">Avalie nosso atendimento:</h3>
             <div class="flex justify-center gap-2 mb-1.5">
@@ -240,7 +225,7 @@
             <p id="rating-feedback-msg" class="text-[11px] text-gray-500 font-medium transition-all">Sua opinião ajuda a melhorar nossa entrega!</p>
         </div>
 
-        <!-- Sacola de Compras e Finalização do Pedido -->
+        <!-- Checkout / Sacola -->
         <div class="bg-white rounded-2xl border border-amber-200 shadow-xl p-4 sm:p-6 mt-6 max-w-2xl mx-auto" id="checkout-area">
             <div class="flex justify-between items-center mb-3 border-b border-gray-100 pb-2.5">
                 <h3 class="text-display text-base sm:text-xl font-bold text-burguerDark flex items-center gap-2 uppercase tracking-wide">
@@ -251,9 +236,7 @@
                 </button>
             </div>
             
-            <div class="space-y-2 mb-3" id="cart-items-list">
-                <!-- Dinâmico -->
-            </div>
+            <div class="space-y-2 mb-3" id="cart-items-list"></div>
 
             <div class="border-t border-dashed border-amber-200 py-2.5 space-y-1">
                 <div class="flex justify-between text-xs text-gray-600">
@@ -302,7 +285,6 @@
                     </div>
                 </div>
 
-                <!-- Seção de Endereço com Bairros de Xique-Xique -->
                 <div id="addressSection" class="transition-all duration-300 space-y-2.5">
                     <div>
                         <label class="block text-[10px] font-semibold text-gray-500 uppercase tracking-wider mb-1" for="endereco_rua">Rua e Número:</label>
@@ -336,9 +318,7 @@
                     </div>
                 </div>
 
-                <div id="locationActionArea" class="bg-amber-50/60 border border-amber-200 rounded-xl p-2.5 space-y-1.5">
-                    <!-- Dinâmico -->
-                </div>
+                <div id="locationActionArea" class="bg-amber-50/60 border border-amber-200 rounded-xl p-2.5 space-y-1.5"></div>
 
                 <div class="space-y-2.5">
                     <div>
@@ -438,7 +418,6 @@
     </div>
 
     <script>
-        // Banco de Dados Completo da Hamburgueria Modelo (Todos disponíveis)
         const produtos = [
             // 1. Combos Promocionais
             { id: 101, category: 'combo', name: 'Combo Burg Tradicional', price: 32.00, desc: 'Burg Tradicional + batata frita + refrigerante em lata.', image: 'combo.png' },
@@ -452,68 +431,68 @@
             { id: 109, category: 'combo', name: 'Combo Burg Big', price: 45.00, desc: 'Burg Big + batata frita + refrigerante em lata.', image: 'combo.png' },
 
             // 2. Cardápio Gourmet & Porções
-            { id: 201, category: 'gourmet', name: 'Meia Porção de Fritas', price: 10.00, desc: 'Porção menor de batatas fritas crocantes.', image: 'porcao.png' },
-            { id: 202, category: 'gourmet', name: 'Burg Tradicional', price: 24.00, desc: 'Pão especial, burger bovino 120g, queijo mussarela, alface, tomate, cebola caramelizada e molho.', image: 'burg.png' },
-            { id: 203, category: 'gourmet', name: 'Burg Picanha', price: 26.00, desc: 'Pão, burger picanha 120g, queijo prato, alface, tomate, cebola caramelizada e molho.', image: 'burg.png' },
-            { id: 204, category: 'gourmet', name: 'Burg Cupim', price: 26.00, desc: 'Pão, burger cupim 120g, queijo prato, alface, tomate, cebola caramelizada e molho.', image: 'burg.png' },
-            { id: 205, category: 'gourmet', name: 'Burg Carneiro', price: 24.00, desc: 'Pão, burger carneiro 120g, queijo mussarela, alface, tomate, cebola caramelizada e molho.', image: 'burg.png' },
-            { id: 206, category: 'gourmet', name: 'Burg Frango Catupiry', price: 26.00, desc: 'Pão, burger frango com catupiry 120g, queijo prato, alface, tomate e molho.', image: 'burg.png' },
-            { id: 207, category: 'gourmet', name: 'Burg Nordestino', price: 26.00, desc: 'Pão, burger carne de sol 120g, queijo coalho, banana-da-terra e melaço de cana.', image: 'burg.png' },
-            { id: 208, category: 'gourmet', name: 'Burg Port Cheddar', price: 26.00, desc: 'Pão, burger bovino 120g, molho cheddar, alface, tomate e cebola caramelizada.', image: 'burg.png' },
-            { id: 209, category: 'gourmet', name: 'Burg Costelinha', price: 24.00, desc: 'Pão, burger costela 120g, queijo prato, alface, tomate e cebola caramelizada.', image: 'burg.png' },
-            { id: 210, category: 'gourmet', name: 'Burg Big', price: 35.00, desc: 'Pão, dois burgers 120g, bacon, queijo prato, alface, tomate e cebola caramelizada.', image: 'burg.png' },
-            { id: 211, category: 'gourmet', name: 'Porção Fritas (Grande)', price: 18.00, desc: 'Porção grande de batatas fritas bem crocantes.', image: 'porcao.png' },
+            { id: 201, category: 'gourmet', name: 'Meia Porção de Fritas', price: 10.00, desc: 'Porção menor de batatas fritas crocantes.', image: 'batata frita[.jpg' },
+            { id: 202, category: 'gourmet', name: 'Burg Tradicional', price: 24.00, desc: 'Pão especial, burger bovino 120g, queijo mussarela, alface, tomate, cebola caramelizada e molho.', image: 'hamburguer.jpg' },
+            { id: 203, category: 'gourmet', name: 'Burg Picanha', price: 26.00, desc: 'Pão, burger picanha 120g, queijo prato, alface, tomate, cebola caramelizada e molho.', image: 'hamburguer.jpg' },
+            { id: 204, category: 'gourmet', name: 'Burg Cupim', price: 26.00, desc: 'Pão, burger cupim 120g, queijo prato, alface, tomate, cebola caramelizada e molho.', image: 'hamburguer.jpg' },
+            { id: 205, category: 'gourmet', name: 'Burg Carneiro', price: 24.00, desc: 'Pão, burger carneiro 120g, queijo mussarela, alface, tomate, cebola caramelizada e molho.', image: 'hamburguer.jpg' },
+            { id: 206, category: 'gourmet', name: 'Burg Frango Catupiry', price: 26.00, desc: 'Pão, burger frango com catupiry 120g, queijo prato, alface, tomate e molho.', image: 'hamburguer.jpg' },
+            { id: 207, category: 'gourmet', name: 'Burg Nordestino', price: 26.00, desc: 'Pão, burger carne de sol 120g, queijo coalho, banana-da-terra e melaço de cana.', image: 'hamburguer.jpg' },
+            { id: 208, category: 'gourmet', name: 'Burg Port Cheddar', price: 26.00, desc: 'Pão, burger bovino 120g, molho cheddar, alface, tomate e cebola caramelizada.', image: 'hamburguer.jpg' },
+            { id: 209, category: 'gourmet', name: 'Burg Costelinha', price: 24.00, desc: 'Pão, burger costela 120g, queijo prato, alface, tomate e cebola caramelizada.', image: 'hamburguer.jpg' },
+            { id: 210, category: 'gourmet', name: 'Burg Big', price: 35.00, desc: 'Pão, dois burgers 120g, bacon, queijo prato, alface, tomate e cebola caramelizada.', image: 'hamburguer.jpg' },
+            { id: 211, category: 'gourmet', name: 'Porção Fritas (Grande)', price: 18.00, desc: 'Porção grande de batatas fritas bem crocantes.', image: 'batata frita[.jpg' },
 
             // 3. Sanduíches Tradicionais
-            { id: 301, category: 'tradicional', name: 'Misto', price: 8.00, desc: 'Queijo e presunto.', image: 'sanduiche.png' },
-            { id: 302, category: 'tradicional', name: 'Hot Dog Simples', price: 10.00, desc: 'Pão, salsicha, batata palha, tomate e milho.', image: 'sanduiche.png' },
-            { id: 303, category: 'tradicional', name: 'Hot Dog Especial', price: 12.00, desc: 'Pão, salsicha, queijo, presunto, batata palha, tomate e milho.', image: 'sanduiche.png' },
-            { id: 304, category: 'tradicional', name: 'Hot Dog Burguer', price: 15.00, desc: 'Pão, salsicha, carne de hambúrguer, queijo, presunto, batata palha e milho.', image: 'sanduiche.png' },
-            { id: 305, category: 'tradicional', name: 'Hot Dog Bacon', price: 15.00, desc: 'Pão, salsicha, bacon, queijo, presunto, batata palha e milho.', image: 'sanduiche.png' },
-            { id: 306, category: 'tradicional', name: 'Hot Dog Frango', price: 15.00, desc: 'Pão, salsicha, frango, queijo, presunto, batata palha e milho.', image: 'sanduiche.png' },
-            { id: 307, category: 'tradicional', name: 'Hot Dog Mix', price: 18.00, desc: 'Pão, salsicha, bacon, frango, calabresa, queijo, presunto e batata palha.', image: 'sanduiche.png' },
-            { id: 308, category: 'tradicional', name: 'Hambúrguer', price: 10.00, desc: 'Carne de hambúrguer, alface, tomate e milho.', image: 'sanduiche.png' },
-            { id: 309, category: 'tradicional', name: 'Americano', price: 10.00, desc: 'Ovo, queijo, presunto, alface, tomate e milho.', image: 'sanduiche.png' },
-            { id: 310, category: 'tradicional', name: 'Bauru', price: 10.00, desc: 'Queijo, presunto, alface, tomate e milho.', image: 'sanduiche.png' },
-            { id: 311, category: 'tradicional', name: 'X-Salada', price: 15.00, desc: 'Carne, dois queijos, alface, tomate e milho.', image: 'sanduiche.png' },
-            { id: 312, category: 'tradicional', name: 'X-Burguer', price: 14.00, desc: 'Carne, queijo, presunto, alface, tomate e milho.', image: 'sanduiche.png' },
-            { id: 313, category: 'tradicional', name: 'X-Egg Burguer', price: 17.00, desc: 'Ovo, carne, queijo, presunto, alface, tomate e milho.', image: 'sanduiche.png' },
-            { id: 314, category: 'tradicional', name: 'X-Egg Dog', price: 19.00, desc: 'Salsicha, ovo, carne, queijo, presunto, alface, tomate e milho.', image: 'sanduiche.png' },
-            { id: 315, category: 'tradicional', name: 'X-Egg Bacon', price: 20.00, desc: 'Bacon, ovo, carne, queijo, presunto, alface, tomate e milho.', image: 'sanduiche.png' },
-            { id: 316, category: 'tradicional', name: 'X-Frango', price: 18.00, desc: 'Filé de frango, queijo, presunto, alface, tomate e milho.', image: 'sanduiche.png' },
-            { id: 317, category: 'tradicional', name: 'X-Frango Catupiry', price: 19.00, desc: 'Filé de frango, catupiry, queijo, presunto, alface e tomate.', image: 'sanduiche.png' },
-            { id: 318, category: 'tradicional', name: 'Bacon Frango', price: 19.00, desc: 'Bacon, filé de frango, queijo, presunto, alface, tomate e milho.', image: 'sanduiche.png' },
-            { id: 319, category: 'tradicional', name: 'Framburguer', price: 20.00, desc: 'Filé de frango, carne, queijo, presunto, alface, tomate e milho.', image: 'sanduiche.png' },
-            { id: 320, category: 'tradicional', name: 'Egg Framburguer', price: 22.00, desc: 'Ovo, filé de frango, carne, queijo, presunto, alface, tomate e milho.', image: 'sanduiche.png' },
-            { id: 321, category: 'tradicional', name: 'Egg Calaburguer', price: 22.00, desc: 'Ovo, calabresa, carne, queijo, presunto, alface e tomate.', image: 'sanduiche.png' },
-            { id: 322, category: 'tradicional', name: 'Calafrango', price: 18.00, desc: 'Calabresa, filé de frango, queijo, presunto, alface e tomate.', image: 'sanduiche.png' },
-            { id: 323, category: 'tradicional', name: 'X-Calabresa', price: 18.00, desc: 'Calabresa, queijo, presunto, alface, tomate e milho.', image: 'sanduiche.png' },
-            { id: 324, category: 'tradicional', name: 'X-Bacon', price: 20.00, desc: 'Bacon, carne, queijo, presunto, alface, tomate e milho.', image: 'sanduiche.png' },
-            { id: 325, category: 'tradicional', name: 'X-Filé', price: 22.00, desc: 'Filé mignon, queijo, presunto, alface, tomate e milho.', image: 'sanduiche.png' },
-            { id: 326, category: 'tradicional', name: 'X-Filé Acebolado', price: 22.00, desc: 'Filé mignon, queijo, presunto, cebola, alface e tomate.', image: 'sanduiche.png' },
-            { id: 327, category: 'tradicional', name: 'X-Egg Filé', price: 24.00, desc: 'Filé mignon, ovo, queijo, presunto, alface, tomate e milho.', image: 'sanduiche.png' },
-            { id: 328, category: 'tradicional', name: 'Franfilé', price: 24.00, desc: 'Filé mignon, filé de frango, queijo, presunto, alface e tomate.', image: 'sanduiche.png' },
-            { id: 329, category: 'tradicional', name: 'Filé com Bacon', price: 24.00, desc: 'Filé mignon, bacon, queijo, presunto, alface e tomate.', image: 'sanduiche.png' },
-            { id: 330, category: 'tradicional', name: 'Calabacon', price: 18.00, desc: 'Calabresa, bacon, queijo, presunto, alface e tomate.', image: 'sanduiche.png' },
-            { id: 331, category: 'tradicional', name: 'Doble Burguer', price: 18.00, desc: 'Duas carnes, duas fatias de queijo, alface e tomate.', image: 'sanduiche.png' },
-            { id: 332, category: 'tradicional', name: 'Especial', price: 22.00, desc: 'Carne, ovo, bacon, calabresa, queijo, presunto, alface e tomate.', image: 'sanduiche.png' },
-            { id: 333, category: 'tradicional', name: 'X-Tudo', price: 25.00, desc: 'Carne, ovo, bacon, calabresa, frango, salsicha, queijo, presunto, batata e salada.', image: 'sanduiche.png' },
+            { id: 301, category: 'tradicional', name: 'Misto', price: 8.00, desc: 'Queijo e presunto.', image: 'hamburguer.jpg' },
+            { id: 302, category: 'tradicional', name: 'Hot Dog Simples', price: 10.00, desc: 'Pão, salsicha, batata palha, tomate e milho.', image: 'hot dog.jpg' },
+            { id: 303, category: 'tradicional', name: 'Hot Dog Especial', price: 12.00, desc: 'Pão, salsicha, queijo, presunto, batata palha, tomate e milho.', image: 'hot dog.jpg' },
+            { id: 304, category: 'tradicional', name: 'Hot Dog Burguer', price: 15.00, desc: 'Pão, salsicha, carne de hambúrguer, queijo, presunto, batata palha e milho.', image: 'hot dog.jpg' },
+            { id: 305, category: 'tradicional', name: 'Hot Dog Bacon', price: 15.00, desc: 'Pão, salsicha, bacon, queijo, presunto, batata palha e milho.', image: 'hot dog.jpg' },
+            { id: 306, category: 'tradicional', name: 'Hot Dog Frango', price: 15.00, desc: 'Pão, salsicha, frango, queijo, presunto, batata palha e milho.', image: 'hot dog.jpg' },
+            { id: 307, category: 'tradicional', name: 'Hot Dog Mix', price: 18.00, desc: 'Pão, salsicha, bacon, frango, calabresa, queijo, presunto e batata palha.', image: 'hot dog.jpg' },
+            { id: 308, category: 'tradicional', name: 'Hambúrguer', price: 10.00, desc: 'Carne de hambúrguer, alface, tomate e milho.', image: 'hamburguer.jpg' },
+            { id: 309, category: 'tradicional', name: 'Americano', price: 10.00, desc: 'Ovo, queijo, presunto, alface, tomate e milho.', image: 'hamburguer.jpg' },
+            { id: 310, category: 'tradicional', name: 'Bauru', price: 10.00, desc: 'Queijo, presunto, alface, tomate e milho.', image: 'hamburguer.jpg' },
+            { id: 311, category: 'tradicional', name: 'X-Salada', price: 15.00, desc: 'Carne, dois queijos, alface, tomate e milho.', image: 'hamburguer.jpg' },
+            { id: 312, category: 'tradicional', name: 'X-Burguer', price: 14.00, desc: 'Carne, queijo, presunto, alface, tomate e milho.', image: 'hamburguer.jpg' },
+            { id: 313, category: 'tradicional', name: 'X-Egg Burguer', price: 17.00, desc: 'Ovo, carne, queijo, presunto, alface, tomate e milho.', image: 'hamburguer.jpg' },
+            { id: 314, category: 'tradicional', name: 'X-Egg Dog', price: 19.00, desc: 'Salsicha, ovo, carne, queijo, presunto, alface, tomate e milho.', image: 'hot dog.jpg' },
+            { id: 315, category: 'tradicional', name: 'X-Egg Bacon', price: 20.00, desc: 'Bacon, ovo, carne, queijo, presunto, alface, tomate e milho.', image: 'hamburguer.jpg' },
+            { id: 316, category: 'tradicional', name: 'X-Frango', price: 18.00, desc: 'Filé de frango, queijo, presunto, alface, tomate e milho.', image: 'hamburguer.jpg' },
+            { id: 317, category: 'tradicional', name: 'X-Frango Catupiry', price: 19.00, desc: 'Filé de frango, catupiry, queijo, presunto, alface e tomate.', image: 'hamburguer.jpg' },
+            { id: 318, category: 'tradicional', name: 'Bacon Frango', price: 19.00, desc: 'Bacon, filé de frango, queijo, presunto, alface, tomate e milho.', image: 'hamburguer.jpg' },
+            { id: 319, category: 'tradicional', name: 'Framburguer', price: 20.00, desc: 'Filé de frango, carne, queijo, presunto, alface, tomate e milho.', image: 'hamburguer.jpg' },
+            { id: 320, category: 'tradicional', name: 'Egg Framburguer', price: 22.00, desc: 'Ovo, filé de frango, carne, queijo, presunto, alface, tomate e milho.', image: 'hamburguer.jpg' },
+            { id: 321, category: 'tradicional', name: 'Egg Calaburguer', price: 22.00, desc: 'Ovo, calabresa, carne, queijo, presunto, alface e tomate.', image: 'hamburguer.jpg' },
+            { id: 322, category: 'tradicional', name: 'Calafrango', price: 18.00, desc: 'Calabresa, filé de frango, queijo, presunto, alface e tomate.', image: 'hamburguer.jpg' },
+            { id: 323, category: 'tradicional', name: 'X-Calabresa', price: 18.00, desc: 'Calabresa, queijo, presunto, alface, tomate e milho.', image: 'hamburguer.jpg' },
+            { id: 324, category: 'tradicional', name: 'X-Bacon', price: 20.00, desc: 'Bacon, carne, queijo, presunto, alface, tomate e milho.', image: 'hamburguer.jpg' },
+            { id: 325, category: 'tradicional', name: 'X-Filé', price: 22.00, desc: 'Filé mignon, queijo, presunto, alface, tomate e milho.', image: 'hamburguer.jpg' },
+            { id: 326, category: 'tradicional', name: 'X-Filé Acebolado', price: 22.00, desc: 'Filé mignon, queijo, presunto, cebola, alface e tomate.', image: 'hamburguer.jpg' },
+            { id: 327, category: 'tradicional', name: 'X-Egg Filé', price: 24.00, desc: 'Filé mignon, ovo, queijo, presunto, alface, tomate e milho.', image: 'hamburguer.jpg' },
+            { id: 328, category: 'tradicional', name: 'Franfilé', price: 24.00, desc: 'Filé mignon, filé de frango, queijo, presunto, alface e tomate.', image: 'hamburguer.jpg' },
+            { id: 329, category: 'tradicional', name: 'Filé com Bacon', price: 24.00, desc: 'Filé mignon, bacon, queijo, presunto, alface e tomate.', image: 'hamburguer.jpg' },
+            { id: 330, category: 'tradicional', name: 'Calabacon', price: 18.00, desc: 'Calabresa, bacon, queijo, presunto, alface e tomate.', image: 'hamburguer.jpg' },
+            { id: 331, category: 'tradicional', name: 'Doble Burguer', price: 18.00, desc: 'Duas carnes, duas fatias de queijo, alface e tomate.', image: 'hamburguer.jpg' },
+            { id: 332, category: 'tradicional', name: 'Especial', price: 22.00, desc: 'Carne, ovo, bacon, calabresa, queijo, presunto, alface e tomate.', image: 'hamburguer.jpg' },
+            { id: 333, category: 'tradicional', name: 'X-Tudo', price: 25.00, desc: 'Carne, ovo, bacon, calabresa, frango, salsicha, queijo, presunto, batata e salada.', image: 'hamburguer.jpg' },
 
             // 4. Bebidas
-            { id: 401, category: 'bebida', name: 'Suco de Polpa', price: 8.00, desc: 'Suco natural de polpa de fruta.', image: 'suco.png' },
-            { id: 402, category: 'bebida', name: 'Pepsi 1 Litro', price: 8.00, desc: 'Refrigerante 1 Litro gelado.', image: 'pepsi.png' },
-            { id: 403, category: 'bebida', name: 'Maromba Bomba Bahiana', price: 10.00, desc: 'Bebida energética especial da casa.', image: 'bebida.png' },
-            { id: 404, category: 'bebida', name: 'Água Mineral', price: 3.00, desc: 'Água mineral 500ml sem gás.', image: 'agua.png' },
-            { id: 405, category: 'bebida', name: 'Água com Gás', price: 3.00, desc: 'Água mineral 500ml com gás.', image: 'agua.png' },
-            { id: 406, category: 'bebida', name: 'Coca-Cola Lata', price: 5.00, desc: 'Refrigerante lata 350ml.', image: 'coca.png' },
-            { id: 407, category: 'bebida', name: 'Coca-Cola 1 Litro', price: 8.00, desc: 'Refrigerante Coca-Cola 1 Litro.', image: 'coca.png' },
-            { id: 408, category: 'bebida', name: 'Guaraná Lata', price: 5.00, desc: 'Guaraná Antártica lata 350ml.', image: 'guarana.png' },
-            { id: 409, category: 'bebida', name: 'Pepsi Lata 350ml', price: 5.00, desc: 'Pepsi lata 350ml gelada.', image: 'pepsi.png' },
-            { id: 410, category: 'bebida', name: 'Sprite Lata 350ml', price: 4.00, desc: 'Sprite lata 350ml.', image: 'sprite.png' },
-            { id: 411, category: 'bebida', name: 'Fanta Laranja', price: 5.00, desc: 'Fanta Laranja lata 350ml.', image: 'fanta.png' },
-            { id: 412, category: 'bebida', name: 'Fanta Uva', price: 5.00, desc: 'Fanta Uva lata 350ml.', image: 'fanta.png' },
-            { id: 413, category: 'bebida', name: 'Guaraná 1 Litro', price: 8.00, desc: 'Guaraná 1 Litro bem gelado.', image: 'guarana.png' },
-            { id: 414, category: 'bebida', name: 'Pepsi 1L (Adicional)', price: 7.00, desc: 'Pepsi 1 Litro.', image: 'pepsi.png' }
+            { id: 401, category: 'bebida', name: 'Suco de Polpa', price: 8.00, desc: 'Suco natural de polpa de fruta.', image: 'coca lata.jpg' },
+            { id: 402, category: 'bebida', name: 'Pepsi 1 Litro', price: 8.00, desc: 'Refrigerante 1 Litro gelado.', image: 'pepsi 1 l.png' },
+            { id: 403, category: 'bebida', name: 'Maromba Bomba Bahiana', price: 10.00, desc: 'Bebida energética especial da casa.', image: 'pepsi lata.webp' },
+            { id: 404, category: 'bebida', name: 'Água Mineral', price: 3.00, desc: 'Água mineral 500ml sem gás.', image: 'agua-mineral-sem-gas-crystal-500ml-1.webp' },
+            { id: 405, category: 'bebida', name: 'Água com Gás', price: 3.00, desc: 'Água mineral 500ml com gás.', image: 'agua mineral com gas.webp' },
+            { id: 406, category: 'bebida', name: 'Coca-Cola Lata', price: 5.00, desc: 'Refrigerante lata 350ml.', image: 'coca lata.jpg' },
+            { id: 407, category: 'bebida', name: 'Coca-Cola 1 Litro', price: 8.00, desc: 'Refrigerante Coca-Cola 1 Litro.', image: 'pepsi 1 l.png' },
+            { id: 408, category: 'bebida', name: 'Guaraná Lata', price: 5.00, desc: 'Guaraná Antártica lata 350ml.', image: 'guarana 1 L.png' },
+            { id: 409, category: 'bebida', name: 'Pepsi Lata 350ml', price: 5.00, desc: 'Pepsi lata 350ml gelada.', image: 'pepsi lata.webp' },
+            { id: 410, category: 'bebida', name: 'Sprite Lata 350ml', price: 4.00, desc: 'Sprite lata 350ml.', image: 'Sprite-Original-350ml.webp' },
+            { id: 411, category: 'bebida', name: 'Fanta Laranja', price: 5.00, desc: 'Fanta Laranja lata 350ml.', image: 'refrigerante-fanta-laranja-lata-350ml_jpg.webp' },
+            { id: 412, category: 'bebida', name: 'Fanta Uva', price: 5.00, desc: 'Fanta Uva lata 350ml.', image: 'fanta uva.webp' },
+            { id: 413, category: 'bebida', name: 'Guaraná 1 Litro', price: 8.00, desc: 'Guaraná 1 Litro bem gelado.', image: 'guarana 1 L.png' },
+            { id: 414, category: 'bebida', name: 'Pepsi 1L (Adicional)', price: 7.00, desc: 'Pepsi 1 Litro.', image: 'pepsi 1 l.png' }
         ];
 
         let cart = {};
@@ -633,8 +612,9 @@
             return `
                 <div class="bg-white rounded-2xl p-2.5 border border-amber-200/60 shadow-sm flex flex-col justify-between">
                     <div>
-                        <div class="w-full h-24 rounded-xl overflow-hidden bg-amber-50/40 border border-amber-100 mb-2 flex items-center justify-center">
-                            <img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='${fallbackImgSvg}'">
+                        <!-- Ajustado para object-contain e padding para exibir a imagem completa sem esticar ou cortar -->
+                        <div class="w-full h-24 rounded-xl overflow-hidden bg-amber-50/40 border border-amber-100 mb-2 flex items-center justify-center p-1.5">
+                            <img src="${p.image}" alt="${p.name}" class="w-full h-full object-contain" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='${fallbackImgSvg}'">
                         </div>
                         <h3 class="font-bold text-xs text-burguerDark line-clamp-1">${p.name}</h3>
                         <p class="text-[10px] text-gray-400 leading-tight mt-0.5 line-clamp-2">${p.desc}</p>
@@ -1023,24 +1003,39 @@
 
             if (!navigator.geolocation) {
                 statusEl.innerText = "Seu navegador não suporta GPS.";
+                showToast("GPS não suportado neste navegador", "fa-triangle-exclamation", "text-red-500");
                 return;
             }
 
-            statusEl.innerText = "Obtendo sua localização via GPS...";
-            navigator.geolocation.getCurrentPosition(position => {
-                const lat = position.coords.latitude;
-                const lon = position.coords.longitude;
-                gpsUrl = `https://www.google.com/maps?q=${lat.toFixed(6)},${lon.toFixed(6)}`;
-                
-                statusEl.innerText = "Localização capturada com sucesso!";
-                linkEl.href = gpsUrl;
-                linkEl.innerText = "Ver no Google Maps";
-                linkEl.classList.remove('hidden');
-                showToast("GPS capturado com sucesso!", "fa-location-dot", "text-emerald-500");
-            }, error => {
-                statusEl.innerText = "Não foi possível obter a localização. Preencha o endereço manualmente.";
-                showToast("Erro ao capturar GPS", "fa-triangle-exclamation", "text-red-500");
-            }, { enableHighAccuracy: true, timeout: 10000 });
+            statusEl.innerText = "Solicitando permissão do GPS...";
+            
+            navigator.geolocation.getCurrentPosition(
+                position => {
+                    const lat = position.coords.latitude;
+                    const lon = position.coords.longitude;
+                    gpsUrl = `https://www.google.com/maps?q=${lat.toFixed(6)},${lon.toFixed(6)}`;
+                    
+                    statusEl.innerText = "Localização capturada com sucesso!";
+                    linkEl.href = gpsUrl;
+                    linkEl.innerText = "Ver no Google Maps";
+                    linkEl.classList.remove('hidden');
+                    showToast("GPS capturado com sucesso!", "fa-location-dot", "text-emerald-500");
+                }, 
+                error => {
+                    console.error(error);
+                    let msg = "Erro ao obter GPS.";
+                    if (error.code === error.PERMISSION_DENIED) {
+                        msg = "Permissão de localização negada pelo usuário.";
+                    } else if (error.code === error.POSITION_UNAVAILABLE) {
+                        msg = "Informação de localização indisponível.";
+                    } else if (error.code === error.TIMEOUT) {
+                        msg = "Tempo esgotado ao buscar GPS.";
+                    }
+                    statusEl.innerText = msg + " Preencha o endereço manualmente.";
+                    showToast(msg, "fa-triangle-exclamation", "text-red-500");
+                }, 
+                { enableHighAccuracy: true, timeout: 15000, maximumAge: 0 }
+            );
         }
 
         function copiarPix() {
