@@ -11,15 +11,14 @@
             theme: {
                 extend: {
                     colors: {
-                        burguerYellow: '#EAB308',
-                        burguerDark: '#18181B',
-                        burguerLight: '#F7F4EB',
-                        burguerAccent: '#CA8A04',
-                        burguerCardBg: '#FFFFFF',
+                        burguerWine: '#722F37',
+                        burguerDark: '#121212',
+                        burguerCream: '#FAF6F0',
+                        burguerAccent: '#900C3F',
+                        burguerRed: '#C70039'
                     },
                     fontFamily: {
-                        sans: ['Plus Jakarta Sans', 'Poppins', 'sans-serif'],
-                        display: ['Oswald', 'sans-serif'],
+                        sans: ['Poppins', 'sans-serif'],
                     }
                 }
             }
@@ -28,19 +27,18 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         html, body {
             overflow-x: hidden;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #F7F4EB;
+            font-family: 'Poppins', sans-serif;
+            background-color: #FAF6F0;
             -webkit-tap-highlight-color: transparent;
         }
         .text-display {
-            font-family: 'Oswald', sans-serif;
-            letter-spacing: 0.5px;
+            font-family: 'Playfair Display', serif;
         }
         .hide-scrollbar::-webkit-scrollbar {
             display: none;
@@ -62,53 +60,53 @@
 </head>
 <body class="text-gray-800 antialiased min-h-screen pb-28">
 
-    <!-- Header com Estética Rústica / Moderna inspirada na Loja -->
-    <header class="relative bg-burguerDark text-white pt-8 pb-12 px-4 overflow-hidden rounded-b-[35px] shadow-xl border-b-4 border-burguerYellow">
-        <div class="absolute -top-12 -right-12 w-48 h-48 rounded-full bg-burguerYellow opacity-10 blur-xl"></div>
+    <!-- Header com Fundo Limpo e Sofisticado (Preto e Vinho) -->
+    <header class="relative bg-burguerDark text-white pt-8 pb-12 px-4 overflow-hidden rounded-b-[35px] shadow-xl border-b-2 border-burguerWine/30">
+        <div class="absolute -top-12 -right-12 w-48 h-48 rounded-full bg-burguerWine opacity-20 blur-xl"></div>
         <div class="absolute -bottom-16 -left-16 w-64 h-64 rounded-full bg-burguerAccent opacity-10 blur-2xl"></div>
 
         <div class="max-w-4xl mx-auto flex flex-col items-center text-center relative z-10">
             <!-- Logo local com fallback em vetor -->
-            <div class="mb-3 bg-burguerYellow p-1 rounded-full shadow-xl border-4 border-burguerDark flex items-center justify-center transform hover:rotate-6 transition-all duration-300">
+            <div class="mb-3 bg-gradient-to-br from-burguerWine to-burguerDark p-1 rounded-full shadow-xl border-4 border-burguerWine flex items-center justify-center transform hover:rotate-6 transition-all duration-300">
                 <img src="logo.png" alt="Logo Hamburgueria" class="h-16 w-16 md:h-20 md:w-20 object-contain rounded-full bg-white" onerror="this.style.display='none'; document.getElementById('logo-fallback').classList.remove('hidden')">
                 
                 <div id="logo-fallback" class="hidden h-16 w-16 md:h-20 md:w-20 flex items-center justify-center bg-burguerDark rounded-full">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-burguerYellow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-rose-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m0-12.728l.707.707m12.728 12.728l.707.707M5 12a7 7 0 1014 0 7 7 0 00-14 0z" />
                     </svg>
                 </div>
             </div>
             
-            <!-- Nome da Loja com Botão de Informações Discreto -->
-            <div class="flex items-center justify-center gap-2 mb-1 flex-wrap">
-                <h1 id="store-title" class="text-display text-3xl md:text-5xl font-bold tracking-wider text-burguerYellow uppercase">
+            <!-- Nome da Loja com Botãozinho de Informações Discreto -->
+            <div class="flex items-center justify-center gap-1.5 mb-1 flex-wrap">
+                <h1 id="store-title" class="text-display text-2xl md:text-4xl font-bold tracking-wide text-rose-200">
                     Hamburgueria Modelo
                 </h1>
-                <button type="button" onclick="abrirModalInfo()" class="bg-burguerYellow hover:bg-burguerAccent text-burguerDark w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold shadow transition-all transform active:scale-95" title="Informações e Horários">
+                <button type="button" onclick="abrirModalInfo()" class="bg-burguerWine hover:bg-burguerAccent text-white w-5 h-5 rounded-full flex items-center justify-center text-[10px] shadow transition-all transform active:scale-95" title="Informações e Horários">
                     <i class="fa-solid fa-info"></i>
                 </button>
             </div>
 
-            <p class="text-gray-300 text-xs md:text-sm font-medium tracking-widest uppercase mb-3">
+            <p class="text-gray-300 text-[10px] md:text-xs font-light tracking-widest uppercase mb-3">
                 Burgers Artesanais & Sanduíches
             </p>
 
             <!-- Status do Estabelecimento e Regras -->
             <div class="flex flex-wrap justify-center items-center gap-2 text-[10px] md:text-xs">
-                <span id="store-status-badge" class="px-3 py-1 rounded-full font-semibold flex items-center gap-1.5 border">
+                <span id="store-status-badge" class="px-2.5 py-0.5 rounded-full font-semibold flex items-center gap-1.5 border">
                     <span id="store-status-dot" class="w-1.5 h-1.5 rounded-full"></span> <span id="store-status-text">Verificando...</span>
                 </span>
-                <span class="bg-white/10 text-white/90 px-3 py-1 rounded-full flex items-center gap-1">
-                    <i class="fa-regular fa-clock text-burguerYellow"></i> 18h às 00h
+                <span class="bg-white/10 text-white/90 px-2.5 py-0.5 rounded-full flex items-center gap-1">
+                    <i class="fa-regular fa-clock text-rose-300"></i> 18:00 - 00:00
                 </span>
-                <span class="bg-white/10 text-white/90 px-3 py-1 rounded-full flex items-center gap-1">
-                    <i class="fa-solid fa-coins text-burguerYellow"></i> Mínimo: R$ 10,00
+                <span class="bg-white/10 text-white/90 px-2.5 py-0.5 rounded-full flex items-center gap-1">
+                    <i class="fa-solid fa-coins text-rose-300"></i> Mínimo: R$ 10,00
                 </span>
-                <span class="bg-burguerYellow text-burguerDark px-3 py-1 rounded-full flex items-center gap-1 font-bold shadow-sm animate-pulse">
-                    <i class="fa-solid fa-motorcycle"></i> 30 - 50 min
+                <span class="bg-burguerWine text-white px-2.5 py-0.5 rounded-full flex items-center gap-1 font-semibold shadow-sm animate-pulse">
+                    <i class="fa-solid fa-motorcycle text-white"></i> 30 - 50 min
                 </span>
-                <span class="bg-white/10 text-white/90 px-3 py-1 rounded-full flex items-center gap-1">
-                    <i class="fa-solid fa-star text-burguerYellow"></i> <span id="rating-score-header">4.9</span> (<span id="rating-count-header"> 452 </span> avaliações)
+                <span class="bg-white/10 text-white/90 px-2.5 py-0.5 rounded-full flex items-center gap-1">
+                    <i class="fa-solid fa-star text-rose-300"></i> <span id="rating-score-header">4.9</span> (<span id="rating-count-header"> 452 </span> avaliações)
                 </span>
             </div>
         </div>
@@ -116,43 +114,47 @@
 
     <!-- Modal de Informações e Horários -->
     <div id="modal-info" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
-        <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl relative border-2 border-burguerYellow transform scale-95 transition-transform duration-300" id="modal-content">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl relative border border-rose-100 transform scale-95 transition-transform duration-300" id="modal-content">
             <button type="button" onclick="fecharModalInfo()" class="absolute top-4 right-4 bg-gray-100 hover:bg-gray-200 text-gray-600 w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold transition-all">
                 <i class="fa-solid fa-xmark"></i>
             </button>
 
-            <h3 class="text-display text-2xl font-bold text-burguerDark mb-3 flex items-center gap-2 border-b-2 border-burguerYellow pb-2 uppercase tracking-wide">
-                <i class="fa-solid fa-store text-burguerAccent"></i> Hamburgueria Modelo
+            <h3 class="text-display text-xl font-bold text-burguerDark mb-3 flex items-center gap-2 border-b border-rose-100 pb-2">
+                <i class="fa-solid fa-store text-burguerWine"></i> Hamburgueria Modelo
             </h3>
 
             <div class="space-y-3 text-xs text-gray-600">
-                <div class="bg-amber-50/70 p-3 rounded-xl border border-amber-200">
-                    <p class="font-bold text-burguerDark mb-1"><i class="fa-solid fa-location-dot text-red-500 mr-1"></i> Endereço:</p>
+                <div class="bg-rose-50/70 p-3 rounded-xl border border-rose-100">
+                    <p class="font-bold text-burguerDark mb-1"><i class="fa-solid fa-location-dot text-burguerWine mr-1"></i> Endereço:</p>
                     <p class="text-gray-700">Av. Dr. JJ Seabra, 198 – Centro, Xique-Xique – BA, 47400-000</p>
                 </div>
 
                 <div class="grid grid-cols-2 gap-2">
-                    <div class="bg-gray-50 p-2.5 rounded-xl border border-gray-200 text-center">
-                        <p class="font-bold text-burguerDark text-[11px] mb-0.5"><i class="fa-solid fa-motorcycle text-amber-500 mr-1"></i> Delivery</p>
+                    <div class="bg-gray-50 p-2.5 rounded-xl border border-gray-100 text-center">
+                        <p class="font-bold text-burguerDark text-[11px] mb-0.5"><i class="fa-solid fa-motorcycle text-burguerWine mr-1"></i> Delivery</p>
                         <p class="text-[11px] text-gray-500">30 - 50 minutos</p>
                     </div>
-                    <div class="bg-gray-50 p-2.5 rounded-xl border border-gray-200 text-center">
-                        <p class="font-bold text-burguerDark text-[11px] mb-0.5"><i class="fa-solid fa-store text-amber-500 mr-1"></i> No Local</p>
+                    <div class="bg-gray-50 p-2.5 rounded-xl border border-gray-100 text-center">
+                        <p class="font-bold text-burguerDark text-[11px] mb-0.5"><i class="fa-solid fa-store text-burguerWine mr-1"></i> No Local / Retirada</p>
                         <p class="text-[11px] text-gray-500">Mesas ao ar livre</p>
                     </div>
                 </div>
 
                 <div>
-                    <p class="font-bold text-burguerDark mb-1.5"><i class="fa-regular fa-clock text-burguerYellow mr-1"></i> Horários de Funcionamento:</p>
-                    <ul class="space-y-1 bg-gray-50 p-3 rounded-xl border border-gray-200 text-[11px]">
-                        <li class="flex justify-between border-b border-gray-200 pb-1"><span>Domingo:</span> <span class="font-semibold text-burguerDark">18:00 - 23:59</span></li>
-                        <li class="flex justify-between border-b border-gray-200 pb-1"><span>Segunda a Quinta:</span> <span class="font-semibold text-burguerDark">18:00 - 23:45</span></li>
-                        <li class="flex justify-between pt-0.5"><span>Sexta e Sábado:</span> <span class="font-semibold text-burguerDark">18:00 - 23:59</span></li>
+                    <p class="font-bold text-burguerDark mb-1.5"><i class="fa-regular fa-clock text-burguerWine mr-1"></i> Horários de Funcionamento:</p>
+                    <ul class="space-y-1 bg-gray-50 p-3 rounded-xl border border-gray-100 text-[11px]">
+                        <li class="flex justify-between border-b border-gray-200/50 pb-1"><span>Domingo:</span> <span class="font-semibold text-burguerDark">18:00 - 23:59</span></li>
+                        <li class="flex justify-between border-b border-gray-200/50 pb-1"><span>Segunda:</span> <span class="font-semibold text-burguerDark">18:00 - 23:45</span></li>
+                        <li class="flex justify-between border-b border-gray-200/50 pb-1"><span>Terça:</span> <span class="font-semibold text-burguerDark">18:00 - 23:45</span></li>
+                        <li class="flex justify-between border-b border-gray-200/50 pb-1"><span>Quarta:</span> <span class="font-semibold text-burguerDark">18:00 - 23:45</span></li>
+                        <li class="flex justify-between border-b border-gray-200/50 pb-1"><span>Quinta:</span> <span class="font-semibold text-burguerDark">18:00 - 23:45</span></li>
+                        <li class="flex justify-between border-b border-gray-200/50 pb-1"><span>Sexta:</span> <span class="font-semibold text-burguerDark">18:00 - 23:59</span></li>
+                        <li class="flex justify-between pt-0.5"><span>Sábado:</span> <span class="font-semibold text-burguerDark">18:00 - 23:59</span></li>
                     </ul>
                 </div>
             </div>
 
-            <button type="button" onclick="fecharModalInfo()" class="mt-4 w-full bg-burguerDark hover:bg-black text-burguerYellow font-bold py-2.5 rounded-xl text-xs transition-all uppercase tracking-wider">
+            <button type="button" onclick="fecharModalInfo()" class="mt-4 w-full bg-burguerDark hover:bg-black text-rose-200 font-bold py-2.5 rounded-xl text-xs transition-all">
                 Entendido
             </button>
         </div>
@@ -161,28 +163,28 @@
     <main class="max-w-4xl mx-auto px-3 md:px-6 mt-6 relative z-20">
         
         <!-- Barra de busca e Abas de navegação rápida -->
-        <div class="bg-white rounded-2xl shadow-lg p-3 md:p-4 mb-6 border border-amber-200/60 flex flex-col md:flex-row gap-3 items-center">
+        <div class="bg-white rounded-2xl shadow-lg p-3 md:p-4 mb-6 border border-rose-100/50 flex flex-col md:flex-row gap-3 items-center">
             <div class="relative w-full md:flex-1">
                 <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-gray-400">
                     <i class="fa-solid fa-magnifying-glass text-sm"></i>
                 </span>
-                <input type="text" id="searchInput" oninput="filterProducts()" placeholder="Pesquise por combo, burger ou bebida..." class="w-full bg-gray-50 border border-gray-200 pl-9 pr-3 py-2.5 rounded-xl text-base focus:outline-none focus:ring-2 focus:ring-burguerYellow focus:bg-white transition-all">
+                <input type="text" id="searchInput" oninput="filterProducts()" placeholder="Pesquise por combo, burger ou bebida..." class="w-full bg-gray-50 border border-gray-200 pl-9 pr-3 py-2.5 rounded-xl text-base focus:outline-none focus:ring-2 focus:ring-burguerWine focus:border-transparent transition-all">
             </div>
             
             <div class="w-full md:w-auto overflow-x-auto hide-scrollbar flex gap-2 py-0.5">
-                <button onclick="filterCategory('todos')" class="category-btn active px-4 py-2 rounded-xl font-bold text-xs md:text-sm transition-all whitespace-nowrap bg-burguerYellow text-burguerDark shadow-sm uppercase tracking-wider">
+                <button onclick="filterCategory('todos')" class="category-btn active px-3.5 py-2 rounded-xl font-semibold text-xs md:text-sm transition-all whitespace-nowrap bg-burguerWine text-white shadow-sm">
                     Todos
                 </button>
-                <button onclick="filterCategory('combo')" class="category-btn px-4 py-2 rounded-xl font-bold text-xs md:text-sm transition-all whitespace-nowrap bg-gray-100 text-gray-600 hover:bg-amber-50 uppercase tracking-wider">
+                <button onclick="filterCategory('combo')" class="category-btn px-3.5 py-2 rounded-xl font-semibold text-xs md:text-sm transition-all whitespace-nowrap bg-gray-50 text-gray-600 hover:bg-rose-50">
                     Combos
                 </button>
-                <button onclick="filterCategory('gourmet')" class="category-btn px-4 py-2 rounded-xl font-bold text-xs md:text-sm transition-all whitespace-nowrap bg-gray-100 text-gray-600 hover:bg-amber-50 uppercase tracking-wider">
+                <button onclick="filterCategory('gourmet')" class="category-btn px-3.5 py-2 rounded-xl font-semibold text-xs md:text-sm transition-all whitespace-nowrap bg-gray-50 text-gray-600 hover:bg-rose-50">
                     Gourmet
                 </button>
-                <button onclick="filterCategory('tradicional')" class="category-btn px-4 py-2 rounded-xl font-bold text-xs md:text-sm transition-all whitespace-nowrap bg-gray-100 text-gray-600 hover:bg-amber-50 uppercase tracking-wider">
+                <button onclick="filterCategory('tradicional')" class="category-btn px-3.5 py-2 rounded-xl font-semibold text-xs md:text-sm transition-all whitespace-nowrap bg-gray-50 text-gray-600 hover:bg-rose-50">
                     Tradicionais
                 </button>
-                <button onclick="filterCategory('bebida')" class="category-btn px-4 py-2 rounded-xl font-bold text-xs md:text-sm transition-all whitespace-nowrap bg-gray-100 text-gray-600 hover:bg-amber-50 uppercase tracking-wider">
+                <button onclick="filterCategory('bebida')" class="category-btn px-3.5 py-2 rounded-xl font-semibold text-xs md:text-sm transition-all whitespace-nowrap bg-gray-50 text-gray-600 hover:bg-rose-50">
                     Bebidas
                 </button>
             </div>
@@ -191,65 +193,65 @@
         <div class="space-y-6">
             <!-- Seção de Combos Promocionais -->
             <div id="combos-section">
-                <h2 class="text-display text-xl md:text-2xl font-bold text-burguerDark mb-3 flex items-center gap-2 border-b-2 border-burguerYellow pb-1.5 uppercase tracking-wide">
+                <h2 class="text-display text-lg md:text-2xl font-bold text-burguerDark mb-3 flex items-center gap-2 border-b border-burguerWine/30 pb-1.5">
                     Combos Promocionais
                 </h2>
                 <div id="combos-grid" class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
-                    <!-- Dinâmico -->
+                    <!-- Gerado dinamicamente -->
                 </div>
             </div>
 
             <!-- Seção Cardápio Gourmet -->
             <div id="gourmet-section" class="mt-6">
-                <h2 class="text-display text-xl md:text-2xl font-bold text-burguerDark mb-3 flex items-center gap-2 border-b-2 border-burguerYellow pb-1.5 uppercase tracking-wide">
+                <h2 class="text-display text-lg md:text-2xl font-bold text-burguerDark mb-3 flex items-center gap-2 border-b border-burguerWine/30 pb-1.5">
                     Cardápio Gourmet & Porções
                 </h2>
                 <div id="gourmet-grid" class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
-                    <!-- Dinâmico -->
+                    <!-- Gerado dinamicamente -->
                 </div>
             </div>
 
             <!-- Seção Sanduíches Tradicionais -->
             <div id="tradicionais-section" class="mt-6">
-                <h2 class="text-display text-xl md:text-2xl font-bold text-burguerDark mb-3 flex items-center gap-2 border-b-2 border-burguerYellow pb-1.5 uppercase tracking-wide">
+                <h2 class="text-display text-lg md:text-2xl font-bold text-burguerDark mb-3 flex items-center gap-2 border-b border-burguerWine/30 pb-1.5">
                     Sanduíches Tradicionais
                 </h2>
                 <div id="tradicionais-grid" class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
-                    <!-- Dinâmico -->
+                    <!-- Gerado dinamicamente -->
                 </div>
             </div>
 
             <!-- Seção de Bebidas Geladas -->
             <div id="bebidas-section" class="mt-6">
-                <h2 class="text-display text-xl md:text-2xl font-bold text-burguerDark mb-3 flex items-center gap-2 border-b-2 border-burguerYellow pb-1.5 uppercase tracking-wide">
+                <h2 class="text-display text-lg md:text-2xl font-bold text-burguerDark mb-3 flex items-center gap-2 border-b border-burguerWine/30 pb-1.5">
                     Bebidas Geladas
                 </h2>
                 <div id="bebidas-grid" class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
-                    <!-- Dinâmico -->
+                    <!-- Gerado dinamicamente -->
                 </div>
             </div>
         </div>
 
         <!-- Módulo de Avaliação -->
-        <div id="rating-widget-area" class="bg-white rounded-2xl border border-amber-200 shadow-xl p-5 mt-8 max-w-2xl mx-auto text-center">
-            <h3 class="font-bold text-sm sm:text-base text-burguerDark mb-2 uppercase tracking-wide">Avalie nosso atendimento:</h3>
+        <div id="rating-widget-area" class="bg-white rounded-2xl border border-rose-100 shadow-xl p-5 mt-8 max-w-2xl mx-auto text-center">
+            <h3 class="font-bold text-sm sm:text-base text-burguerDark mb-2">Avalie nosso atendimento:</h3>
             <div class="flex justify-center gap-3 mb-2">
-                <button onclick="registrarNotaTrambique(1)" class="star-btn text-3xl text-gray-300 hover:text-burguerYellow active:scale-95 transition-all focus:outline-none"><i class="fa-regular fa-star"></i></button>
-                <button onclick="registrarNotaTrambique(2)" class="star-btn text-3xl text-gray-300 hover:text-burguerYellow active:scale-95 transition-all focus:outline-none"><i class="fa-regular fa-star"></i></button>
-                <button onclick="registrarNotaTrambique(3)" class="star-btn text-3xl text-gray-300 hover:text-burguerYellow active:scale-95 transition-all focus:outline-none"><i class="fa-regular fa-star"></i></button>
-                <button onclick="registrarNotaTrambique(4)" class="star-btn text-3xl text-gray-300 hover:text-burguerYellow active:scale-95 transition-all focus:outline-none"><i class="fa-regular fa-star"></i></button>
-                <button onclick="registrarNotaTrambique(5)" class="star-btn text-3xl text-gray-300 hover:text-burguerYellow active:scale-95 transition-all focus:outline-none"><i class="fa-regular fa-star"></i></button>
+                <button onclick="registrarNotaTrambique(1)" class="star-btn text-3xl text-gray-300 hover:text-burguerWine active:scale-95 transition-all focus:outline-none"><i class="fa-regular fa-star"></i></button>
+                <button onclick="registrarNotaTrambique(2)" class="star-btn text-3xl text-gray-300 hover:text-burguerWine active:scale-95 transition-all focus:outline-none"><i class="fa-regular fa-star"></i></button>
+                <button onclick="registrarNotaTrambique(3)" class="star-btn text-3xl text-gray-300 hover:text-burguerWine active:scale-95 transition-all focus:outline-none"><i class="fa-regular fa-star"></i></button>
+                <button onclick="registrarNotaTrambique(4)" class="star-btn text-3xl text-gray-300 hover:text-burguerWine active:scale-95 transition-all focus:outline-none"><i class="fa-regular fa-star"></i></button>
+                <button onclick="registrarNotaTrambique(5)" class="star-btn text-3xl text-gray-300 hover:text-burguerWine active:scale-95 transition-all focus:outline-none"><i class="fa-regular fa-star"></i></button>
             </div>
             <p id="rating-feedback-msg" class="text-xs text-gray-500 font-medium transition-all">Sua opinião ajuda a melhorar nossa entrega!</p>
         </div>
 
         <!-- Sacola de Compras e Finalização do Pedido -->
-        <div class="bg-white rounded-2xl border border-amber-200 shadow-xl p-4 sm:p-6 mt-8 max-w-2xl mx-auto" id="checkout-area">
+        <div class="bg-white rounded-2xl border border-rose-100 shadow-xl p-4 sm:p-6 mt-8 max-w-2xl mx-auto" id="checkout-area">
             <div class="flex justify-between items-center mb-4 border-b border-gray-100 pb-3">
-                <h3 class="text-display text-lg sm:text-xl font-bold text-burguerDark flex items-center gap-2 uppercase tracking-wide">
+                <h3 class="text-display text-base sm:text-xl font-bold text-burguerDark flex items-center gap-2">
                     Meu Pedido
                 </h3>
-                <button type="button" onclick="clearCart()" class="text-[10px] font-semibold text-red-500 hover:text-red-700 bg-red-50 hover:bg-red-100 px-2.5 py-1 rounded-lg transition-all flex items-center gap-1 uppercase tracking-wider">
+                <button type="button" onclick="clearCart()" class="text-[10px] font-semibold text-red-500 hover:text-red-700 bg-red-50 hover:bg-red-100 px-2 py-1 rounded-lg transition-all flex items-center gap-1">
                     <i class="fa-solid fa-trash-can"></i> Limpar Tudo
                 </button>
             </div>
@@ -258,14 +260,14 @@
                 <!-- Dinâmico -->
             </div>
 
-            <div class="border-t border-dashed border-amber-200 py-3 space-y-1.5">
+            <div class="border-t border-dashed border-rose-100 py-3 space-y-1.5">
                 <div class="flex justify-between text-xs sm:text-sm text-gray-600">
                     <span>Subtotal</span>
                     <span id="subtotal-val" class="font-semibold">R$ 0,00</span>
                 </div>
                 <div class="flex justify-between text-xs sm:text-sm text-gray-600" id="delivery-row">
                     <span>Taxa de Entrega</span>
-                    <span id="delivery-val" class="font-medium text-amber-600">Preencha o bairro</span>
+                    <span id="delivery-val" class="font-medium text-burguerWine">Preencha o bairro</span>
                 </div>
                 <div class="flex justify-between text-base sm:text-lg font-bold text-burguerDark pt-1.5 border-t border-gray-100">
                     <span>Total do Pedido:</span>
@@ -276,8 +278,8 @@
                     <i class="fa-solid fa-triangle-exclamation"></i> O valor mínimo para pedidos é de R$ 10,00. Adicione mais delícias!
                 </div>
                 
-                <div id="store-closed-alert" class="hidden bg-amber-50 border border-amber-200 text-amber-900 px-3 py-2.5 rounded-xl text-center text-xs font-semibold flex items-center justify-center gap-2 mt-2">
-                    <i class="fa-solid fa-store-slash text-amber-700"></i> Estamos fechados no momento. Confira nossos horários no botão de informações acima!
+                <div id="store-closed-alert" class="hidden bg-rose-50 border border-rose-200 text-burguerDark px-3 py-2.5 rounded-xl text-center text-xs font-semibold flex items-center justify-center gap-2 mt-2">
+                    <i class="fa-solid fa-store-slash text-burguerWine"></i> Estamos fechados no momento. Confira nossos horários no botão de informações acima!
                 </div>
             </div>
 
@@ -285,11 +287,11 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
                     <div>
                         <label class="block text-[10px] font-semibold text-gray-500 uppercase tracking-wider mb-1" for="nome">Seu Nome:</label>
-                        <input type="text" id="nome" required placeholder="Ex: João Silva" class="w-full bg-gray-50 border border-gray-200 px-3 py-2.5 rounded-xl text-base focus:outline-none focus:ring-2 focus:ring-burguerYellow focus:bg-white transition-all">
+                        <input type="text" id="nome" required placeholder="Ex: João Silva" class="w-full bg-gray-50 border border-gray-200 px-3 py-2.5 rounded-xl text-base focus:outline-none focus:ring-2 focus:ring-burguerWine focus:bg-white transition-all">
                     </div>
                     <div>
                         <label class="block text-[10px] font-semibold text-gray-500 uppercase tracking-wider mb-1" for="celular">Seu Celular / WhatsApp:</label>
-                        <input type="tel" id="celular" required placeholder="Ex: (74) 99999-9999" oninput="formatarTelefone(this)" class="w-full bg-gray-50 border border-gray-200 px-3 py-2.5 rounded-xl text-base focus:outline-none focus:ring-2 focus:ring-burguerYellow focus:bg-white transition-all">
+                        <input type="tel" id="celular" required placeholder="Ex: (74) 99999-9999" oninput="formatarTelefone(this)" class="w-full bg-gray-50 border border-gray-200 px-3 py-2.5 rounded-xl text-base focus:outline-none focus:ring-2 focus:ring-burguerWine focus:bg-white transition-all">
                     </div>
                 </div>
 
@@ -297,10 +299,10 @@
                     <div>
                         <label class="block text-[10px] font-semibold text-gray-500 uppercase tracking-wider mb-1">Como deseja receber?</label>
                         <div class="grid grid-cols-2 gap-2">
-                            <button type="button" onclick="setDeliveryMethod('entrega')" id="methodDelivery" class="py-2.5 text-center font-bold rounded-xl text-xs transition-all bg-burguerYellow text-burguerDark border border-transparent shadow-sm uppercase tracking-wider">
+                            <button type="button" onclick="setDeliveryMethod('entrega')" id="methodDelivery" class="py-2.5 text-center font-bold rounded-xl text-xs transition-all bg-burguerWine text-white border border-transparent shadow-sm">
                                 <i class="fa-solid fa-motorcycle mr-1"></i> Entrega
                             </button>
-                            <button type="button" onclick="setDeliveryMethod('retirada')" id="methodPickup" class="py-2.5 text-center font-bold rounded-xl text-xs transition-all bg-gray-100 text-gray-600 border border-gray-200 uppercase tracking-wider">
+                            <button type="button" onclick="setDeliveryMethod('retirada')" id="methodPickup" class="py-2.5 text-center font-semibold rounded-xl text-xs transition-all bg-gray-50 text-gray-600 border border-gray-100">
                                 <i class="fa-solid fa-store mr-1"></i> Retirar / Local
                             </button>
                         </div>
@@ -311,13 +313,13 @@
                 <div id="addressSection" class="transition-all duration-300 space-y-3">
                     <div>
                         <label class="block text-[10px] font-semibold text-gray-500 uppercase tracking-wider mb-1" for="endereco_rua">Rua e Número:</label>
-                        <input type="text" id="endereco_rua" placeholder="Ex: Rua das Flores, 123" class="w-full bg-gray-50 border border-gray-200 px-3 py-2.5 rounded-xl text-base focus:outline-none focus:ring-2 focus:ring-burguerYellow focus:bg-white transition-all">
+                        <input type="text" id="endereco_rua" placeholder="Ex: Rua das Flores, 123" class="w-full bg-gray-50 border border-gray-200 px-3 py-2.5 rounded-xl text-base focus:outline-none focus:ring-2 focus:ring-burguerWine focus:bg-white transition-all">
                     </div>
                     
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
                         <div>
                             <label class="block text-[10px] font-semibold text-gray-500 uppercase tracking-wider mb-1" for="bairro">Bairro (Xique-Xique - BA):</label>
-                            <select id="bairro" onchange="updateCart()" class="w-full bg-gray-50 border border-gray-200 px-3 py-2.5 rounded-xl text-base focus:outline-none focus:ring-2 focus:ring-burguerYellow focus:bg-white transition-all">
+                            <select id="bairro" onchange="updateCart()" class="w-full bg-gray-50 border border-gray-200 px-3 py-2.5 rounded-xl text-base focus:outline-none focus:ring-2 focus:ring-burguerWine focus:bg-white transition-all">
                                 <option value="">Selecione o bairro</option>
                                 <option value="Centro">Centro (R$ 3,00)</option>
                                 <option value="Polivalente">Polivalente (R$ 5,00)</option>
@@ -336,47 +338,47 @@
                         </div>
                         <div>
                             <label class="block text-[10px] font-semibold text-gray-500 uppercase tracking-wider mb-1" for="ref_ponto">Ponto de Referência (Opcional):</label>
-                            <input type="text" id="ref_ponto" placeholder="Ex: Próximo ao mercado azul" class="w-full bg-gray-50 border border-gray-200 px-3 py-2.5 rounded-xl text-base focus:outline-none focus:ring-2 focus:ring-burguerYellow focus:bg-white transition-all">
+                            <input type="text" id="ref_ponto" placeholder="Ex: Próximo ao mercado azul" class="w-full bg-gray-50 border border-gray-200 px-3 py-2.5 rounded-xl text-base focus:outline-none focus:ring-2 focus:ring-burguerWine focus:bg-white transition-all">
                         </div>
                     </div>
                 </div>
 
-                <div id="locationActionArea" class="bg-amber-50/60 border border-amber-200 rounded-xl p-3 space-y-2">
+                <div id="locationActionArea" class="bg-rose-50/60 border border-rose-100 rounded-xl p-3 space-y-2">
                     <!-- Dinâmico -->
                 </div>
 
                 <div class="space-y-3">
                     <div>
                         <label class="block text-[10px] font-semibold text-gray-500 uppercase tracking-wider mb-1" for="pagamento">Forma de Pagamento:</label>
-                        <select id="pagamento" onchange="toggleTrocoAndPix(); toggleCartaoGroup();" required class="w-full bg-gray-50 border border-gray-200 px-3 py-2.5 rounded-xl text-base focus:outline-none focus:ring-2 focus:ring-burguerYellow focus:bg-white transition-all">
+                        <select id="pagamento" onchange="toggleTrocoAndPix(); toggleCartaoGroup();" required class="w-full bg-gray-50 border border-gray-200 px-3 py-2.5 rounded-xl text-base focus:outline-none focus:ring-2 focus:ring-burguerWine focus:bg-white transition-all">
                             <option value="Pix">Pix</option>
                             <option value="Cartão">Cartão (maquininha na entrega/mesa)</option>
                             <option value="Dinheiro">Dinheiro</option>
                         </select>
                     </div>
 
-                    <div id="pix-area" class="bg-amber-50/60 border border-amber-200 p-3.5 rounded-xl space-y-2.5">
+                    <div id="pix-area" class="bg-rose-50/60 border border-rose-100 p-3.5 rounded-xl space-y-2.5">
                         <div class="flex items-center gap-1.5">
-                            <i class="fa-solid fa-money-bill-transfer text-amber-700 text-sm"></i>
+                            <i class="fa-solid fa-money-bill-transfer text-burguerWine text-sm"></i>
                             <span class="text-[10px] font-bold text-burguerDark uppercase tracking-wide">Chave Pix para Pagamento:</span>
                         </div>
-                        <div class="flex items-center justify-between bg-white border border-amber-200 p-2.5 rounded-lg gap-2">
+                        <div class="flex items-center justify-between bg-white border border-rose-100/50 p-2.5 rounded-lg gap-2">
                             <code class="text-xs sm:text-sm font-semibold text-burguerDark select-all break-all" id="chave-pix-texto">pix@hamburgueriamodelo.com.br</code>
-                            <button type="button" onclick="copiarPix()" class="bg-burguerYellow hover:bg-burguerAccent text-burguerDark px-2.5 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1 shrink-0 uppercase tracking-wider">
+                            <button type="button" onclick="copiarPix()" class="bg-burguerWine hover:bg-burguerAccent text-white px-2.5 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1 shrink-0">
                                 <i class="fa-regular fa-copy"></i> Copiar
                             </button>
                         </div>
-                        <p class="text-[10px] text-amber-900 font-medium bg-amber-100/60 p-2.5 rounded-lg border border-amber-200/50 flex items-start gap-2">
-                            <i class="fa-solid fa-circle-info text-amber-700 text-sm mt-0.5 shrink-0"></i>
-                            <span>Dica: Se puder, envie o comprovante de pagamento junto com a mensagem do WhatsApp para agilizar! 😊</span>
+                        <p class="text-[10px] text-gray-600 font-medium bg-rose-100/40 p-2.5 rounded-lg border border-rose-200/20 flex items-start gap-2">
+                            <i class="fa-solid fa-circle-info text-burguerWine text-sm mt-0.5 shrink-0"></i>
+                            <span>Envie o comprovante junto com a mensagem do WhatsApp para agilizar! 😊</span>
                         </p>
                     </div>
 
                     <div id="troco-group" class="hidden bg-gray-50 border border-gray-200 rounded-xl p-3 space-y-2">
                         <label class="block text-[10px] font-semibold text-gray-500 uppercase tracking-wider mb-1" for="troco">Troco para quanto?</label>
-                        <input type="number" id="troco" step="0.01" placeholder="Ex: 50,00" class="w-full bg-white border border-gray-200 px-3 py-2.5 rounded-xl text-base focus:outline-none focus:ring-2 focus:ring-burguerYellow transition-all">
+                        <input type="number" id="troco" step="0.01" placeholder="Ex: 50,00" class="w-full bg-white border border-gray-200 px-3 py-2.5 rounded-xl text-base focus:outline-none focus:ring-2 focus:ring-burguerWine transition-all">
                         <label class="flex items-center gap-2 text-xs font-semibold text-gray-600 pt-1">
-                            <input type="checkbox" id="sem-troco" onchange="toggleTrocoSemNota()" class="w-4 h-4 accent-burguerYellow"> Não preciso de troco (valor exato)
+                            <input type="checkbox" id="sem-troco" onchange="toggleTrocoSemNota()" class="w-4 h-4 accent-burguerWine"> Não preciso de troco (valor exato)
                         </label>
                         <p id="troco-info" class="text-[11px] font-semibold"></p>
                     </div>
@@ -385,7 +387,7 @@
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
                             <div>
                                 <label class="block text-[10px] font-semibold text-gray-500 uppercase tracking-wider mb-1" for="bandeira">Bandeira do Cartão:</label>
-                                <select id="bandeira" class="w-full bg-white border border-gray-200 px-3 py-2.5 rounded-xl text-base focus:outline-none focus:ring-2 focus:ring-burguerYellow transition-all">
+                                <select id="bandeira" class="w-full bg-white border border-gray-200 px-3 py-2.5 rounded-xl text-base focus:outline-none focus:ring-2 focus:ring-burguerWine transition-all">
                                     <option value="">Selecione a bandeira</option>
                                     <option value="Visa">Visa</option>
                                     <option value="Mastercard">Mastercard</option>
@@ -397,23 +399,23 @@
                             </div>
                             <div>
                                 <label class="block text-[10px] font-semibold text-gray-500 uppercase tracking-wider mb-1" for="modalidade">Modalidade:</label>
-                                <select id="modalidade" class="w-full bg-white border border-gray-200 px-3 py-2.5 rounded-xl text-base focus:outline-none focus:ring-2 focus:ring-burguerYellow transition-all">
+                                <select id="modalidade" class="w-full bg-white border border-gray-200 px-3 py-2.5 rounded-xl text-base focus:outline-none focus:ring-2 focus:ring-burguerWine transition-all">
                                     <option value="">Selecione</option>
                                     <option value="Crédito">Crédito</option>
                                     <option value="Débito">Débito</option>
                                 </select>
                             </div>
                         </div>
-                        <p class="text-[10px] text-gray-500 font-medium"><i class="fa-regular fa-credit-card text-amber-600"></i> Maquininha levada até você.</p>
+                        <p class="text-[10px] text-gray-500 font-medium"><i class="fa-regular fa-credit-card text-burguerWine"></i> Maquininha levada até você.</p>
                     </div>
                 </div>
 
                 <div>
                     <label class="block text-[10px] font-semibold text-gray-500 uppercase tracking-wider mb-1" for="observacao">Observações (Opcional):</label>
-                    <textarea id="observacao" rows="2" placeholder="Ex: Ponto da carne, sem cebola..." class="w-full bg-gray-50 border border-gray-200 px-3 py-2.5 rounded-xl text-base focus:outline-none focus:ring-2 focus:ring-burguerYellow focus:bg-white transition-all"></textarea>
+                    <textarea id="observacao" rows="2" placeholder="Ex: Ponto da carne, sem cebola..." class="w-full bg-gray-50 border border-gray-200 px-3 py-2.5 rounded-xl text-base focus:outline-none focus:ring-2 focus:ring-burguerWine focus:bg-white transition-all"></textarea>
                 </div>
 
-                <button type="submit" id="btn-finalizar" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 rounded-xl shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 text-base mt-2 uppercase tracking-wider">
+                <button type="submit" id="btn-finalizar" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 rounded-xl shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 text-base mt-2">
                     <i class="fa-brands fa-whatsapp text-lg"></i> Enviar Pedido no WhatsApp
                 </button>
             </form>
@@ -421,24 +423,24 @@
     </main>
 
     <!-- Mini-carrinho flutuante -->
-    <div id="sticky-mini-cart" class="fixed bottom-3 left-3 right-3 bg-gradient-to-r from-burguerDark to-burguerAccent text-white px-4 py-2.5 rounded-xl shadow-lg z-40 flex items-center justify-between transform translate-y-32 opacity-0 transition-all duration-300 pointer-events-none md:max-w-xs md:mx-auto border border-burguerYellow/40">
-        <div class="flex items-center gap-2.5">
-            <div class="bg-burguerYellow/20 p-1.5 rounded-lg flex items-center justify-center text-burguerYellow">
+    <div id="sticky-mini-cart" class="fixed bottom-3 left-3 right-3 bg-gradient-to-r from-burguerWine to-burguerAccent text-white px-3 py-2 rounded-xl shadow-lg z-40 flex items-center justify-between transform translate-y-32 opacity-0 transition-all duration-300 pointer-events-none md:max-w-xs md:mx-auto">
+        <div class="flex items-center gap-2">
+            <div class="bg-white/20 p-1.5 rounded-lg flex items-center justify-center">
                 <i class="fa-solid fa-basket-shopping text-xs"></i>
             </div>
             <div>
                 <span id="mini-cart-qty" class="block font-bold text-[11px]">0 itens</span>
-                <span id="mini-cart-subtotal" class="block text-[9px] text-amber-200 font-medium">Subtotal: R$ 0,00</span>
+                <span id="mini-cart-subtotal" class="block text-[9px] text-rose-100 font-medium">Subtotal: R$ 0,00</span>
             </div>
         </div>
-        <a href="#checkout-area" class="bg-burguerYellow text-burguerDark font-extrabold text-[10px] px-3 py-1.5 rounded-lg uppercase tracking-wider shadow hover:bg-amber-400 transition-colors pointer-events-auto flex items-center gap-1">
-            Ver Sacola <i class="fa-solid fa-chevron-right text-[8px]"></i>
+        <a href="#checkout-area" class="bg-white text-burguerWine font-extrabold text-[9px] px-2.5 py-1.5 rounded-lg uppercase tracking-wider shadow hover:bg-rose-50 transition-colors pointer-events-auto flex items-center gap-1">
+            Ver Sacola <i class="fa-solid fa-chevron-right text-[7px]"></i>
         </a>
     </div>
 
     <!-- Toast de feedback -->
-    <div id="toast" class="fixed bottom-20 left-1/2 -translate-x-1/2 bg-burguerDark text-white px-5 py-3 rounded-full shadow-lg z-50 flex items-center gap-2 border border-burguerYellow/30 transform translate-y-24 opacity-0 transition-all duration-300 max-w-[90vw]">
-        <i id="toast-icon" class="fa-solid fa-circle-check text-burguerYellow text-base shrink-0"></i>
+    <div id="toast" class="fixed bottom-20 left-1/2 -translate-x-1/2 bg-burguerDark text-white px-5 py-3 rounded-full shadow-lg z-50 flex items-center gap-2 border border-burguerWine/20 transform translate-y-24 opacity-0 transition-all duration-300 max-w-[90vw]">
+        <i id="toast-icon" class="fa-solid fa-circle-check text-rose-300 text-base shrink-0"></i>
         <span id="toastMsg" class="font-medium text-xs sm:text-sm truncate">Carrinho atualizado!</span>
     </div>
 
@@ -565,12 +567,12 @@
 
         function verificarLojaAberta() {
             const agora = new Date();
-            const diaSemana = agora.getDay();
+            const diaSemana = agora.getDay(); // 0 = Domingo, 1 = Segunda, ..., 6 = Sábado
             const hora = agora.getHours();
             const minuto = agora.getMinutes();
             const minutosAtuais = hora * 60 + minuto;
 
-            let abertura = 18 * 60; // 18:00
+            let abertura = 18 * 60; // 18:00 todos os dias
             let fechamento = (diaSemana === 0 || diaSemana === 5 || diaSemana === 6) ? (23 * 60 + 59) : (23 * 60 + 45);
 
             return minutosAtuais >= abertura && minutosAtuais <= fechamento;
@@ -584,12 +586,12 @@
             const alertClosed = document.getElementById('store-closed-alert');
 
             if (aberto) {
-                badge.className = "px-3 py-1 rounded-full font-semibold flex items-center gap-1.5 border bg-emerald-500/20 text-emerald-400 border-emerald-500/30";
+                badge.className = "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 px-2.5 py-0.5 rounded-full font-semibold flex items-center gap-1.5";
                 dot.className = "w-1.5 h-1.5 bg-emerald-400 rounded-full animate-ping";
                 text.innerText = "Aberto Agora";
                 if(alertClosed) alertClosed.classList.add('hidden');
             } else {
-                badge.className = "px-3 py-1 rounded-full font-semibold flex items-center gap-1.5 border bg-red-500/20 text-red-400 border-red-500/30";
+                badge.className = "bg-red-500/20 text-red-400 border border-red-500/30 px-2.5 py-0.5 rounded-full font-semibold flex items-center gap-1.5";
                 dot.className = "w-1.5 h-1.5 bg-red-400 rounded-full";
                 text.innerText = "Fechado";
                 if(alertClosed) alertClosed.classList.remove('hidden');
@@ -634,11 +636,11 @@
         function createProductCard(p) {
             const qty = cart[p.id] || 0;
             const emFalta = p.status === 'em_falta';
-            const fallbackImgSvg = 'data:image/svg+xml;utf8,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96"><rect width="96" height="96" fill="#F7F4EB"/><text x="48" y="62" font-size="40" text-anchor="middle">🍔</text></svg>');
+            const fallbackImgSvg = 'data:image/svg+xml;utf8,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96"><rect width="96" height="96" fill="#FAF6F0"/><text x="48" y="62" font-size="40" text-anchor="middle">🍔</text></svg>');
             
             return `
-                <div class="bg-white rounded-2xl p-2.5 sm:p-3 border border-amber-200/60 shadow-sm flex items-center gap-3 relative group ${emFalta ? 'opacity-70 grayscale-[30%]' : ''}">
-                    <div class="w-20 h-20 sm:w-24 sm:h-24 flex-shrink-0 rounded-xl overflow-hidden bg-amber-50/40 border border-amber-200/50 flex items-center justify-center relative">
+                <div class="bg-white rounded-2xl p-2.5 sm:p-3 border border-rose-100/40 shadow-sm flex items-center gap-3 relative group ${emFalta ? 'opacity-70 grayscale-[30%]' : ''}">
+                    <div class="w-20 h-20 sm:w-24 sm:h-24 flex-shrink-0 rounded-xl overflow-hidden bg-rose-50/40 border border-rose-100/50 flex items-center justify-center relative">
                         <img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='${fallbackImgSvg}'">
                         ${emFalta ? '<span class="absolute inset-0 bg-black/60 flex items-center justify-center text-white text-[10px] font-bold uppercase tracking-wider text-center px-1">Em falta</span>' : ''}
                     </div>
@@ -653,15 +655,15 @@
                         </div>
                         
                         <div class="flex items-center justify-between gap-1.5 mt-1">
-                            <span class="font-extrabold text-sm sm:text-base text-burguerAccent shrink-0">R$ ${p.price.toFixed(2).replace('.', ',')}</span>
+                            <span class="font-extrabold text-sm sm:text-base text-burguerWine shrink-0">R$ ${p.price.toFixed(2).replace('.', ',')}</span>
                             
                             ${!emFalta ? `
-                            <div class="flex items-center bg-gray-50 rounded-full py-1 px-1.5 shadow-inner border border-gray-200 shrink-0">
-                                <button type="button" onclick="changeQty(${p.id}, -1)" class="w-7 h-7 flex items-center justify-center text-burguerDark hover:bg-white active:scale-95 rounded-full font-black text-xs transition-transform focus:outline-none">
+                            <div class="flex items-center bg-gray-50 rounded-full py-1 px-1.5 shadow-inner border border-gray-100/60 shrink-0">
+                                <button type="button" onclick="changeQty(${p.id}, -1)" class="w-7 h-7 flex items-center justify-center text-burguerWine hover:bg-white active:scale-95 rounded-full font-black text-xs transition-transform focus:outline-none">
                                     <i class="fa-solid fa-minus"></i>
                                 </button>
                                 <span id="qty-${p.id}" class="w-6 text-center font-bold text-xs text-gray-800">${qty}</span>
-                                <button type="button" onclick="changeQty(${p.id}, 1)" class="w-7 h-7 flex items-center justify-center text-burguerDark hover:bg-white active:scale-95 rounded-full font-black text-xs transition-transform focus:outline-none">
+                                <button type="button" onclick="changeQty(${p.id}, 1)" class="w-7 h-7 flex items-center justify-center text-burguerWine hover:bg-white active:scale-95 rounded-full font-black text-xs transition-transform focus:outline-none">
                                     <i class="fa-solid fa-plus"></i>
                                 </button>
                             </div>` : '<span class="text-[10px] text-red-500 font-semibold italic">Produto esgotado</span>'}
@@ -680,13 +682,13 @@
         function filterCategory(cat) {
             const buttons = document.querySelectorAll('.category-btn');
             buttons.forEach(btn => {
-                btn.classList.remove('bg-burguerYellow', 'text-burguerDark', 'shadow-sm', 'active');
-                btn.classList.add('bg-gray-100', 'text-gray-600');
+                btn.classList.remove('bg-burguerWine', 'text-white', 'shadow-sm', 'active');
+                btn.classList.add('bg-gray-50', 'text-gray-600');
             });
 
             const activeBtn = event.currentTarget;
-            activeBtn.classList.remove('bg-gray-100', 'text-gray-600');
-            activeBtn.classList.add('bg-burguerYellow', 'text-burguerDark', 'shadow-sm', 'active');
+            activeBtn.classList.remove('bg-gray-50', 'text-gray-600');
+            activeBtn.classList.add('bg-burguerWine', 'text-white', 'shadow-sm', 'active');
 
             const combosSec = document.getElementById('combos-section');
             const gourmetSec = document.getElementById('gourmet-section');
@@ -725,7 +727,7 @@
             atualizarExibicaoEstatistica();
 
             document.querySelectorAll('.star-btn i').forEach((estrela) => {
-                estrela.className = "fa-solid fa-star text-burguerYellow animate-pop";
+                estrela.className = "fa-solid fa-star text-burguerWine animate-pop";
             });
 
             document.getElementById('rating-feedback-msg').innerHTML = `<span class="text-emerald-600 font-bold">Obrigado pela sua nota de 5 estrelas! ⭐⭐⭐⭐⭐</span>`;
@@ -777,10 +779,10 @@
                     totalItemsCount += cart[id];
 
                     itemsHtml += `
-                        <div class="flex items-center justify-between bg-gray-50/80 hover:bg-amber-50/20 p-2.5 rounded-xl border border-gray-200 transition-colors">
+                        <div class="flex items-center justify-between bg-gray-50/80 hover:bg-rose-50/20 p-2.5 rounded-xl border border-gray-100 transition-colors">
                             <div class="flex-1 min-w-0 pr-2">
                                 <div class="flex items-center gap-1.5">
-                                    <span class="font-bold text-xs text-burguerDark bg-amber-100 px-1.5 py-0.5 rounded">${cart[id]}x</span>
+                                    <span class="font-bold text-xs text-burguerDark bg-rose-100 px-1.5 py-0.5 rounded">${cart[id]}x</span>
                                     <span class="font-semibold text-xs text-gray-700 truncate">${produto.name}</span>
                                 </div>
                             </div>
@@ -798,7 +800,7 @@
             if (keys.length === 0) {
                 listContainer.innerHTML = `
                     <div class="text-center py-6 text-gray-400">
-                        <i class="fa-solid fa-basket-shopping text-2xl mb-1.5 text-amber-300"></i>
+                        <i class="fa-solid fa-basket-shopping text-2xl mb-1.5 text-rose-200"></i>
                         <p class="text-xs font-semibold">Sua sacola está vazia.</p>
                         <p class="text-[9px] mt-0.5 text-gray-400/80">Escolha combos ou burgers deliciosos acima!</p>
                     </div>
@@ -816,13 +818,13 @@
                 
                 if (bairroInput === '') {
                     finalDeliveryFee = 5.00;
-                    document.getElementById('delivery-val').innerHTML = `<span class="text-amber-600 font-semibold text-xs"><i class="fa-solid fa-spinner animate-spin text-[10px]"></i> Aguardando bairro...</span>`;
+                    document.getElementById('delivery-val').innerHTML = `<span class="text-burguerWine font-semibold text-xs"><i class="fa-solid fa-spinner animate-spin text-[10px]"></i> Aguardando bairro...</span>`;
                 } else if (bairroInput.includes('centro')) {
                     finalDeliveryFee = 3.00;
                     document.getElementById('delivery-val').innerHTML = `<span class="text-emerald-600 font-bold text-xs">R$ 3,00 (Centro)</span>`;
                 } else {
                     finalDeliveryFee = 5.00;
-                    document.getElementById('delivery-val').innerHTML = `<span class="text-amber-600 font-bold text-xs">R$ 5,00 (Bairro)</span>`;
+                    document.getElementById('delivery-val').innerHTML = `<span class="text-burguerWine font-bold text-xs">R$ 5,00 (Bairro)</span>`;
                 }
             } else {
                 finalDeliveryFee = 0;
@@ -900,8 +902,8 @@
             const locationActionArea = document.getElementById('locationActionArea');
 
             if (method === 'entrega') {
-                btnDelivery.className = "py-2.5 text-center font-bold rounded-xl text-xs transition-all bg-burguerYellow text-burguerDark border border-transparent shadow-sm uppercase tracking-wider";
-                btnPickup.className = "py-2.5 text-center font-bold rounded-xl text-xs transition-all bg-gray-100 text-gray-600 border border-gray-200 uppercase tracking-wider";
+                btnDelivery.className = "py-2.5 text-center font-bold rounded-xl text-xs transition-all bg-burguerWine text-white border border-transparent shadow-sm";
+                btnPickup.className = "py-2.5 text-center font-semibold rounded-xl text-xs transition-all bg-gray-50 text-gray-600 border border-gray-100";
                 
                 addressSection.classList.remove('hidden');
                 ruaInput.setAttribute('required', 'true');
@@ -909,15 +911,15 @@
                 deliveryRow.classList.remove('hidden');
 
                 locationActionArea.innerHTML = `
-                    <button type="button" onclick="capturarGps()" class="w-full bg-burguerDark text-white font-bold py-2.5 rounded-xl text-xs flex items-center justify-center gap-2 active:scale-95 transition-all uppercase tracking-wider">
-                        <i class="fa-solid fa-location-crosshairs text-burguerYellow"></i> Usar minha localização atual (GPS)
+                    <button type="button" onclick="capturarGps()" class="w-full bg-burguerDark text-white font-bold py-2.5 rounded-xl text-xs flex items-center justify-center gap-2 active:scale-95 transition-all">
+                        <i class="fa-solid fa-location-crosshairs text-rose-300"></i> Usar minha localização atual (GPS)
                     </button>
                     <p id="gps-status" class="text-[10px] text-gray-500 font-medium text-center">Opcional: facilita muito para o entregador te achar.</p>
-                    <a id="gps-link" href="#" target="_blank" rel="noopener" class="hidden text-[11px] font-bold text-amber-700 underline break-all text-center block"></a>
+                    <a id="gps-link" href="#" target="_blank" rel="noopener" class="hidden text-[11px] font-bold text-burguerWine underline break-all text-center block"></a>
                 `;
             } else {
-                btnPickup.className = "py-2.5 text-center font-bold rounded-xl text-xs transition-all bg-burguerYellow text-burguerDark border border-transparent shadow-sm uppercase tracking-wider";
-                btnDelivery.className = "py-2.5 text-center font-bold rounded-xl text-xs transition-all bg-gray-100 text-gray-600 border border-gray-200 uppercase tracking-wider";
+                btnPickup.className = "py-2.5 text-center font-bold rounded-xl text-xs transition-all bg-burguerWine text-white border border-transparent shadow-sm";
+                btnDelivery.className = "py-2.5 text-center font-semibold rounded-xl text-xs transition-all bg-gray-50 text-gray-600 border border-gray-100";
                 
                 addressSection.classList.add('hidden');
                 ruaInput.removeAttribute('required');
@@ -929,7 +931,7 @@
                 locationActionArea.innerHTML = `
                     <div class="text-center space-y-1.5">
                         <p class="text-[10px] font-bold text-burguerDark uppercase tracking-wider">Local / Retirada do Pedido:</p>
-                        <a href="${linkLoja}" target="_blank" rel="noopener" class="w-full bg-amber-500 hover:bg-amber-600 text-white font-bold py-2.5 rounded-xl text-xs flex items-center justify-center gap-2 shadow-sm transition-all uppercase tracking-wider">
+                        <a href="${linkLoja}" target="_blank" rel="noopener" class="w-full bg-burguerWine hover:bg-burguerAccent text-white font-bold py-2.5 rounded-xl text-xs flex items-center justify-center gap-2 shadow-sm transition-all">
                             <i class="fa-solid fa-map-location-dot"></i> Ver Localização da Hamburgueria no Mapa
                         </a>
                         <p class="text-[10px] text-gray-500 font-medium">Av. Dr. JJ Seabra, 198 – Centro, Xique-Xique – BA</p>
@@ -1089,7 +1091,7 @@
         function showToast(mensagem, icone, cor) {
             const toast = document.getElementById('toast');
             document.getElementById('toastMsg').innerText = mensagem;
-            document.getElementById('toast-icon').className = `fa-solid ${icone} ${cor || 'text-burguerYellow'} text-base shrink-0`;
+            document.getElementById('toast-icon').className = `fa-solid ${icone} ${cor || 'text-rose-300'} text-base shrink-0`;
             
             toast.classList.remove('translate-y-24', 'opacity-0', 'pointer-events-none');
             toast.classList.add('translate-y-0', 'opacity-100');
@@ -1185,7 +1187,7 @@
                 pagamentoTexto += ` na maquininha - ${bandeira} (${modalidade})`;
             }
 
-            let mensagem = `🔥 *HAMBURGUERIA MODELO*
+            let mensagem = `🍔 *HAMBURGUERIA MODELO*
 ------------------
 👤 *${nome}* - *${celular}*
 📍 *${deliveryMethod === 'entrega' ? 'Delivery' : 'Local / Retirada'}* - *${bairroTxt}*`;
@@ -1203,7 +1205,7 @@
 🛒 *PEDIDO:*
 ${itensTexto}------------------
 💰 *Subtotal:* R$ ${subtotal.toFixed(2).replace('.', ',')}
-🛵 *Entrega:* R$ ${finalDeliveryFee.toFixed(2).replace('.', ',')}
+🛵 *Taxa:* R$ ${finalDeliveryFee.toFixed(2).replace('.', ',')}
 💵 *TOTAL:* R$ ${valorTotalFinal.toFixed(2).replace('.', ',')}
 ------------------
 💳 *Pagamento:* ${pagamentoTexto}`;
